@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Idosiye yose</string>
   <string name="text_fullscreen">Hindura uburyo bwuzuye bwa ecran 1</string>
   <string name="text_drawer_right">Fungura menu iburyo</string>
-  <string name="text_required_default_paddle_ocr_model">Amapaki asanzwe ya PaddleOCR yamahugurwa</string>
   <string name="switch_fullscreen">Hindura uburyo bwuzuye bwa ecran</string>
   <string name="text_custom_ocr_model_path">Gupakira ibicuruzwa OCR yububiko</string>
   <string name="desc_more">Ibindi</string>

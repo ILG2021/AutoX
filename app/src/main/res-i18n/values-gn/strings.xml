@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Opaite vore jeike</string>
   <string name="text_fullscreen">Ombohasa pantalla completa modo 1</string>
   <string name="text_drawer_right">Eipe’a pe menú oike porãva</string>
-  <string name="text_required_default_paddle_ocr_model">Paquete rehegua PaddleOCR ñembokatupyry datokuéra ñepyrũrã</string>
   <string name="switch_fullscreen">Embohasa pe modo pantalla completa rehegua</string>
   <string name="text_custom_ocr_model_path">Paquete personalizado OCR modelo directorio rehegua</string>
   <string name="desc_more">Heta</string>

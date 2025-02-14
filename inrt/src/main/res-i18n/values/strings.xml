@@ -6,7 +6,7 @@
     <string name="key_enable_accessibility_service" translatable="false">key_enable_accessibility_service</string>
     <string name="key_enable_floating_window" translatable="false">key_enable_floating_window</string>
     <string name="key_stable_mode" translatable="false">key_stable_mode</string>
-    <string name="powered_by_autojs" translatable="false">Powered by Autoxjs.com</string>
+    <string name="powered_by_autojs" translatable="false">Powered by AutoJsX</string>
     <string name="title_activity_login" translatable="false">LoginActivity</string>
     <string name="key_hide_logs" translatable="false">key_hide_logs</string>
     <string name="key_dont_show_main_activity" translatable="false">key_dont_show_main_activity</string>

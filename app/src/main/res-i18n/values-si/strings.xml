@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">සියලුම ගොනු ප්රවේශය</string>
   <string name="text_fullscreen">සම්පූර්ණ තිර මාදිලිය ටොගල් කරන්න 1</string>
   <string name="text_drawer_right">දකුණු මෙනුව විවෘත කරන්න</string>
-  <string name="text_required_default_paddle_ocr_model">පැකේජ පෙරනිමි PaddleOCR පුහුණු දත්ත</string>
   <string name="switch_fullscreen">සම්පූර්ණ තිර මාදිලිය ටොගල් කරන්න</string>
   <string name="text_custom_ocr_model_path">පැකේජ අභිරුචි OCR ආකෘති නාමාවලිය</string>
   <string name="desc_more">තව</string>

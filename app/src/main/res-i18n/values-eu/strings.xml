@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Fitxategietarako sarbidea guztiak</string>
   <string name="text_fullscreen">Aldatu pantaila osoko modua 1</string>
   <string name="text_drawer_right">Ireki eskuineko menua</string>
-  <string name="text_required_default_paddle_ocr_model">PaddleOCR prestakuntza-datu lehenetsiak paketeak</string>
   <string name="switch_fullscreen">Aldatu pantaila osoko modua</string>
   <string name="text_custom_ocr_model_path">Pakete pertsonalizatua OCR eredu direktorioa</string>
   <string name="desc_more">Gehiago</string>

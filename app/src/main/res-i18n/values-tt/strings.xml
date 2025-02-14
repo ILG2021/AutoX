@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Барлык файлларга керү</string>
   <string name="text_fullscreen">Тулы экран режимын алыштырыгыз 1</string>
   <string name="text_drawer_right">Дөрес менюны ач</string>
-  <string name="text_required_default_paddle_ocr_model">Килешү буенча PaddleOCR укыту мәгълүматлары</string>
   <string name="switch_fullscreen">Тулы экран режимын алыштырыгыз</string>
   <string name="text_custom_ocr_model_path">Пакетлы OCR модель каталогы</string>
   <string name="desc_more">Тулырак</string>

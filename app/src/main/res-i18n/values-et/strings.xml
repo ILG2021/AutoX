@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Juurdepääs kõigile failidele</string>
   <string name="text_fullscreen">Lülitage täisekraanirežiim 1</string>
   <string name="text_drawer_right">Avage parempoolne menüü</string>
-  <string name="text_required_default_paddle_ocr_model">Pakkige PaddleOCR treeningu vaikeandmed</string>
   <string name="switch_fullscreen">Lülitage täisekraanirežiim sisse</string>
   <string name="text_custom_ocr_model_path">Pakkige kohandatud OCR-mudeli kataloog</string>
   <string name="desc_more">Rohkem</string>

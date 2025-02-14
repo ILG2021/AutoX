@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Gbogbo wiwọle faili</string>
   <string name="text_fullscreen">Yipada ipo iboju kikun 1</string>
   <string name="text_drawer_right">Ṣii akojọ aṣayan ọtun</string>
-  <string name="text_required_default_paddle_ocr_model">Package aiyipada data ikẹkọ PaddleOCR</string>
   <string name="switch_fullscreen">Yipada ipo iboju kikun</string>
   <string name="text_custom_ocr_model_path">Package aṣa OCR awoṣe liana</string>
   <string name="desc_more">Die e sii</string>

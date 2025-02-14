@@ -10,25 +10,19 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.multidex.MultiDexApplication
-import androidx.work.Configuration
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomViewTarget
+import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
-import com.flurry.android.FlurryAgent
 import com.stardust.app.GlobalAppContext
 import com.stardust.autojs.core.ui.inflater.ImageLoader
 import com.stardust.autojs.core.ui.inflater.util.Drawables
 import com.stardust.theme.ThemeColor
-import com.tencent.bugly.Bugly
-import com.tencent.bugly.crashreport.CrashReport
 import org.autojs.autojs.autojs.AutoJs
 import org.autojs.autojs.autojs.key.GlobalKeyObserver
 import org.autojs.autojs.external.receiver.DynamicBroadcastReceivers
 import org.autojs.autojs.theme.ThemeColorManagerCompat
 import org.autojs.autojs.timing.TimedTaskManager
 import org.autojs.autojs.timing.TimedTaskScheduler
-import org.autojs.autojs.tool.CrashHandler
-import org.autojs.autojs.ui.error.ErrorReportActivity
 import org.autojs.autoxjs.BuildConfig
 import org.autojs.autoxjs.R
 import java.lang.ref.WeakReference
@@ -37,7 +31,7 @@ import java.lang.ref.WeakReference
  * Created by Stardust on 2017/1/27.
  */
 
-class App : MultiDexApplication(), Configuration.Provider {
+class App : MultiDexApplication() {
     lateinit var dynamicBroadcastReceivers: DynamicBroadcastReceivers
         private set
 
@@ -55,22 +49,9 @@ class App : MultiDexApplication(), Configuration.Provider {
     private fun setUpStaticsTool() {
         if (BuildConfig.DEBUG)
             return
-        FlurryAgent.Builder()
-            .withLogEnabled(BuildConfig.DEBUG)
-            .build(this, "D42MH48ZN4PJC5TKNYZD")
     }
 
     private fun setUpDebugEnvironment() {
-        Bugly.isDev = false
-        val crashHandler = CrashHandler(ErrorReportActivity::class.java)
-
-        val strategy = CrashReport.UserStrategy(applicationContext)
-        strategy.setCrashHandleCallback(crashHandler)
-
-        CrashReport.initCrashReport(applicationContext, BUGLY_APP_ID, false, strategy)
-
-        crashHandler.setBuglyHandler(Thread.getDefaultUncaughtExceptionHandler())
-        Thread.setDefaultUncaughtExceptionHandler(crashHandler)
     }
 
     private fun init() {
@@ -135,16 +116,13 @@ class App : MultiDexApplication(), Configuration.Provider {
             override fun loadIntoBackground(view: View, uri: Uri) {
                 Glide.with(view)
                     .load(uri)
-                    .into(object : CustomViewTarget<View, Drawable>(view) {
+                    .into(object : SimpleTarget<Drawable>() {
                         override fun onResourceReady(
                             resource: Drawable,
                             transition: Transition<in Drawable>?
                         ) {
                             view.background = resource
                         }
-
-                        override fun onLoadFailed(errorDrawable: Drawable?) =Unit
-                        override fun onResourceCleared(placeholder: Drawable?)=Unit
                     })
             }
 
@@ -159,15 +137,13 @@ class App : MultiDexApplication(), Configuration.Provider {
             ) {
                 Glide.with(view)
                     .load(uri)
-                    .into(object : CustomViewTarget<View, Drawable>(view){
+                    .into(object : SimpleTarget<Drawable>() {
                         override fun onResourceReady(
                             resource: Drawable,
                             transition: Transition<in Drawable>?
                         ) {
                             drawableCallback.onLoaded(resource)
                         }
-                        override fun onLoadFailed(errorDrawable: Drawable?) =Unit
-                        override fun onResourceCleared(placeholder: Drawable?)=Unit
                     })
             }
 
@@ -175,23 +151,17 @@ class App : MultiDexApplication(), Configuration.Provider {
                 Glide.with(view)
                     .asBitmap()
                     .load(uri)
-                    .into(object : CustomViewTarget<View, Bitmap>(view) {
+                    .into(object : SimpleTarget<Bitmap>() {
                         override fun onResourceReady(
                             resource: Bitmap,
                             transition: Transition<in Bitmap>?
                         ) {
                             bitmapCallback.onLoaded(resource)
                         }
-                        override fun onLoadFailed(errorDrawable: Drawable?) =Unit
-                        override fun onResourceCleared(placeholder: Drawable?)=Unit
                     })
             }
         })
     }
-
-    override val workManagerConfiguration = Configuration.Builder()
-        .setMinimumLoggingLevel(android.util.Log.INFO)
-        .build()
 
     companion object {
 
@@ -203,4 +173,6 @@ class App : MultiDexApplication(), Configuration.Provider {
         val app: App
             get() = instance.get()!!
     }
+
+
 }

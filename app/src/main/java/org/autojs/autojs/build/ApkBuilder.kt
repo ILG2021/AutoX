@@ -6,11 +6,9 @@ import com.stardust.app.GlobalAppContext
 import com.stardust.autojs.apkbuilder.ApkPackager
 import com.stardust.autojs.apkbuilder.ManifestEditor
 import com.stardust.autojs.project.BuildInfo
-import com.stardust.autojs.project.Constant
 import com.stardust.autojs.project.ProjectConfig
 import com.stardust.autojs.script.EncryptedScriptFileHeader
 import com.stardust.autojs.script.JavaScriptFileSource
-import com.stardust.io.Zip
 import com.stardust.pio.PFiles
 import com.stardust.util.AdvancedEncryptionStandard
 import com.stardust.util.MD5
@@ -18,9 +16,11 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import org.apache.commons.io.FileUtils
 import org.apache.commons.io.IOUtils
-import org.autojs.autojs.tool.addAllIfNotExist
 import org.autojs.autojs.tool.copyTo
 import org.autojs.autojs.tool.parseUriOrNull
+import org.autojs.autojs.tool.unzip
+import com.stardust.autojs.project.Constant
+import org.autojs.autojs.tool.addAllIfNotExist
 import pxb.android.StringItem
 import pxb.android.axml.AxmlWriter
 import zhao.arsceditor.ArscUtil
@@ -66,9 +66,6 @@ class ApkBuilder(
 
     private val nativePath = File(GlobalAppContext.get().cacheDir, "native-lib").path
 
-    private var splashThemeId: Int = 0
-    private var noDisplayThemeId: Int = 0
-
     /**
      * 新建工作目录并解压apk
      */
@@ -88,8 +85,7 @@ class ApkBuilder(
         val context = GlobalAppContext.get()
         val myApkFile =
             File(context.packageManager.getApplicationInfo(context.packageName, 0).sourceDir)
-
-        Zip.unzip(myApkFile, File(nativePath), "lib/")
+        unzip(myApkFile, File(nativePath), "lib/")
     }
 
     private fun setScriptFile(path: String): ApkBuilder {
@@ -142,11 +138,6 @@ class ApkBuilder(
     }
 
     private fun encrypt(file: File, newFile: File) {
-        if (!projectConfig!!.isEncrypt) {
-            newFile.delete()
-            file.copyTo(newFile)
-            return
-        }
         val out = newFile.outputStream()
         EncryptedScriptFileHeader.writeHeader(
             out,
@@ -170,20 +161,6 @@ class ApkBuilder(
 
     fun withConfig(config: ProjectConfig): ApkBuilder {
         projectConfig = config
-        if (!config.launchConfig.displaySplash) {
-            //在这里给splashThemeId赋值
-            val arsc = File(workspacePath, "resources.arsc")
-            val util = ArscUtil()
-            util.openArsc(arsc.absolutePath) { _, type, key, value, id ->
-                if (type == "style") {
-                    if (key == "ScriptTheme.Splash") {
-                        splashThemeId = id
-                    } else if (key == "SplashNoDisplay") {
-                        noDisplayThemeId = id
-                    }
-                }
-            }
-        }
         manifestEditor = editManifest()
             .setAppName(config.name)
             .setVersionName(config.versionName)
@@ -334,11 +311,10 @@ class ApkBuilder(
         val decoder =
             ARSCDecoder(BufferedInputStream(FileInputStream(oldArsc)), null as ResTable?, false)
         FileOutputStream(newArsc).use {
-            //这里替换包名后会导致资源文件出错，因此还是用原包名"org.autojs.autoxjs.inrt"
-            decoder.CloneArsc(it, "org.autojs.autoxjs.inrt", false)
+            decoder.CloneArsc(it, arscPackageName, false)
         }
         val util = ArscUtil()
-        util.openArsc(newArsc.absolutePath) { _, type, key, value, id ->
+        util.openArsc(newArsc.absolutePath) { _, type, key, value ->
             when (type) {
                 "mipmap", "drawable" -> {
                     onReplaceIcon(key, value)
@@ -356,7 +332,7 @@ class ApkBuilder(
                 launchConfig.serviceDesc
             )
         }
-        util.saveArsc(newArsc.absolutePath, oldArsc.absolutePath)
+        util.saveArsc(oldArsc.absolutePath, newArsc.absolutePath)
         newArsc.delete()
     }
 
@@ -395,11 +371,8 @@ class ApkBuilder(
             if (projectConfig!!.launchConfig.isHideLauncher && attr.value is StringItem && "android.intent.category.LAUNCHER" == (attr.value as StringItem).data) {
                 Log.e("attr", "onAttr: " + (attr.value as StringItem).data + "----" + "")
                 (attr.value as StringItem).data = "android.intent.category.DEFAULT"
-            } else if (projectConfig!!.launchConfig.isHideAccessibilityServices && "permission" == attr.name.data && attr.value is StringItem && "android.permission.BIND_ACCESSIBILITY_SERVICE" == (attr.value as StringItem).data) {
-                (attr.value as StringItem).data = ""
-            } else if (!projectConfig!!.launchConfig.displaySplash && splashThemeId != 0 && attr.value == splashThemeId) {
-                attr.value = noDisplayThemeId
-            } else if ("authorities" == attr.name.data && attr.value is StringItem) {
+            }
+            if ("authorities" == attr.name.data && attr.value is StringItem) {
                 (attr.value as StringItem).data = projectConfig!!.packageName + ".fileprovider"
             } else {
                 super.onAttr(attr)

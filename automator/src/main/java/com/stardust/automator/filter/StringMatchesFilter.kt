@@ -10,7 +10,7 @@ class StringMatchesFilter internal constructor(private val mRegex: String, priva
 
     override fun filter(node: UiObject): Boolean {
         val key = mKeyGetter.getKey(node)
-        return key != null && key.matches(mRegex.toRegex())
+        return key != null && key.matches(mRegex.toRegex(RegexOption.IGNORE_CASE))
     }
 
     override fun toString(): String {

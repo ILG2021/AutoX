@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">すべてのファイル アクセス</string>
   <string name="text_fullscreen">全画面モードの切り替え 1</string>
   <string name="text_drawer_right">右のメニューを開く</string>
-  <string name="text_required_default_paddle_ocr_model">デフォルトの PaddleOCR トレーニング データをパッケージ化する</string>
   <string name="switch_fullscreen">全画面モードの切り替え</string>
   <string name="text_custom_ocr_model_path">カスタム OCR モデル ディレクトリをパッケージ化する</string>
   <string name="desc_more">もっと</string>

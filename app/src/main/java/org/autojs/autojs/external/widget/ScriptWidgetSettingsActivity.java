@@ -4,22 +4,24 @@ import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import androidx.annotation.Nullable;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import androidx.annotation.Nullable;
-
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.autojs.autoxjs.R;
 import org.autojs.autojs.model.explorer.Explorer;
 import org.autojs.autojs.model.explorer.ExplorerDirPage;
 import org.autojs.autojs.model.explorer.ExplorerFileProvider;
 import org.autojs.autojs.model.script.Scripts;
 import org.autojs.autojs.ui.BaseActivity;
 import org.autojs.autojs.ui.explorer.ExplorerViewKt;
-import org.autojs.autoxjs.R;
 
 /**
  * Created by Stardust on 2017/7/11.
  */
+@EActivity(R.layout.activity_script_widget_settings)
 public class ScriptWidgetSettingsActivity extends BaseActivity {
 
     private String mSelectedScriptFilePath;
@@ -32,11 +34,7 @@ public class ScriptWidgetSettingsActivity extends BaseActivity {
         mAppWidgetId = getIntent().getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
     }
 
-    @Override
-    protected void initView() {
-        setUpViews();
-    }
-
+    @AfterViews
     void setUpViews() {
         BaseActivity.setToolbarAsBack(this, R.id.toolbar, getString(R.string.text_please_choose_a_script));
         initScriptListRecyclerView();
@@ -86,8 +84,4 @@ public class ScriptWidgetSettingsActivity extends BaseActivity {
     }
 
 
-    @Override
-    public int getLayoutId() {
-        return R.layout.activity_script_widget_settings;
-    }
 }

@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">כל טעקע אַקסעס</string>
   <string name="text_fullscreen">באַשטימען פול פאַרשטעלן מאָדע 1</string>
   <string name="text_drawer_right">עפענען די רעכט מעניו</string>
-  <string name="text_required_default_paddle_ocr_model">פּעקל פעליקייַט PaddleOCR טריינינג דאַטן</string>
   <string name="switch_fullscreen">באַשטימען פול פאַרשטעלן מאָדע</string>
   <string name="text_custom_ocr_model_path">פּעקל מנהג OCR מאָדעל וועגווייַזער</string>
   <string name="desc_more">מער</string>

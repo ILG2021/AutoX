@@ -17,12 +17,12 @@ public class ReadOnlyUiObject extends UiObject {
     private NodeInfo mNodeInfo;
 
     public ReadOnlyUiObject(NodeInfo info) {
-        super(info.getNode().unwrap(), info.getDepth(), -1);
+        super(null, info.getDepth(), -1);
         mNodeInfo = info;
     }
 
     public ReadOnlyUiObject(NodeInfo info, int indexInParent) {
-        super(info.getNode().unwrap(), info.getDepth(), indexInParent);
+        super(null, info.getDepth(), indexInParent);
         mNodeInfo = info;
     }
 

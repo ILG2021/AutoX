@@ -1,33 +1,36 @@
 package org.autojs.autojs.ui.explorer
 
 import android.content.Context
-import android.content.Intent
 import android.util.AttributeSet
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import butterknife.BindView
+import butterknife.ButterKnife
+import butterknife.OnClick
 import com.stardust.autojs.project.ProjectConfig
-import com.stardust.autojs.project.ProjectConfig.Companion.fromProject
+import com.stardust.autojs.project.ProjectConfig.Companion.fromProjectDirAsync
 import com.stardust.autojs.project.ProjectLauncher
 import com.stardust.pio.PFile
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.autojs.autojs.autojs.AutoJs
 import org.autojs.autojs.model.explorer.ExplorerChangeEvent
 import org.autojs.autojs.model.explorer.Explorers
 import org.autojs.autojs.ui.build.BuildActivity.Companion.start
 import org.autojs.autojs.ui.build.ProjectConfigActivity
-import org.autojs.autojs.ui.util.launchActivity
+import org.autojs.autojs.ui.build.ProjectConfigActivity_
 import org.autojs.autoxjs.R
 import org.greenrobot.eventbus.Subscribe
-import java.io.File
 
 class ExplorerProjectToolbar : CardView {
     private var mProjectConfig: ProjectConfig? = null
     private var mDirectory: PFile? = null
+
+    @JvmField
+    @BindView(R.id.project_name)
     var mProjectName: TextView? = null
 
     constructor(context: Context?) : super(context!!) {
@@ -47,26 +50,14 @@ class ExplorerProjectToolbar : CardView {
     }
 
     private fun init() {
-        val view = inflate(context, R.layout.explorer_project_toolbar, this)
-        mProjectName = view.findViewById(R.id.project_name)
-        view.findViewById<View>(R.id.run).setOnClickListener {
-            run()
-        }
-        view.findViewById<View>(R.id.build).setOnClickListener {
-            build()
-        }
-        view.findViewById<View>(R.id.sync).setOnClickListener {
-            sync()
-        }
-        setOnClickListener { edit() }
+        inflate(context, R.layout.explorer_project_toolbar, this)
+        ButterKnife.bind(this)
+        setOnClickListener { view: View? -> edit() }
     }
 
     fun setProject(dir: PFile) {
         CoroutineScope(Dispatchers.Main).launch {
-            withContext(Dispatchers.IO) {
-                mProjectConfig = fromProject(File(dir.path))
-            }
-
+            mProjectConfig = fromProjectDirAsync(dir.path)
             if (mProjectConfig == null) {
                 visibility = GONE
                 return@launch
@@ -82,6 +73,7 @@ class ExplorerProjectToolbar : CardView {
         }
     }
 
+    @OnClick(R.id.run)
     fun run() {
         try {
             ProjectLauncher(mDirectory!!.path)
@@ -92,10 +84,12 @@ class ExplorerProjectToolbar : CardView {
         }
     }
 
+    @OnClick(R.id.build)
     fun build() {
         start(context, mDirectory!!.path)
     }
 
+    @OnClick(R.id.sync)
     fun sync() {
     }
 
@@ -123,8 +117,8 @@ class ExplorerProjectToolbar : CardView {
     }
 
     fun edit() {
-        context.launchActivity<ProjectConfigActivity> {
-            putExtra(ProjectConfigActivity.EXTRA_DIRECTORY, mDirectory!!.path)
-        }
+        ProjectConfigActivity_.intent(context)
+            .extra(ProjectConfigActivity.EXTRA_DIRECTORY, mDirectory!!.path)
+            .start()
     }
 }

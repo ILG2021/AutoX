@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">所有文件訪問權限</string>
   <string name="text_fullscreen">切換全屏模式1</string>
   <string name="text_drawer_right">打開右側菜單</string>
-  <string name="text_required_default_paddle_ocr_model">打包默認的PaddleOCR訓練數據</string>
   <string name="switch_fullscreen">切換全屏模式</string>
   <string name="text_custom_ocr_model_path">打包自定義OCR模型目錄</string>
   <string name="desc_more">更多</string>

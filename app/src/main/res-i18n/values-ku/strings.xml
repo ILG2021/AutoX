@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Hemî gihîştina pelê</string>
   <string name="text_fullscreen">Moda ekrana tevahî 1 biguherînin</string>
   <string name="text_drawer_right">Menuya rastê vekin</string>
-  <string name="text_required_default_paddle_ocr_model">Daneyên perwerdehiya PaddleOCR-a xwerû pakêt bikin</string>
   <string name="switch_fullscreen">Moda ekrana tevahî biguhezînin</string>
   <string name="text_custom_ocr_model_path">Peldanka modela OCR ya xwerû ya pakêtê</string>
   <string name="desc_more">Zêde</string>

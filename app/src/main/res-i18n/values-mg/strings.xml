@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Fidirana rehetra</string>
   <string name="text_fullscreen">Safidio ny maody ecran feno 1</string>
   <string name="text_drawer_right">Sokafy ny sakafo havanana</string>
-  <string name="text_required_default_paddle_ocr_model">Ampidiro ny angona fanofanana PaddleOCR default</string>
   <string name="switch_fullscreen">Ampifamadiho ny maody efijery feno</string>
   <string name="text_custom_ocr_model_path">Ampidiro ny lahatahiry modely OCR manokana</string>
   <string name="desc_more">Bebe kokoa</string>

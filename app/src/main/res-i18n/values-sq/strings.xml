@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">E gjithë aksesi në skedar</string>
   <string name="text_fullscreen">Ndrysho modalitetin e ekranit të plotë 1</string>
   <string name="text_drawer_right">Hapni menunë e duhur</string>
-  <string name="text_required_default_paddle_ocr_model">Paketoni të dhënat e paracaktuara të trajnimit PaddleOCR</string>
   <string name="switch_fullscreen">Ndrysho modalitetin e ekranit të plotë</string>
   <string name="text_custom_ocr_model_path">Paketoni direktorinë e modelit me porosi OCR</string>
   <string name="desc_more">Më shumë</string>

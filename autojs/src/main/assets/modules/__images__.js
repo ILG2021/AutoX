@@ -13,7 +13,7 @@ module.exports = function (runtime, scope) {
             if (Array.isArray(list)) {
                 this.matches = list;
             } else {
-                this.matches = runtime.bridges.toArray(list);
+                this.matches = runtime.bridges.bridges.toArray(list);
             }
             this.__defineGetter__("points", () => {
                 if (typeof (this.__points__) == 'undefined') {
@@ -162,7 +162,7 @@ module.exports = function (runtime, scope) {
             if (landscape === false) {
                 orientation = ScreenCapturer.ORIENTATION_PORTRAIT;
             }
-            return javaImages.requestScreenCapture(orientation);
+            return ResultAdapter.wait(javaImages.requestScreenCapture(orientation));
         }
 
         images.save = function (img, path, format, quality) {
@@ -170,7 +170,7 @@ module.exports = function (runtime, scope) {
             quality = quality == undefined ? 100 : quality;
             return javaImages.save(img, path, format, quality);
         }
-        images.stopScreenCapturer = javaImages.stopScreenCapturer.bind(javaImages)
+
         images.saveImage = images.save;
 
         images.grayscale = function (img, dstCn) {

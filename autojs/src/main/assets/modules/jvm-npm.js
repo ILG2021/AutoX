@@ -70,7 +70,9 @@ module = (typeof module === 'undefined') ? {} : module;
     if (builtInModules.indexOf(normalizePath) >= 0 && !files.exists(normalizePath)) {
       return NativeRequire.require(normalizePath);
     }
-
+    if (id === "events") {
+      return events;
+    }
     if (id.startsWith("http://") || id.startsWith("https://")) {
       return NativeRequire.require(id);
     }

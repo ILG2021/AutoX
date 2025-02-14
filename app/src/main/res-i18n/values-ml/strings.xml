@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">എല്ലാ ഫയൽ ആക്സസ്</string>
   <string name="text_fullscreen">പൂർണ്ണ സ്‌ക്രീൻ മോഡ് ടോഗിൾ ചെയ്യുക 1</string>
   <string name="text_drawer_right">വലത് മെനു തുറക്കുക</string>
-  <string name="text_required_default_paddle_ocr_model">പാക്കേജ് ഡിഫോൾട്ട് PaddleOCR പരിശീലന ഡാറ്റ</string>
   <string name="switch_fullscreen">പൂർണ്ണ സ്‌ക്രീൻ മോഡ് ടോഗിൾ ചെയ്യുക</string>
   <string name="text_custom_ocr_model_path">പാക്കേജ് ഇഷ്‌ടാനുസൃത OCR മോഡൽ ഡയറക്‌ടറി</string>
   <string name="desc_more">കൂടുതൽ</string>

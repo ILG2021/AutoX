@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">ټول فایل ته لاسرسی</string>
   <string name="text_fullscreen">د بشپړ سکرین حالت بدلول 1</string>
   <string name="text_drawer_right">ښی مینو خلاص کړئ</string>
-  <string name="text_required_default_paddle_ocr_model">د بسته ډیفالټ PaddleOCR روزنې ډاټا</string>
   <string name="switch_fullscreen">د بشپړ سکرین حالت بدل کړئ</string>
   <string name="text_custom_ocr_model_path">بسته د دودیز OCR ماډل لارښود</string>
   <string name="desc_more">نور</string>

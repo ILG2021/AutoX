@@ -6,19 +6,8 @@ package com.stardust.autojs.project
  */
 object Constant {
     object Libraries {
-        val OPEN_CV = listOf(
-            "libopencv_java4.so",
-            "libc++_shared.so",
-        )
+        val OPEN_CV = listOf("libopencv_java4.so", "libc++_shared.so")
         val GOOGLE_ML_KIT_OCR = listOf("libmlkit_google_ocr_pipeline.so")
-        val PADDLE_OCR = listOf(
-            "libc++_shared.so",
-            "libpaddle_light_api_shared.so",
-            "libhiai.so",
-            "libhiai_ir.so",
-            "libhiai_ir_build.so",
-            "libNative.so"
-        )
         val TESSERACT_OCR = listOf(
             "libtesseract.so",
             "libpng.so",
@@ -33,7 +22,6 @@ object Constant {
     }
 
     object Assets {
-        const val PADDLE_OCR = "/models"
         const val PROJECT = "/project"
         const val GOOGLE_ML_KIT_OCR = "/mlkit-google-ocr-models"
     }

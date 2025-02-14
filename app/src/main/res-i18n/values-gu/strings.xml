@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">બધી ફાઇલ એક્સેસ</string>
   <string name="text_fullscreen">પૂર્ણ સ્ક્રીન મોડને ટૉગલ કરો 1</string>
   <string name="text_drawer_right">જમણું મેનુ ખોલો</string>
-  <string name="text_required_default_paddle_ocr_model">પેકેજ ડિફોલ્ટ PaddleOCR તાલીમ ડેટા</string>
   <string name="switch_fullscreen">પૂર્ણ સ્ક્રીન મોડને ટૉગલ કરો</string>
   <string name="text_custom_ocr_model_path">પેકેજ કસ્ટમ OCR મોડેલ ડિરેક્ટરી</string>
   <string name="desc_more">વધુ</string>

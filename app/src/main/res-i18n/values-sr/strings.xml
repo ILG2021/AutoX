@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Приступ свим датотекама</string>
   <string name="text_fullscreen">Укључите режим целог екрана 1</string>
   <string name="text_drawer_right">Отворите десни мени</string>
-  <string name="text_required_default_paddle_ocr_model">Пакет подразумеваних ПаддлеОЦР података за обуку</string>
   <string name="switch_fullscreen">Укључите режим целог екрана</string>
   <string name="text_custom_ocr_model_path">Пакет именик прилагођеног ОЦР модела</string>
   <string name="desc_more">Више</string>

@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">सबै फाइल पहुँच</string>
   <string name="text_fullscreen">फुल स्क्रिन मोड टगल गर्नुहोस् १</string>
   <string name="text_drawer_right">दायाँ मेनु खोल्नुहोस्</string>
-  <string name="text_required_default_paddle_ocr_model">प्याकेज पूर्वनिर्धारित PaddleOCR प्रशिक्षण डेटा</string>
   <string name="switch_fullscreen">फुल स्क्रिन मोड टगल गर्नुहोस्</string>
   <string name="text_custom_ocr_model_path">प्याकेज अनुकूलन OCR मोडेल निर्देशिका</string>
   <string name="desc_more">थप</string>

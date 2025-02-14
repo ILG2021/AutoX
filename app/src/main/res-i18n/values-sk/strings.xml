@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Všetok prístup k súborom</string>
   <string name="text_fullscreen">Prepnutie režimu celej obrazovky 1</string>
   <string name="text_drawer_right">Otvorte pravé menu</string>
-  <string name="text_required_default_paddle_ocr_model">Balík predvolených tréningových údajov PaddleOCR</string>
   <string name="switch_fullscreen">Prepnúť režim celej obrazovky</string>
   <string name="text_custom_ocr_model_path">Zabaliť vlastný adresár modelu OCR</string>
   <string name="desc_more">Viac</string>

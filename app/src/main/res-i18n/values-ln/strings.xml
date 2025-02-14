@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Accès nionso ya fichier</string>
   <string name="text_fullscreen">Toggle mode ya écran mobimba 1</string>
   <string name="text_drawer_right">Fungola menu ya malamu</string>
-  <string name="text_required_default_paddle_ocr_model">Ba données ya formation ya PaddleOCR par défaut ya paquet</string>
   <string name="switch_fullscreen">Toggle mode ya écran mobimba</string>
   <string name="text_custom_ocr_model_path">Paquet répertoire ya modèle OCR personnalisé</string>
   <string name="desc_more">Lisusu</string>

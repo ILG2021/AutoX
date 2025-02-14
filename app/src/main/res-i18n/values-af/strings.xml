@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Alle lêertoegang</string>
   <string name="text_fullscreen">Wissel volskermmodus 1</string>
   <string name="text_drawer_right">Maak die regte spyskaart oop</string>
-  <string name="text_required_default_paddle_ocr_model">Pakket verstek PaddleOCR-opleidingsdata</string>
   <string name="switch_fullscreen">Wissel volskermmodus</string>
   <string name="text_custom_ocr_model_path">Pak pasgemaakte OCR-modelgids</string>
   <string name="desc_more">Meer</string>

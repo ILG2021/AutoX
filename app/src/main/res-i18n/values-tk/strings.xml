@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Filehli faýllara giriş</string>
   <string name="text_fullscreen">Doly ekran re modeimini üýtgediň</string>
   <string name="text_drawer_right">Dogry menýuny açyň</string>
-  <string name="text_required_default_paddle_ocr_model">Paket deslapky PaddleOCR okuw maglumatlary</string>
   <string name="switch_fullscreen">Doly ekran re modeimini üýtgediň</string>
   <string name="text_custom_ocr_model_path">Hususy OCR model bukjasy</string>
   <string name="desc_more">Has köp</string>

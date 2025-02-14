@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">كل الوصول للملف</string>
   <string name="text_fullscreen">تبديل وضع ملء الشاشة 1</string>
   <string name="text_drawer_right">افتح القائمة الصحيحة</string>
-  <string name="text_required_default_paddle_ocr_model">حزمة بيانات التدريب PaddleOCR الافتراضية</string>
   <string name="switch_fullscreen">تبديل وضع ملء الشاشة</string>
   <string name="text_custom_ocr_model_path">حزمة دليل نموذج OCR المخصص</string>
   <string name="desc_more">أكثر</string>

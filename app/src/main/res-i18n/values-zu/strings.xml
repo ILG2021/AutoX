@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Konke ukufinyelela kwefayela</string>
   <string name="text_fullscreen">Guqula imodi yesikrini esigcwele 1</string>
   <string name="text_drawer_right">Vula imenyu elungile</string>
-  <string name="text_required_default_paddle_ocr_model">Idatha yokuqeqeshwa ye-PaddleOCR ezenzakalelayo yephakheji</string>
   <string name="switch_fullscreen">Guqula imodi yesikrini esigcwele</string>
   <string name="text_custom_ocr_model_path">Phakheji inkomba yemodeli ye-OCR yangokwezifiso</string>
   <string name="desc_more">Okuningi</string>

@@ -1,349 +1,7 @@
 # Change Log
-autoxjs 整个项目的一些更新日志,双版本号为稳定版（内容以修复的bug为主），单版本号为激进版本、发布新内容。
+autoxjs 整个项目的一些更新日志,双版本号为稳定版，单版本号为激进版本。
 
-## [Unreleased](https://github.com/kkevsekk1/AutoX/compare/6.6.7...HEAD) 未发布
-
-
-## [6.6.7] - 2024-8-15
-
-@Liberations
-
-*  dex 加载问题
-
-[6.6.7]:https://github.com/kkevsekk1/AutoX/compare/6.6.6...6.6.7
-
-
-
-
-## [6.6.6] - 2024-7-28
-
-@Liberations
-
-*  修复打开USB调试开关后VSCODE无法正常连接手机进行调试 
-*  修复定时选项问题
-*  APP处于后台时Toast不显示等问题
-
-[6.6.6]:https://github.com/kkevsekk1/AutoX/compare/6.6.5...6.6.6
-
-
-## [6.6.5] - 2024-7-14
-
-@Liberations
-
-*  Android 11以上外部存储权限适配
-*  新建文件bug
-*  读取包、应用列表问题
-*  截图失败问题
-
-@happyme531
-
-* 设置帧率问题 
-
-
-
-[6.6.5]:https://github.com/kkevsekk1/AutoX/compare/6.6.4...6.6.5
-
-
-
-
-## [6.6.4] - 2024-7-7
-
-@gaomanyi
-
-*  修复android14 中工程项目显示异常问题。
-*  修复布局分析问题
-*  wifi 链接vscode报错
-
-@Lin 
-
-* 修复编辑器无法进入
-* 修复定时任务初始化错误
-
-
-[6.6.4]:https://github.com/kkevsekk1/AutoX/compare/6.6.3...6.6.4
-
-
-
-## [6.6.3] - 2024-6-23
-
-@SOCK-MAGIC
-
-*  增加模块 model
-*  迁移到网络模块
-*  修复点击事件
-*  修复bug无数
-*  修复版本号问题
-*  kotlin2.0 问题修复
-  
-@Lin 
-
-*  增加安卓14的适配
-*  恢复误删的权限一大批
-*  修复报错的bug无数
-
-
-@Shaun-Fong
-
-*  修复广播接收问题
-*  修复bug一批
-*  安卓14兼容问题
-
-
-[6.6.3]:https://github.com/kkevsekk1/AutoX/compare/6.6.2...6.6.3
-
-
-## [6.6.2] - 2024-6-4
-
-@refactor
-
-*  更新配置
-*  修复类型不匹配
-*  简化初始化视图
-*  删除未使用代码
-*  修复很多bug
-
-[6.6.2]:https://github.com/kkevsekk1/AutoX/compare/6.6.1...6.6.2
-
-
-## [6.6.1] - 2024-5-12
-
-@cnbilinyj 
-* 解决文件名是数字问题
-  
-@Lin 
-* 拦截删除代码时可能发生的崩溃
-  
-@refactor
-* 迁移rxjava 适配器
-* 添加版本兼容
-* 统一使用 libs
-* 修复一些bug
-
-* OpenIntentActivity 这新增的，要同步对稳定进行修改
-
-[6.6.1]:https://github.com/kkevsekk1/AutoX/compare/6.6.0...6.6.1
-
-
-## [6.6.0] - 2024-4-21
-@plus1998
-* 兼容小米权限设置
-
-@aiselp
-* 删除大量未使用权限
-
-先试用，目前比较稳定版本应该是6.5.8
-
-[6.6.0]:https://github.com/kkevsekk1/AutoX/compare/6.5.9...6.6.0
-
-
-
-## [6.5.9] - 2024-4-8
-@plus1998
-* 实现mqtt demo
-@aiselp
-* 依赖更新，kotlin升级到1.8.0
-* 删除部分未使用Activity，bug修复
-@Lin
-修复dialogs.build报错
-
-[6.5.9]:https://github.com/kkevsekk1/AutoX/compare/6.5.8...6.5.9
-
-## [6.5.8] - 2024-2-6
-@aiselp
-* 调试器优化，升级target SDK到28(android9.0)
-* bug修复,截图优化
-* 设置页面更新
-  @zwc456baby
-* 修复打出的包崩溃问题，release下不启用内存泄漏检测
-
-[6.5.8]:https://github.com/kkevsekk1/AutoX/compare/6.5.7...6.5.8
-
-## [6.5.7] - 2024-1-14
-@aiselp
-* 修复运行ui脚本存在的内存泄露
-* 截图逻辑优化，使截图权限在所有脚本共享
-* 添加离线文档选项
-@Lin
-* 浏览器打开改为直接下载安装
-* 修复"emit"报错 
-* 每次打开都是新任务，不受上一次打开文件内容的影响
-
-[6.5.7]:https://github.com/kkevsekk1/AutoX/compare/6.5.6...6.5.7
-
-## [6.5.6] - 2023-12-16
-@aiselp
-* 优化编辑器
-@Lin
-* 增加编辑器选择
-* 编辑器优化
-* 主页搜索优化
-
-
-[6.5.6]:https://github.com/kkevsekk1/AutoX/compare/6.5.5...6.5.6
-
-## [6.5.5] - 2023-11-10
-@aiselp
-* 移除了ci构建中模板签名，打包时会重新签名
-* 锁定androidx.core版本为1.8.0，高的版本会引起 6.5.4版本运行脚本会出错 修复bug #723
-* 修复打包时只勾选opencv缺少依赖的问题
-* 编辑器优化
-* 添加rxjs库
-* 最后，由于最近几个版本有加大升级，有bug很正常，大家积极提bug、有能力的可以适当修复
-* 每个人都共享力量，软件bug才能修复，少抱怨！
-
-[6.5.5]:https://github.com/kkevsekk1/AutoX/compare/6.5.4...6.5.5
-
-
-## [6.5.4] - 2023-11-10
-@aiselp
-* 换新编辑器
-
-[6.5.4]:https://github.com/kkevsekk1/AutoX/compare/6.5.3...6.5.4
-
-## [6.5.3] - 2023-10-24
-@aiselp
-* 修复 Tasker插件功能
-* 修复一处可能的内存泄露
-* 优化底部导航切换时，已打开的文件目录保持不变，添加文档页面‘回到主页’按钮
-* 修复模块exports导出null和undefined时报错，修复require('xxx')!==require('xxx.js')
-* 修复JsBridge在非ui模式工作异常
-* 修复setTimeout等函数传入仅一个额外参数且该参数为null时报错
-
-  @xiao-maomi
- * 修复部分设备编辑界面顶栏按钮重叠
-   
-  @drgnchan
-* 修改错别字
-
-[6.5.3]:https://github.com/kkevsekk1/AutoX/compare/6.5.2...6.5.3
-
-
-## [6.5.2] - 2023-9-30
-
-此次升级全是 @aiselp 在此，社区特别感谢其贡献，希望更多人支持
-@aiselp
-
-* 移除旧版lodash避免加载冲突
-* 添加加密配置
-* 添加termux权限
-* 打包配置优化
-* 其他bug 修复
-
-[6.5.2]:https://github.com/kkevsekk1/AutoX/compare/6.4.3...6.5.1
-
-## [6.5.1] - 2023-09-03
-此次改动较大，留意bug情况
-
-@aiselp
-
-* 修复7.0以下系统无法运行脚本，修复events模块存在的线程问题
-* 调整jsBridge回调执行在ui线程
-* 使axios支持设置timeout参数
-* 更新ScriptBridges使用原生代码实现
-* 更新构建工具
-* 修复编辑器格式化功能
-  
-@xiaomaomizjh
-
-* 通过手势调整编辑器文本大小
-* 编辑界面右上角菜单部分选项移至顶栏，标题移至顶栏下方显示完整路径
-* 优化编辑界面顶栏
-  
-[6.5.1]:https://github.com/kkevsekk1/AutoX/compare/6.4.3...6.5.1
-
-## [6.4.3] - 2023-6-14
-@aiselp
-* 修复某些情况下timer工作不正常
-* 资源文件处理、bug修复
-
-[6.4.3]:https://github.com/kkevsekk1/AutoX/compare/6.4.2...6.4.3
-
-下载地址： \
-  http://autoxoss.autoxjs.com/autoxjs/6.4.3/app-v6-arm64-v8a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.4.3/app-v6-armeabi-v7a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.4.3/app-v6-universal-release-unsigned-signed.apk
-
-## [6.4.2] - 2023-6-14
-
-@aiselp
-* 修复打包后无法加载加密模块
-
-[6.4.2]:https://github.com/kkevsekk1/AutoX/compare/6.4.1...6.4.2
-
-下载地址： \
-  http://autoxoss.autoxjs.com/autoxjs/6.4.2/app-v6-arm64-v8a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.4.2/app-v6-armeabi-v7a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.4.2/app-v6-universal-release-unsigned-signed.apk
-
-
-## [6.4.1] - 2023-6-13
-
-@aiselp
-* Images.copy函数修复
-* 添加JsBridge
-* 添加node核心库buffer,events,stream,util
-* 悬浮窗bug修复
-* 新增异步http库：axios (实验性)
-* 新增npm模块cheerio，用于处理html
-* 提供java流的转换，buffer与java字节数组的转换
-* 新增bluebird-co模块
-* 定时器调用性能优化
-* 新增同步转异步任务执行器
-
-@Xiao-A-666  
-* 修复打包后访问资源文件出错的bug
-* 新增隐藏启动页功能 
-
-[6.4.1]:https://github.com/kkevsekk1/AutoX/compare/6.3.8...6.4.1
-
-下载地址： \
-  http://autoxoss.autoxjs.com/autoxjs/6.4.1/app-v6-arm64-v8a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.4.1/app-v6-armeabi-v7a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.4.1/app-v6-universal-release-unsigned-signed.apk
-
-
-
-## [6.3.8] - 2023-4-25
-
-@Xiao-A-666 
-修改加密解密bug、修改UI模式部分情况崩溃的问题、修改打包时没有替换资源文件的bug 
-
-[6.3.8]:https://github.com/kkevsekk1/AutoX/compare/6.3.7...6.3.8
-
-下载地址： \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.8/app-v6-arm64-v8a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.8/app-v6-armeabi-v7a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.8/app-v6-universal-release-unsigned-signed.apk
-
-
-
-
-## [6.3.7] - 2023-4-9
-
-@aiselp 引入documentfile支持，以便使用saf框架，更换Promise库为bluebird。支持更多特性
-@aiselp 使用kt重写悬浮窗并修复错误， 修复timers模块无法在其他java线程中使用
-
-[6.3.7]:https://github.com/kkevsekk1/AutoX/compare/6.3.6...6.3.7
-
-下载地址： \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.7/app-v6-arm64-v8a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.7/app-v6-armeabi-v7a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.7/app-v6-universal-release-unsigned-signed.apk
-
-
-
-## [6.3.6] - 2023-1-8
-
-@gucong3000 调整如下内容
-1.将console打印Error对象时的行为，调整为与Chrome和Node.js等平台保持一致，打印堆栈信息。
-
-[6.3.6]:https://github.com/kkevsekk1/AutoX/compare/6.3.5...6.3.6
-
-下载地址： \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.6/app-v6-arm64-v8a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.6/app-v6-armeabi-v7a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.6/app-v6-universal-release-unsigned-signed.apk
-
+## [Unreleased](https://github.com/kkevsekk1/AutoX/compare/6.3.5...HEAD) 未发布
 
 ## [6.3.5] - 2022-9-28
 
@@ -354,39 +12,22 @@ autoxjs 整个项目的一些更新日志,双版本号为稳定版（内容以�
 
 [6.3.5]:https://github.com/kkevsekk1/AutoX/compare/6.3.4...6.3.5
 
- 下载地址： \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.5/app-v6-arm64-v8a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.5/app-v6-armeabi-v7a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.5/app-v6-universal-release-unsigned-signed.apk
-
 ## [6.3.4] - 2022-9-4
 
-1. [更新paddle api并向后兼容](https://github.com/wilinz/AutoX/commit/5fae0643a563b69c7691f55ee3e3ec2771a656e3)
-2. 添加Google ML kIT OCR API
-3. [修复toast bug](https://github.com/wilinz/AutoX/commit/ea1e7663af7069a3750b64cd838d0148a7dae9b9)
-4. [迁移到 kotlin build.gradle](https://github.com/wilinz/AutoX/commit/fc6d740afe1004bc4cd68dcb814afc52e5dba419)
-5. 修复打包BUG
-
-下载地址： \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.4/app-v6-arm64-v8a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.4/app-v6-armeabi-v7a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.4/app-v6-universal-release-unsigned-signed.apk 
+1. 添加Google ML kIT OCR API
+2. [修复toast bug](https://github.com/wilinz/AutoX/commit/ea1e7663af7069a3750b64cd838d0148a7dae9b9)
+3. [迁移到 kotlin build.gradle](https://github.com/wilinz/AutoX/commit/fc6d740afe1004bc4cd68dcb814afc52e5dba419)
+4. 修复打包BUG
 
 [6.3.4]:https://github.com/kkevsekk1/AutoX/compare/6.2.3...6.3.4
 
 
 ## [6.3.3] - 2022-8-25
 
-*  apk 使用cdn加速,地址格式：http://autoxoss.autoxjs.com/autoxjs/{版本号}/xxx.apk 
 *  apk发布oss
 *  根据changelog自动发布release note
 *  增加版本之间的比较 点击版本号
 *  workflow 不好使 跳跃了基本版本
-
-下载地址： \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.3/app-v6-arm64-v8a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.3/app-v6-armeabi-v7a-release-unsigned-signed.apk \
-  http://autoxoss.autoxjs.com/autoxjs/6.3.3/app-v6-universal-release-unsigned-signed.apk 
 
 [6.3.3]:https://github.com/kkevsekk1/AutoX/compare/6.2.9...6.3.3
 
@@ -550,13 +191,11 @@ autoxjs 整个项目的一些更新日志,双版本号为稳定版（内容以�
 *  重新配置控件，升级androidx
 *  修复定时任务月份bug
 *  提示开启权限，后运行
-*  qq群号问题
 *  脚本目录修改bug
 *  IP地址不合法bug
 *  不兼容arm64 bug
 *  [Aioure](https://github.com/Aioure)  升级如下功能：
 *  编译兼容低版本的opencv
-*  集成PaddleOCR
 *  修复若干兼容问题
 *  此版本有重大升级变化，欢迎测试提交bug
 

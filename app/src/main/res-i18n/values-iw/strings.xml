@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">כל גישה לקבצים</string>
   <string name="text_fullscreen">החלף מצב מסך מלא 1</string>
   <string name="text_drawer_right">פתח את התפריט הימני</string>
-  <string name="text_required_default_paddle_ocr_model">חבילת ברירת המחדל של נתוני אימון PaddleOCR</string>
   <string name="switch_fullscreen">החלף מצב מסך מלא</string>
   <string name="text_custom_ocr_model_path">חבילת ספריית דגמי OCR מותאמת אישית</string>
   <string name="desc_more">יותר</string>

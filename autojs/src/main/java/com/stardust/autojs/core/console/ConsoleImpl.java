@@ -2,6 +2,7 @@ package com.stardust.autojs.core.console;
 
 import android.content.Context;
 import android.content.Intent;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -34,7 +35,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ConsoleImpl extends AbstractConsole {
 
-    private int maxLines=-1;
+    private int maxLines = -1;
+
     public static class LogEntry implements Comparable<LogEntry> {
 
         public int id;
@@ -139,16 +141,16 @@ public class ConsoleImpl extends AbstractConsole {
         if (mLogListener != null && mLogListener.get() != null) {
             mLogListener.get().onNewLog(logEntry);
         }
-        if(maxLines>0&& mLogEntries.size()>maxLines){
+        if (maxLines > 0 && mLogEntries.size() > maxLines) {
             clear();
         }
         return null;
     }
 
     @Override
-    public void setTitle(CharSequence title, String color,int size) {
-        if(TextUtils.isEmpty(color)){
-            color="#fe14efb1";
+    public void setTitle(CharSequence title, String color, int size) {
+        if (TextUtils.isEmpty(color)) {
+            color = "#fe14efb1";
         }
         mConsoleFloaty.setTitle(title, Color.parseColor(color), size);
 
@@ -159,16 +161,16 @@ public class ConsoleImpl extends AbstractConsole {
 
     }
 
-    public void setTitle(CharSequence title,String color) {
-        if(TextUtils.isEmpty(color)){
-            color="#fe14efb1";
+    public void setTitle(CharSequence title, String color) {
+        if (TextUtils.isEmpty(color)) {
+            color = "#fe14efb1";
         }
         mConsoleFloaty.setTitle(title, Color.parseColor(color), -1);
     }
 
     @Override
     public void setBackground(@Nullable String color) {
-        if(mConsoleView.get()==null){
+        if (mConsoleView.get() == null) {
             Log.e(ConsoleImpl.class.getName(), "设置不生效，console没创建创建 ");
             return;
         }
@@ -179,18 +181,20 @@ public class ConsoleImpl extends AbstractConsole {
     public void setLogSize(int size) {
         mConsoleView.get().setLogSize(size);
     }
+
     @Override
-    public void  setCanInput(boolean can){
-        if(mConsoleView.get()==null){
+    public void setCanInput(boolean can) {
+        if (mConsoleView.get() == null) {
             Log.e(ConsoleImpl.class.getName(), "设置不生效，console没创建创建 ");
             return;
         }
-        if(can){
+        if (can) {
             mConsoleView.get().showEditText();
-        }else{
+        } else {
             mConsoleView.get().hideEditText();
         }
     }
+
     @Override
     public void write(int level, CharSequence charSequence) {
         println(level, charSequence);
@@ -268,7 +272,7 @@ public class ConsoleImpl extends AbstractConsole {
 
     @Override
     public void setMaxLines(int maxLines) {
-        this.maxLines =maxLines;
+        this.maxLines = maxLines;
     }
 
 
@@ -328,7 +332,6 @@ public class ConsoleImpl extends AbstractConsole {
     boolean submitInput(@NonNull CharSequence input) {
         return mInput.offer(input.toString());
     }
-
 
 
     @Override

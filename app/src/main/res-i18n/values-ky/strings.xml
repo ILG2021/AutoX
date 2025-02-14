@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Бардык файлга кирүү</string>
   <string name="text_fullscreen">Толук экран режимин которуштуруу 1</string>
   <string name="text_drawer_right">Туура менюну ачыңыз</string>
-  <string name="text_required_default_paddle_ocr_model">Пакет демейки PaddleOCR машыгуу берилиштери</string>
   <string name="switch_fullscreen">Толук экран режимин которуштуруу</string>
   <string name="text_custom_ocr_model_path">Ыңгайлаштырылган OCR моделинин каталогун топтоо</string>
   <string name="desc_more">Дагы</string>

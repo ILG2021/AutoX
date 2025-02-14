@@ -37,11 +37,11 @@ public class AutoCompletion {
     private String mModuleName;
     private String mPropertyPrefill;
     private List<Module> mModules;
-    private final DictionaryTree<Property> mGlobalPropertyTree = new DictionaryTree<>();
+    private DictionaryTree<Property> mGlobalPropertyTree = new DictionaryTree<>();
     private AutoCompleteCallback mAutoCompleteCallback;
     private ExecutorService mExecutorService = Executors.newSingleThreadExecutor();
     private AnyWordsCompletion mAnyWordsCompletion;
-    private final AtomicInteger mExecuteId = new AtomicInteger();
+    private AtomicInteger mExecuteId = new AtomicInteger();
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private final EditText mEditText;
 
@@ -91,7 +91,7 @@ public class AutoCompletion {
             if (id != mExecuteId.get())
                 return;
             List<CodeCompletion> completions = findCodeCompletion(module, prefill);
-            CodeCompletions codeCompletions = new CodeCompletions(completions);
+            CodeCompletions codeCompletions = new CodeCompletions(cursor, completions);
             if (id != mExecuteId.get())
                 return;
             mHandler.post(() -> {

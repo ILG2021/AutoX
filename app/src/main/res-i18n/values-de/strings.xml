@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Alle Dateizugriffe</string>
   <string name="text_fullscreen">Vollbildmodus umschalten 1</string>
   <string name="text_drawer_right">Öffnen Sie das rechte Menü</string>
-  <string name="text_required_default_paddle_ocr_model">Paket standardmäßige PaddleOCR-Trainingsdaten</string>
   <string name="switch_fullscreen">Vollbildmodus umschalten</string>
   <string name="text_custom_ocr_model_path">Paket benutzerdefiniertes OCR-Modellverzeichnis</string>
   <string name="desc_more">Mehr</string>

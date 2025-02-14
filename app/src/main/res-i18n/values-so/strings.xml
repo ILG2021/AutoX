@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Dhammaan gelitaanka faylka</string>
   <string name="text_fullscreen">Beddel qaabka shaashadda buuxda 1</string>
   <string name="text_drawer_right">Fur liiska saxda ah</string>
-  <string name="text_required_default_paddle_ocr_model">Xogta tababarka PaddleOCR ee xirmada ah</string>
   <string name="switch_fullscreen">Beddel qaabka shaashadda buuxda</string>
   <string name="text_custom_ocr_model_path">Xirmada tusaha moodeelka caadiga ah ee OCR</string>
   <string name="desc_more">Wax badan</string>

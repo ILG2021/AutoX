@@ -106,8 +106,7 @@ object GlobalAppContext {
             try {
                 val packageManager = get().packageManager
                 val packageInfo = packageManager.getPackageInfo(
-                    get().packageName,
-                    0
+                    get().packageName, 0
                 )
                 return packageManager.getApplicationLabel(packageInfo.applicationInfo).toString()
             } catch (e: Exception) {
@@ -121,10 +120,9 @@ object GlobalAppContext {
     val appIcon: Drawable?
         get() {
             try {
-                val packageManager = get().packageManager
+                val packageManager = get()!!.packageManager
                 val packageInfo = packageManager.getPackageInfo(
-                    get().packageName,
-                    0
+                    get()!!.packageName, 0
                 )
                 return packageManager.getApplicationIcon(packageInfo.applicationInfo)
             } catch (e: Exception) {

@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Tukuy willañiqiman yaykuy</string>
   <string name="text_fullscreen">Modo de pantalla completa nisqa tikray 1</string>
   <string name="text_drawer_right">Paña kaq menú nisqapi kichay</string>
-  <string name="text_required_default_paddle_ocr_model">Paquete ñawpaqmanta churasqa PaddleOCR yachachiy willayta</string>
   <string name="switch_fullscreen">Modo de pantalla completa nisqa tikray</string>
   <string name="text_custom_ocr_model_path">Paquete costumbre OCR modelo directorio</string>
   <string name="desc_more">Aswan</string>

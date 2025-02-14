@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Lonke ufikelelo lwefayile</string>
   <string name="text_fullscreen">Guqula imo yesikrini esigcweleyo 1</string>
   <string name="text_drawer_right">Vula imenyu ekunene</string>
-  <string name="text_required_default_paddle_ocr_model">Idatha yoqeqesho yePaddleOCR yokupakisha</string>
   <string name="switch_fullscreen">Guqula imo yesikrini esigcweleyo</string>
   <string name="text_custom_ocr_model_path">Ipakethe yoluhlu lwemodeli ye-OCR yesiko</string>
   <string name="desc_more">Kaninzi</string>

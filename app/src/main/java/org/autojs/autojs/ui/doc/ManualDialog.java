@@ -5,15 +5,17 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.stardust.util.IntentUtil;
 
-import org.autojs.autojs.ui.widget.EWebView;
 import org.autojs.autoxjs.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Stardust on 2017/10/24.
@@ -21,21 +23,22 @@ import org.autojs.autoxjs.R;
 
 public class ManualDialog {
 
-    private TextView mTitle;
+    @BindView(R.id.title)
+    TextView mTitle;
 
-    private EWebView mEWebView;
+    @BindView(R.id.eweb_view)
+    WebView mEWebView;
 
-    private View mPinToLeft;
+    @BindView(R.id.pin_to_left)
+    View mPinToLeft;
 
     Dialog mDialog;
-    private final Context mContext;
-    private View mClose;
-    private View mFullscreen;
+    private Context mContext;
 
     public ManualDialog(Context context) {
         mContext = context;
         View view = View.inflate(context, R.layout.floating_manual_dialog, null);
-        bindView(view);
+        ButterKnife.bind(this, view);
         mDialog = new MaterialDialog.Builder(context)
                 .customView(view, false)
                 .build();
@@ -49,7 +52,7 @@ public class ManualDialog {
     }
 
     public ManualDialog url(String url) {
-        mEWebView.getWebView().loadUrl(url);
+        mEWebView.loadUrl(url);
         return this;
     }
 
@@ -66,26 +69,15 @@ public class ManualDialog {
         return this;
     }
 
-    private void close() {
+    @OnClick(R.id.close)
+    void close() {
         mDialog.dismiss();
     }
 
-    private void viewInNewActivity() {
+    @OnClick(R.id.fullscreen)
+    void viewInNewActivity() {
         mDialog.dismiss();
-        IntentUtil.browse(mContext,mEWebView.getWebView().getUrl());
+        IntentUtil.browse(mContext,mEWebView.getUrl());
     }
 
-    private void bindView(@NonNull View bindSource) {
-        mTitle = bindSource.findViewById(R.id.title);
-        mEWebView = bindSource.findViewById(R.id.eweb_view);
-        mPinToLeft = bindSource.findViewById(R.id.pin_to_left);
-        mClose = bindSource.findViewById(R.id.close);
-        mFullscreen = bindSource.findViewById(R.id.fullscreen);
-        mClose.setOnClickListener(v -> {
-            close();
-        });
-        mFullscreen.setOnClickListener(v -> {
-            viewInNewActivity();
-        });
-    }
 }

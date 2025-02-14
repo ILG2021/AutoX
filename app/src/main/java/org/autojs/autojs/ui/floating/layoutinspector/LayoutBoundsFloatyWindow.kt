@@ -1,23 +1,31 @@
 package org.autojs.autojs.ui.floating.layoutinspector
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.text.InputType
 import android.view.ContextThemeWrapper
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
+import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.MaterialDialog.SingleButtonCallback
 import com.afollestad.materialdialogs.Theme
 import com.stardust.app.DialogUtils
+import com.stardust.app.GlobalAppContext.getString
+import com.stardust.autojs.script.StringScriptSource
 import com.stardust.enhancedfloaty.FloatyService
 import com.stardust.view.accessibility.LayoutInspector
 import com.stardust.view.accessibility.LayoutInspector.CaptureAvailableListener
 import com.stardust.view.accessibility.NodeInfo
-import org.autojs.autoxjs.R
+import org.autojs.autojs.autojs.AutoJs
+import org.autojs.autojs.model.script.Scripts
+import org.autojs.autojs.theme.dialog.ThemeColorMaterialDialogBuilder
 import org.autojs.autojs.ui.codegeneration.CodeGenerateDialog
 import org.autojs.autojs.ui.floating.FloatyWindowManger
 import org.autojs.autojs.ui.floating.FullScreenFloatyWindow
 import org.autojs.autojs.ui.widget.BubblePopupMenu
-import java.util.*
+import org.autojs.autoxjs.R
 
 /**
  * Created by Stardust on 2017/3/12.
@@ -72,6 +80,7 @@ open class LayoutBoundsFloatyWindow(private val mRootNode: NodeInfo?) : FullScre
             mContext, listOf(
                 mContext!!.getString(R.string.text_show_widget_infomation),
                 mContext!!.getString(R.string.text_show_layout_hierarchy),
+                mContext!!.getString(R.string.text_show_capture_icon),
                 mContext!!.getString(R.string.text_generate_code),
                 mContext!!.getString(R.string.text_exit_floating_window)
             )
@@ -86,15 +95,60 @@ open class LayoutBoundsFloatyWindow(private val mRootNode: NodeInfo?) : FullScre
                     showLayoutHierarchy()
                 }
                 2 -> {
-                    generateCode()
+                    captureIcon()
                 }
                 3 -> {
+                    generateCode()
+                }
+                4 -> {
                     close()
                 }
             }
         }
         mBubblePopMenu!!.width = ViewGroup.LayoutParams.WRAP_CONTENT
         mBubblePopMenu!!.height = ViewGroup.LayoutParams.WRAP_CONTENT
+    }
+
+    private fun captureIcon() {
+        close()
+        var full = false
+        DialogUtils.showDialog(
+            ThemeColorMaterialDialogBuilder(
+                mContext!!
+            ).title(R.string.text_name)
+                .inputType(InputType.TYPE_CLASS_TEXT)
+                .alwaysCallInputCallback()
+                .input(
+                    getString(R.string.text_please_input_name),
+                    "tmp.jpg",
+                    false
+                ) { dialog, input ->
+                }
+                .checkBoxPrompt("截取整屏", false) { button, checked ->
+                    full = checked
+                }
+                .onPositive(SingleButtonCallback { dialog: MaterialDialog, which: DialogAction? ->
+                    val bounds = mSelectedNode!!.boundsInScreen
+                    val iconName = dialog.inputEditText!!.text.toString()
+                    Scripts.run(
+                        StringScriptSource(
+                            """
+        if(!requestScreenCapture()) {
+            toast("请求截图失败");
+            exit();
+        }
+        var img = captureScreen();
+        var dest = img;
+        if(!${full})
+            dest = images.clip(img,${bounds.left},${bounds.top}, ${bounds.width()}, ${bounds.height()});
+        images.saveImage(dest, "/sdcard/脚本/${iconName}");
+        toast("图标已截取，请到默认脚本文件夹查看")
+    """
+                        )
+                    )
+                })
+                .build()
+        )
     }
 
     private fun generateCode() {
@@ -129,7 +183,7 @@ open class LayoutBoundsFloatyWindow(private val mRootNode: NodeInfo?) : FullScre
     companion object {
         fun capture(inspector: LayoutInspector, context: Context?) {
             val listener: CaptureAvailableListener = object : CaptureAvailableListener {
-                override fun onCaptureAvailable(capture: NodeInfo) {
+                override fun onCaptureAvailable(capture: NodeInfo?) {
                     inspector.removeCaptureAvailableListener(this)
                     val window = LayoutBoundsFloatyWindow(capture)
                     FloatyWindowManger.addWindow(context, window)

@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Loaʻa nā faila āpau</string>
   <string name="text_fullscreen">E hoʻololi i ke ʻano pale piha 1</string>
   <string name="text_drawer_right">E wehe i ka papa kuhikuhi pololei</string>
-  <string name="text_required_default_paddle_ocr_model">Hoʻopili i ka ʻikepili aʻo PaddleOCR paʻamau</string>
   <string name="switch_fullscreen">E hoʻololi i ke ʻano pale piha</string>
   <string name="text_custom_ocr_model_path">Hoʻopili i ka papa kuhikuhi kumu hoʻohālike maʻamau</string>
   <string name="desc_more">ʻOi aku</string>

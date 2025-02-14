@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Minden fájl hozzáférés</string>
   <string name="text_fullscreen">Teljes képernyős mód váltása 1</string>
   <string name="text_drawer_right">Nyissa meg a jobb oldali menüt</string>
-  <string name="text_required_default_paddle_ocr_model">Csomag alapértelmezett PaddleOCR edzési adatok</string>
   <string name="switch_fullscreen">Teljes képernyős mód váltása</string>
   <string name="text_custom_ocr_model_path">Csomagolja be az egyéni OCR-modell könyvtárát</string>
   <string name="desc_more">Több</string>

@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Доступ до всіх файлів</string>
   <string name="text_fullscreen">Перемкнути повноекранний режим 1</string>
   <string name="text_drawer_right">Відкрийте праворуч меню</string>
-  <string name="text_required_default_paddle_ocr_model">Пакуйте стандартні навчальні дані PaddleOCR</string>
   <string name="switch_fullscreen">Перемкнути повноекранний режим</string>
   <string name="text_custom_ocr_model_path">Пакуйте спеціальний каталог моделей OCR</string>
   <string name="desc_more">Більше</string>

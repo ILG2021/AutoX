@@ -4,7 +4,5 @@ app.startActivity({
     type: "text/*",
     extras: {
       "android.intent.extra.TEXT": content
-    },
-    packageName: "com.tencent.mobileqq",
-    className: "com.tencent.mobileqq.activity.JumpActivity"
+    }
 });

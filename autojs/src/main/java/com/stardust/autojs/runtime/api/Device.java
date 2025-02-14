@@ -404,7 +404,7 @@ public class Device {
      * 获取虚拟功能键高度
      * @return
      */
-    public int getVirtualBarHeigh() {
+    public int getVirtualBarHeight() {
         int vh = 0;
         WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();

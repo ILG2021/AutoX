@@ -1,5 +1,7 @@
 package com.stardust.util;
 
+import androidx.annotation.NonNull;
+
 /**
  * Created by Stardust on 2017/5/3.
  */
@@ -10,6 +12,13 @@ public class TextUtils {
         return android.text.TextUtils.join(delimiter, tokens);
     }
 
+
+    @NonNull
+    public static String toEmptyIfNull(String message) {
+        if (message == null)
+            return "";
+        return message;
+    }
 
     public static int lastIndexOf(CharSequence text, char ch, int fromIndex) {
         if (text instanceof String) {

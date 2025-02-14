@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Accés a tots els fitxers</string>
   <string name="text_fullscreen">Canvia el mode de pantalla completa 1</string>
   <string name="text_drawer_right">Obriu el menú de la dreta</string>
-  <string name="text_required_default_paddle_ocr_model">Paquet predeterminat de dades d\'entrenament de PaddleOCR</string>
   <string name="switch_fullscreen">Canvia el mode de pantalla completa</string>
   <string name="text_custom_ocr_model_path">Directori de models OCR de paquets personalitzats</string>
   <string name="desc_more">Més</string>

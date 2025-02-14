@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Alle triem tagong</string>
   <string name="text_fullscreen">Skeakelje folslein skerm modus 1</string>
   <string name="text_drawer_right">Iepenje it rjochtermenu</string>
-  <string name="text_required_default_paddle_ocr_model">Pakket standert PaddleOCR training gegevens</string>
   <string name="switch_fullscreen">Skeakelje folslein skerm modus</string>
   <string name="text_custom_ocr_model_path">Pakket oanpaste OCR-modelmap</string>
   <string name="desc_more">Mear</string>

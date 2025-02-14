@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Barcha fayllarga kirish</string>
   <string name="text_fullscreen">Toʻliq ekran rejimiga oʻtish 1</string>
   <string name="text_drawer_right">To\'g\'ri menyuni oching</string>
-  <string name="text_required_default_paddle_ocr_model">Standart PaddleOCR o‘quv ma’lumotlarini to‘plang</string>
   <string name="switch_fullscreen">Toʻliq ekran rejimiga oʻtish</string>
   <string name="text_custom_ocr_model_path">Maxsus OCR model katalogini to\'plang</string>
   <string name="desc_more">Ko\'proq</string>

@@ -2,17 +2,13 @@ package org.autojs.autojs.ui.common;
 
 import android.content.Context;
 import android.preference.PreferenceManager;
-
 import androidx.annotation.NonNull;
-
 import android.text.TextUtils;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-
 import org.autojs.autoxjs.R;
 import org.autojs.autojs.theme.dialog.ThemeColorMaterialDialogBuilder;
-
-import com.stardust.util.MD5;
+import com.stardust.util.HashUtils;
 
 
 /**
@@ -62,7 +58,7 @@ public class NotAskAgainDialog extends MaterialDialog {
 
         private void generatePreferenceKeyIfNeeded() {
             if (mKeyRemind == null)
-                mKeyRemind = MD5.md5ToBase64(TextUtils.join("", Thread.currentThread().getStackTrace()));
+                mKeyRemind = HashUtils.md5(TextUtils.join("", Thread.currentThread().getStackTrace()));
         }
     }
 }

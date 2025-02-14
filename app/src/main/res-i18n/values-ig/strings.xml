@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Nweta faịlụ niile</string>
   <string name="text_fullscreen">Gbanwee ọnọdụ ihuenyo zuru oke 1</string>
   <string name="text_drawer_right">Mepee menu nri</string>
-  <string name="text_required_default_paddle_ocr_model">Data ọzụzụ PaddleOCR ndabara ngwugwu</string>
   <string name="switch_fullscreen">Gbanwee ọnọdụ ihuenyo zuru oke</string>
   <string name="text_custom_ocr_model_path">Akwụkwọ ndekọ ụkpụrụ OCR omenala ngwugwu</string>
   <string name="desc_more">Ọzọ</string>

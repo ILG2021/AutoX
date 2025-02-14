@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Tag nrho cov ntaub ntawv nkag</string>
   <string name="text_fullscreen">Toggle puv npo hom 1</string>
   <string name="text_drawer_right">Qhib cov ntawv qhia zaub mov</string>
-  <string name="text_required_default_paddle_ocr_model">Package default PaddleOCR cov ntaub ntawv kev cob qhia</string>
   <string name="switch_fullscreen">Toggle puv npo hom</string>
   <string name="text_custom_ocr_model_path">Pob kev cai OCR qauv directory</string>
   <string name="desc_more">Ntau</string>

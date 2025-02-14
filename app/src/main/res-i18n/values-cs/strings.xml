@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Veškerý přístup k souborům</string>
   <string name="text_fullscreen">Přepnout režim celé obrazovky 1</string>
   <string name="text_drawer_right">Otevřete pravé menu</string>
-  <string name="text_required_default_paddle_ocr_model">Výchozí tréninková data PaddleOCR</string>
   <string name="switch_fullscreen">Přepnout režim celé obrazovky</string>
   <string name="text_custom_ocr_model_path">Zabalte vlastní adresář modelu OCR</string>
   <string name="desc_more">Více</string>

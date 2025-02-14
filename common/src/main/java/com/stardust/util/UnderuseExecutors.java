@@ -10,7 +10,11 @@ import java.util.concurrent.Executors;
 
 public class UnderuseExecutors {
 
-    private static final ExecutorService mExecutor = Executors.newSingleThreadExecutor();
+    private static ExecutorService mExecutor = Executors.newSingleThreadExecutor();
+
+    public static void execute(Runnable runnable) {
+        mExecutor.execute(runnable);
+    }
 
     public static ExecutorService getExecutor() {
         return mExecutor;

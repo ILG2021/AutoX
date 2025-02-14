@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Достъп до всички файлове</string>
   <string name="text_fullscreen">Превключване на режим на цял екран 1</string>
   <string name="text_drawer_right">Отворете дясното меню</string>
-  <string name="text_required_default_paddle_ocr_model">Пакет данни за обучение по подразбиране PaddleOCR</string>
   <string name="switch_fullscreen">Превключване на режима на цял екран</string>
   <string name="text_custom_ocr_model_path">Пакет персонализирана директория за OCR модел</string>
   <string name="desc_more">| Повече ▼</string>

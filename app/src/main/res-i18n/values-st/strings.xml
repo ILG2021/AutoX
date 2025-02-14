@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Lifaele tsohle li fihlella</string>
   <string name="text_fullscreen">Fetolela skrineng se felletseng 1</string>
   <string name="text_drawer_right">Bula lenane le nepahetseng</string>
-  <string name="text_required_default_paddle_ocr_model">Sephutheloana sa data ea kamehla ea koetliso ea PaddleOCR</string>
   <string name="switch_fullscreen">Fetolela skrineng se felletseng</string>
   <string name="text_custom_ocr_model_path">Sephutheloana sa bukana ea mohlala oa OCR</string>
   <string name="desc_more">Hape</string>

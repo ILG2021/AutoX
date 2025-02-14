@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">ಎಲ್ಲಾ ಫೈಲ್ ಪ್ರವೇಶ</string>
   <string name="text_fullscreen">ಪೂರ್ಣ ಪರದೆಯ ಮೋಡ್ ಅನ್ನು ಟಾಗಲ್ ಮಾಡಿ 1</string>
   <string name="text_drawer_right">ಬಲ ಮೆನು ತೆರೆಯಿರಿ</string>
-  <string name="text_required_default_paddle_ocr_model">ಪ್ಯಾಕೇಜ್ ಡೀಫಾಲ್ಟ್ PaddleOCR ತರಬೇತಿ ಡೇಟಾ</string>
   <string name="switch_fullscreen">ಪೂರ್ಣ ಪರದೆಯ ಮೋಡ್ ಅನ್ನು ಟಾಗಲ್ ಮಾಡಿ</string>
   <string name="text_custom_ocr_model_path">ಪ್ಯಾಕೇಜ್ ಕಸ್ಟಮ್ OCR ಮಾದರಿ ಡೈರೆಕ್ಟರಿ</string>
   <string name="desc_more">ಇನ್ನಷ್ಟು</string>

@@ -23,7 +23,7 @@ object DrawOverlaysPermission {
 
     fun ActivityResultLauncher<Intent>.launchCanDrawOverlaysSettings(packageName: String) {
         try {
-            getCanDrawOverlaysIntent(packageName)?.let { launch(it) }
+            launch(getCanDrawOverlaysIntent(packageName))
         } catch (e: Exception) {
             e.printStackTrace()
             launchAppPermissionsSettings(packageName)

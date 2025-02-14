@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Piekļuve visiem failiem</string>
   <string name="text_fullscreen">Pārslēgt pilnekrāna režīmu 1</string>
   <string name="text_drawer_right">Atveriet labo izvēlni</string>
-  <string name="text_required_default_paddle_ocr_model">Iesaiņojiet noklusējuma PaddleOCR apmācības datus</string>
   <string name="switch_fullscreen">Pārslēgt pilnekrāna režīmu</string>
   <string name="text_custom_ocr_model_path">Iesaiņojiet pielāgotu OCR modeļa direktoriju</string>
   <string name="desc_more">Vairāk</string>

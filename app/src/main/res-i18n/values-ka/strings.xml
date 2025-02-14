@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">ყველა ფაილზე წვდომა</string>
   <string name="text_fullscreen">სრული ეკრანის რეჟიმის ჩართვა 1</string>
   <string name="text_drawer_right">გახსენით მარჯვენა მენიუ</string>
-  <string name="text_required_default_paddle_ocr_model">შეფუთეთ ნაგულისხმევი PaddleOCR სასწავლო მონაცემები</string>
   <string name="switch_fullscreen">სრული ეკრანის რეჟიმის გადართვა</string>
   <string name="text_custom_ocr_model_path">შეფუთეთ მორგებული OCR მოდელის დირექტორია</string>
   <string name="desc_more">მეტი</string>

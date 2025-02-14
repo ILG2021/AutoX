@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Te urunga kōnae katoa</string>
   <string name="text_fullscreen">Takahurihia te aratau mata katoa 1</string>
   <string name="text_drawer_right">Whakatuwheratia te tahua matau</string>
-  <string name="text_required_default_paddle_ocr_model">Paeke raraunga whakangungu PaddleOCR taunoa</string>
   <string name="switch_fullscreen">Takahurihia te aratau mata katoa</string>
   <string name="text_custom_ocr_model_path">Whakapaihia te whaiaronga tauira OCR ritenga</string>
   <string name="desc_more">Ētahi atu</string>

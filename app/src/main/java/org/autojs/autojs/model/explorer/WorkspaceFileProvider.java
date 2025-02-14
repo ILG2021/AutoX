@@ -41,7 +41,7 @@ public class WorkspaceFileProvider extends ExplorerFileProvider {
         return listFiles(new PFile(path))
                 .collectInto(createExplorerPage(path, parent), (p, file) -> {
                     if (file.isDirectory()) {
-                        ProjectConfig projectConfig = ProjectConfig.Companion.fromProject(file);
+                        ProjectConfig projectConfig = ProjectConfig.Companion.fromProjectDir(file.getPath());
                         if (projectConfig != null) {
                             p.addChild(new ExplorerProjectPage(file, parent, projectConfig));
                             return;

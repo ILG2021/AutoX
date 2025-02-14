@@ -111,7 +111,7 @@ public class Debugger implements DebugCallbackInternal {
     private Dim createDim() {
         Dim dim = new Dim();
         dim.setBreak();
-        dim.setBreakOnExceptions(false);
+        dim.setBreakOnExceptions(true);
         dim.setGuiCallback(this);
         return dim;
     }

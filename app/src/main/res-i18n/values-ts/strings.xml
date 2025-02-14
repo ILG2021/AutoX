@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Hinkwaswo ku fikelela tifayela</string>
   <string name="text_fullscreen">Cinca movha wa xikirini lexi heleleke 1</string>
   <string name="text_drawer_right">Pfula menyu leyi faneleke</string>
-  <string name="text_required_default_paddle_ocr_model">Data ya ndzetelo wa PaddleOCR ya xiviri ya phasela</string>
   <string name="switch_fullscreen">Cinca movha wa xikirini lexi heleleke</string>
   <string name="text_custom_ocr_model_path">Xikombo xa xikombiso xa OCR xa ntolovelo xa phasela</string>
   <string name="desc_more">Swo tala</string>

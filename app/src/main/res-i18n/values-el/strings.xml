@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Όλη η πρόσβαση σε αρχεία</string>
   <string name="text_fullscreen">Εναλλαγή λειτουργίας πλήρους οθόνης 1</string>
   <string name="text_drawer_right">Ανοίξτε το δεξί μενού</string>
-  <string name="text_required_default_paddle_ocr_model">Πακέτο προεπιλεγμένων δεδομένων εκπαίδευσης PaddleOCR</string>
   <string name="switch_fullscreen">Εναλλαγή λειτουργίας πλήρους οθόνης</string>
   <string name="text_custom_ocr_model_path">Κατάλογος προσαρμοσμένου μοντέλου OCR πακέτου</string>
   <string name="desc_more">Περισσότερο</string>

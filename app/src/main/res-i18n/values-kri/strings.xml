@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Ɔl di fayl dɛn akses</string>
   <string name="text_fullscreen">Toggle ful skrin mod 1</string>
   <string name="text_drawer_right">Opin di rayt mɛnyu</string>
-  <string name="text_required_default_paddle_ocr_model">Paket difɔlt PaddleOCR trenin data</string>
   <string name="switch_fullscreen">Toggle di ful skrin mod</string>
   <string name="text_custom_ocr_model_path">Paket kɔstɔm OCR mɔdel dairektrɔ</string>
   <string name="desc_more">Mɔ</string>

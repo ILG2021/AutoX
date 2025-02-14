@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">ހުރިހާ ފައިލެއް އެކްސެސް ކުރެވޭނެއެވެ</string>
   <string name="text_fullscreen">ފުލް ސްކްރީން މޯޑް ޓޮގްލް ކުރުން 1</string>
   <string name="text_drawer_right">ކަނާތްފަރާތުގެ މެނޫ ހުޅުވާލާށެވެ</string>
-  <string name="text_required_default_paddle_ocr_model">ޕެކޭޖް ޑިފޯލްޓް ޕެޑަލްއޯސީއާރު ޓްރެއިނިންގ ޑޭޓާ</string>
   <string name="switch_fullscreen">ފުލް ސްކްރީން މޯޑް ޓޮގްލް ކުރާށެވެ</string>
   <string name="text_custom_ocr_model_path">ޕެކޭޖް ކަސްޓަމް އޯސީއާރު މޮޑެލް ޑައިރެކްޓަރީ</string>
   <string name="desc_more">އިތުރަށް</string>

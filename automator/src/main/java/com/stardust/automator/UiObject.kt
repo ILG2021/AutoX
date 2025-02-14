@@ -2,9 +2,16 @@ package com.stardust.automator
 
 import android.graphics.Rect
 import android.os.Bundle
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import android.util.Log
 import android.view.accessibility.AccessibilityNodeInfo
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
+
+import com.stardust.view.accessibility.AccessibilityNodeInfoAllocator
+import com.stardust.view.accessibility.AccessibilityNodeInfoHelper
+
+import java.util.ArrayList
+import java.util.Arrays
+
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CONTEXT_CLICK
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SCROLL_DOWN
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SCROLL_LEFT
@@ -13,40 +20,43 @@ import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.Accessibilit
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SCROLL_UP
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SET_PROGRESS
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_SHOW_ON_SCREEN
-import com.stardust.view.accessibility.AccessibilityNodeInfoAllocator
-import com.stardust.view.accessibility.AccessibilityNodeInfoHelper
-import java.util.Arrays
 
 /**
  * Created by Stardust on 2017/3/9.
  */
 
 open class UiObject(
-    info: AccessibilityNodeInfo,
+    info: Any?,
     private val allocator: AccessibilityNodeInfoAllocator?,
-    private val mDepth: Int,
+    depth: Int,
     private val mIndexInParent: Int
 ) : AccessibilityNodeInfoCompat(info) {
 
+
     private var mStackTrace = ""
+    private var mDepth = 0
 
     val isHierarchically: Boolean
         get() = collectionInfo != null && collectionInfo.isHierarchical
 
     init {
-        if (DEBUG) {
+        mDepth = depth
+        if (DEBUG)
             mStackTrace = Arrays.toString(Thread.currentThread().stackTrace)
-        }
+
     }
 
-    constructor(
-        info: AccessibilityNodeInfo,
-        allocator: AccessibilityNodeInfoAllocator,
-        indexInParent: Int
-    ) : this(info, allocator, 0, indexInParent)
+
+    constructor(info: Any?, allocator: AccessibilityNodeInfoAllocator, indexInParent: Int) : this(
+        info,
+        allocator,
+        0,
+        indexInParent
+    ) {
+    }
 
     @JvmOverloads
-    constructor(info: AccessibilityNodeInfo, depth: Int = 0, indexInParent: Int = -1) : this(
+    constructor(info: Any?, depth: Int = 0, indexInParent: Int = -1) : this(
         info,
         null,
         depth,
@@ -56,25 +66,42 @@ open class UiObject(
     open fun parent(): UiObject? {
         try {
             val parent = super.getParent() ?: return null
-            return UiObject(parent.unwrap(), mDepth - 1, -1)
+            return UiObject(parent.info, mDepth - 1, -1)
         } catch (e: IllegalStateException) {
             // FIXME: 2017/5/5
             return null
         }
+
     }
 
     open fun child(i: Int): UiObject? {
         try {
             val child = super.getChild(i) ?: return null
-            return UiObject(child.unwrap(), mDepth + 1, i)
+            return UiObject(child.info, mDepth + 1, i)
         } catch (e: IllegalStateException) {
             // FIXME: 2017/5/5
             return null
         }
+
     }
 
     fun indexInParent(): Int {
-        return mIndexInParent
+        if (mIndexInParent != -1) return mIndexInParent
+        else {
+            val siblings = parent()?.children()
+            return siblings?.indexOf(this) ?: -1
+        }
+    }
+
+    fun sibling(indexOffset: Int): UiObject? {
+        try {
+            val siblings = parent()?.children()
+            Log.d(TAG, "sibling: " + siblings?.size())
+            return siblings?.get(siblings.indexOf(this) + indexOffset)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return null
+        }
     }
 
     fun find(selector: UiGlobalSelector): UiObjectCollection {
@@ -121,9 +148,7 @@ open class UiObject(
     override fun getText(): CharSequence? {
         return if (isPassword) {
             ""
-        } else {
-            super.getText()
-        }
+        } else super.getText()
     }
 
     open fun desc(): String? {
@@ -157,6 +182,7 @@ open class UiObject(
             // FIXME: 2017/5/5
             false
         }
+
     }
 
     override fun performAction(action: Int): Boolean {
@@ -308,29 +334,36 @@ open class UiObject(
         return if (allocator == null) super.getParent() else allocator.getParent(this)
     }
 
+
     open fun checkable(): Boolean {
         return isCheckable
     }
+
 
     open fun checked(): Boolean {
         return isChecked
     }
 
+
     open fun focusable(): Boolean {
         return isFocusable
     }
+
 
     open fun focused(): Boolean {
         return isFocused
     }
 
+
     open fun visibleToUser(): Boolean {
         return isVisibleToUser
     }
 
+
     open fun accessibilityFocused(): Boolean {
         return isAccessibilityFocused
     }
+
 
     open fun selected(): Boolean {
         return isSelected
@@ -340,17 +373,21 @@ open class UiObject(
         return isClickable
     }
 
+
     open fun longClickable(): Boolean {
         return isLongClickable
     }
+
 
     open fun enabled(): Boolean {
         return isEnabled
     }
 
+
     fun password(): Boolean {
         return isPassword
     }
+
 
     open fun scrollable(): Boolean {
         return isScrollable
@@ -368,6 +405,7 @@ open class UiObject(
         return if (collectionItemInfo == null) -1 else collectionItemInfo.rowSpan
     }
 
+
     open fun columnSpan(): Int {
         return if (collectionItemInfo == null) -1 else collectionItemInfo.columnSpan
     }
@@ -375,6 +413,7 @@ open class UiObject(
     open fun rowCount(): Int {
         return if (collectionInfo == null) 0 else collectionInfo.rowCount
     }
+
 
     open fun columnCount(): Int {
         return if (collectionInfo == null) 0 else collectionInfo.columnCount
@@ -398,9 +437,13 @@ open class UiObject(
         return UiGlobalSelector().id(viewId).findAndReturnList(this)
     }
 
-    @Deprecated("Deprecated in Java")
     override fun recycle() {
-        Log.w(TAG, mStackTrace)
+        try {
+            super.recycle()
+        } catch (e: Exception) {
+            Log.w(TAG, mStackTrace, e)
+        }
+
     }
 
     companion object {
@@ -409,6 +452,7 @@ open class UiObject(
 
         private const val TAG = "UiObject"
         private const val DEBUG = false
+
 
         fun createRoot(root: AccessibilityNodeInfo): UiObject {
             return UiObject(root, null, 0, -1)
@@ -429,4 +473,6 @@ open class UiObject(
             return bundle
         }
     }
+
+
 }

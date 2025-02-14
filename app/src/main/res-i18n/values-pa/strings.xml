@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">ਸਾਰੀਆਂ ਫਾਈਲਾਂ ਤੱਕ ਪਹੁੰਚ</string>
   <string name="text_fullscreen">ਪੂਰੀ ਸਕ੍ਰੀਨ ਮੋਡ 1 ਨੂੰ ਟੌਗਲ ਕਰੋ</string>
   <string name="text_drawer_right">ਸੱਜਾ ਮੇਨੂ ਖੋਲ੍ਹੋ</string>
-  <string name="text_required_default_paddle_ocr_model">ਪੈਕੇਜ ਡਿਫੌਲਟ PaddleOCR ਸਿਖਲਾਈ ਡੇਟਾ</string>
   <string name="switch_fullscreen">ਪੂਰੀ ਸਕ੍ਰੀਨ ਮੋਡ ਨੂੰ ਟੌਗਲ ਕਰੋ</string>
   <string name="text_custom_ocr_model_path">ਪੈਕੇਜ ਕਸਟਮ OCR ਮਾਡਲ ਡਾਇਰੈਕਟਰੀ</string>
   <string name="desc_more">ਹੋਰ</string>

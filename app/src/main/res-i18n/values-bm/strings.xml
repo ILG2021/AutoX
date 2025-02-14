@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Filenw bɛɛ sɔrɔli</string>
   <string name="text_fullscreen">Toggle ka ekran dafalen cogoya 1</string>
   <string name="text_drawer_right">Meniw min bɛ kinin fɛ, o da wuli</string>
-  <string name="text_required_default_paddle_ocr_model">Package default PaddleOCR kalan kunnafoniw</string>
   <string name="switch_fullscreen">Toggle cogo la min bɛ ekran dafalen na</string>
   <string name="text_custom_ocr_model_path">Pake ladamu OCR modɛli ɲɛbilasɛbɛn</string>
   <string name="desc_more">Caman</string>

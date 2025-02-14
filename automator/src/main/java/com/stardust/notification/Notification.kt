@@ -2,6 +2,7 @@ package com.stardust.notification
 
 import android.app.PendingIntent
 import android.os.Build
+import android.os.Parcel
 import androidx.annotation.RequiresApi
 
 /**
@@ -20,7 +21,7 @@ class Notification private constructor(val packageName: String) : android.app.No
 
     fun click() {
         try {
-            this.contentIntent?.send()
+            this.contentIntent.send()
         } catch (e: PendingIntent.CanceledException) {
             throw RuntimeException(e)
         }
@@ -29,7 +30,7 @@ class Notification private constructor(val packageName: String) : android.app.No
 
     fun delete() {
         try {
-            this.deleteIntent?.send()
+            this.deleteIntent.send()
         } catch (e: PendingIntent.CanceledException) {
             throw RuntimeException(e)
         }

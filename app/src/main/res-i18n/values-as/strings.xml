@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">সকলো নথিপত্ৰ অভিগম</string>
   <string name="text_fullscreen">সম্পূৰ্ণ পৰ্দা ধৰণ টগল কৰক 1</string>
   <string name="text_drawer_right">সোঁফালৰ মেনুখন খোলক</string>
-  <string name="text_required_default_paddle_ocr_model">পেকেজ অবিকল্পিত PaddleOCR প্ৰশিক্ষণ তথ্য</string>
   <string name="switch_fullscreen">সম্পূৰ্ণ পৰ্দা অৱস্থা টগল কৰক</string>
   <string name="text_custom_ocr_model_path">পেকেজ স্বনিৰ্বাচিত OCR আৰ্হি পঞ্জিকা</string>
   <string name="desc_more">অধিক</string>

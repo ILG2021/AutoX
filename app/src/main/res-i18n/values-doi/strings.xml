@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">सारी फाइल एक्सेस</string>
   <string name="text_fullscreen">फुल स्क्रीन मोड टॉगल करो 1</string>
   <string name="text_drawer_right">दाहिना मेनू खोलो</string>
-  <string name="text_required_default_paddle_ocr_model">पैकेज डिफ़ॉल्ट पैडलओसीआर प्रशिक्षण डेटा</string>
   <string name="switch_fullscreen">फुल स्क्रीन मोड टॉगल करो</string>
   <string name="text_custom_ocr_model_path">पैकेज कस्टम ओसीआर मॉडल निर्देशिका</string>
   <string name="desc_more">होर</string>

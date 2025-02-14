@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">All Fichier Zougang</string>
   <string name="text_fullscreen">Toggle Vollbildmodus 1</string>
   <string name="text_drawer_right">Öffnen de richtege Menü</string>
-  <string name="text_required_default_paddle_ocr_model">Package Standard PaddleOCR Trainingsdaten</string>
   <string name="switch_fullscreen">Toggle Vollbildmodus</string>
   <string name="text_custom_ocr_model_path">Package Benotzerdefinéiert OCR Modell Verzeechnes</string>
   <string name="desc_more">Méi</string>

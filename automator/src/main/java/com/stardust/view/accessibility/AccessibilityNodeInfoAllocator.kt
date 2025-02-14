@@ -1,10 +1,15 @@
 package com.stardust.view.accessibility
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import android.util.Log
 import android.view.accessibility.AccessibilityNodeInfo
-import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
+
 import com.stardust.automator.BuildConfig
+
 import java.util.Arrays
+import java.util.HashMap
 
 /**
  * Created by Stardust on 2017/3/22.
@@ -20,7 +25,7 @@ open class AccessibilityNodeInfoAllocator {
 
     open fun getChild(parent: AccessibilityNodeInfoCompat, i: Int): AccessibilityNodeInfoCompat {
         val compat = parent.getChild(i)
-        add(compat.unwrap() as AccessibilityNodeInfo)
+        add(compat.info as AccessibilityNodeInfo)
         return compat
     }
 
@@ -31,58 +36,61 @@ open class AccessibilityNodeInfoAllocator {
 
     open fun getParent(n: AccessibilityNodeInfoCompat): AccessibilityNodeInfoCompat {
         val compat = n.parent
-        add(compat.unwrap() as AccessibilityNodeInfo)
+        add(compat.info as AccessibilityNodeInfo)
         return compat
     }
 
-    open fun findAccessibilityNodeInfosByText(
-        root: AccessibilityNodeInfo,
-        text: String
-    ): List<AccessibilityNodeInfo> {
+    open fun findAccessibilityNodeInfosByText(root: AccessibilityNodeInfo, text: String): List<AccessibilityNodeInfo> {
         val list = root.findAccessibilityNodeInfosByText(text)
         addAll(list)
         return list
     }
 
 
-    open fun findAccessibilityNodeInfosByText(
-        root: AccessibilityNodeInfoCompat,
-        text: String
-    ): List<AccessibilityNodeInfoCompat> {
+    open fun findAccessibilityNodeInfosByText(root: AccessibilityNodeInfoCompat, text: String): List<AccessibilityNodeInfoCompat> {
         val list = root.findAccessibilityNodeInfosByText(text)
         addAll(list)
         return list
     }
 
-    open fun findAccessibilityNodeInfosByViewId(
-        root: AccessibilityNodeInfo,
-        id: String
-    ): List<AccessibilityNodeInfo> {
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+    open fun findAccessibilityNodeInfosByViewId(root: AccessibilityNodeInfo, id: String): List<AccessibilityNodeInfo> {
         val list = root.findAccessibilityNodeInfosByViewId(id)
         addAll(list)
         return list
     }
 
 
-    open fun findAccessibilityNodeInfosByViewId(
-        root: AccessibilityNodeInfoCompat,
-        id: String
-    ): List<AccessibilityNodeInfoCompat> {
+    open fun findAccessibilityNodeInfosByViewId(root: AccessibilityNodeInfoCompat, id: String): List<AccessibilityNodeInfoCompat> {
         val list = root.findAccessibilityNodeInfosByViewId(id)
         addAll(list)
         return list
     }
 
     open fun recycle(nodeInfo: AccessibilityNodeInfo) {
+        nodeInfo.recycle()
         mAccessibilityNodeInfoList.remove(nodeInfo)
     }
 
     open fun recycle(nodeInfo: AccessibilityNodeInfoCompat) {
-        recycle(nodeInfo.unwrap() as AccessibilityNodeInfo)
+        recycle(nodeInfo.info as AccessibilityNodeInfo)
     }
 
     open fun recycleAll(): Int {
-        return mAccessibilityNodeInfoList.size
+        var notRecycledCount = 0
+        val size = mAccessibilityNodeInfoList.size
+        for ((key, value) in mAccessibilityNodeInfoList) {
+            try {
+                key.recycle()
+                notRecycledCount++
+                if (DEBUG)
+                    value?.let { Log.w(TAG, it) }
+            } catch (ignored: IllegalStateException) {
+            }
+
+        }
+        Log.v(TAG, "Total: $size Not recycled: $notRecycledCount")
+        return notRecycledCount
     }
 
     fun add(nodeInfo: AccessibilityNodeInfo?): AccessibilityNodeInfo? {
@@ -98,7 +106,7 @@ open class AccessibilityNodeInfoAllocator {
             if (nodeInfo is AccessibilityNodeInfo) {
                 mAccessibilityNodeInfoList[nodeInfo] = stackTrace
             } else if (nodeInfo is AccessibilityNodeInfoCompat) {
-                mAccessibilityNodeInfoList[nodeInfo.unwrap() as AccessibilityNodeInfo] = stackTrace
+                mAccessibilityNodeInfoList[nodeInfo.info as AccessibilityNodeInfo] = stackTrace
             }
         }
     }
@@ -113,10 +121,7 @@ open class AccessibilityNodeInfoAllocator {
             return n.parent
         }
 
-        override fun getChild(
-            parent: AccessibilityNodeInfoCompat,
-            i: Int
-        ): AccessibilityNodeInfoCompat {
+        override fun getChild(parent: AccessibilityNodeInfoCompat, i: Int): AccessibilityNodeInfoCompat {
             return parent.getChild(i)
         }
 
@@ -124,32 +129,21 @@ open class AccessibilityNodeInfoAllocator {
             return parent.getChild(i)
         }
 
-        override fun findAccessibilityNodeInfosByViewId(
-            root: AccessibilityNodeInfoCompat,
-            id: String
-        ): List<AccessibilityNodeInfoCompat> {
+        override fun findAccessibilityNodeInfosByViewId(root: AccessibilityNodeInfoCompat, id: String): List<AccessibilityNodeInfoCompat> {
             return root.findAccessibilityNodeInfosByViewId(id)
         }
 
 
-        override fun findAccessibilityNodeInfosByViewId(
-            root: AccessibilityNodeInfo,
-            id: String
-        ): List<AccessibilityNodeInfo> {
+        @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+        override fun findAccessibilityNodeInfosByViewId(root: AccessibilityNodeInfo, id: String): List<AccessibilityNodeInfo> {
             return root.findAccessibilityNodeInfosByViewId(id)
         }
 
-        override fun findAccessibilityNodeInfosByText(
-            root: AccessibilityNodeInfo,
-            text: String
-        ): List<AccessibilityNodeInfo> {
+        override fun findAccessibilityNodeInfosByText(root: AccessibilityNodeInfo, text: String): List<AccessibilityNodeInfo> {
             return root.findAccessibilityNodeInfosByText(text)
         }
 
-        override fun findAccessibilityNodeInfosByText(
-            root: AccessibilityNodeInfoCompat,
-            text: String
-        ): List<AccessibilityNodeInfoCompat> {
+        override fun findAccessibilityNodeInfosByText(root: AccessibilityNodeInfoCompat, text: String): List<AccessibilityNodeInfoCompat> {
             return root.findAccessibilityNodeInfosByText(text)
         }
 
@@ -164,6 +158,8 @@ open class AccessibilityNodeInfoAllocator {
         override fun recycleAll(): Int {
             return -1
         }
+
+
     }
 
     companion object {
@@ -173,6 +169,18 @@ open class AccessibilityNodeInfoAllocator {
         private val TAG = "AccessibilityAllocator"
         private val DEBUG = BuildConfig.DEBUG
 
+
         val global = AccessibilityNodeInfoAllocator()
+
+        fun recycleList(root: AccessibilityNodeInfo, list: List<AccessibilityNodeInfo>) {
+            for (nodeInfo in list) {
+                if (nodeInfo !== root && nodeInfo != null) {
+                    //// FIXME: 2017/5/1 Issue #180
+                    nodeInfo.recycle()
+                }
+            }
+        }
     }
+
+
 }

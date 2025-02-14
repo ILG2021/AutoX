@@ -7,18 +7,11 @@ import android.util.Log;
 
 import com.stardust.app.GlobalAppContext;
 import com.stardust.autojs.R;
-import com.stardust.autojs.BuildConfig;
 import com.stardust.autojs.ScriptEngineService;
 import com.stardust.autojs.annotation.ScriptVariable;
 import com.stardust.autojs.core.accessibility.AccessibilityBridge;
-import com.stardust.autojs.core.accessibility.SimpleActionAutomator;
-import com.stardust.autojs.core.accessibility.UiSelector;
-import com.stardust.autojs.core.activity.ActivityInfoProvider;
 import com.stardust.autojs.core.image.Colors;
-import com.stardust.autojs.core.image.capture.ScreenCaptureRequester;
-import com.stardust.autojs.core.looper.Loopers;
 import com.stardust.autojs.core.permission.Permissions;
-import com.stardust.autojs.core.util.ProcessShell;
 import com.stardust.autojs.rhino.AndroidClassLoader;
 import com.stardust.autojs.rhino.TopLevelScope;
 import com.stardust.autojs.rhino.continuation.Continuation;
@@ -26,32 +19,37 @@ import com.stardust.autojs.runtime.api.AbstractShell;
 import com.stardust.autojs.runtime.api.AppUtils;
 import com.stardust.autojs.runtime.api.Console;
 import com.stardust.autojs.runtime.api.Device;
-import com.stardust.autojs.runtime.api.Dialogs;
 import com.stardust.autojs.runtime.api.Engines;
 import com.stardust.autojs.runtime.api.Events;
 import com.stardust.autojs.runtime.api.Files;
 import com.stardust.autojs.runtime.api.Floaty;
-import com.stardust.autojs.runtime.api.GoogleMLKit;
-import com.stardust.autojs.runtime.api.Images;
+import com.stardust.autojs.core.looper.Loopers;
 import com.stardust.autojs.runtime.api.Media;
+import com.stardust.autojs.runtime.api.GoogleMLKit;
 import com.stardust.autojs.runtime.api.Plugins;
 import com.stardust.autojs.runtime.api.Sensors;
 import com.stardust.autojs.runtime.api.SevenZip;
 import com.stardust.autojs.runtime.api.Threads;
 import com.stardust.autojs.runtime.api.Timers;
-import com.stardust.autojs.runtime.api.UI;
+import com.stardust.autojs.core.accessibility.UiSelector;
+import com.stardust.autojs.runtime.api.Images;
+import com.stardust.autojs.core.image.capture.ScreenCaptureRequester;
+import com.stardust.autojs.runtime.api.Dialogs;
 import com.stardust.autojs.runtime.exception.ScriptEnvironmentException;
 import com.stardust.autojs.runtime.exception.ScriptException;
 import com.stardust.autojs.runtime.exception.ScriptInterruptedException;
-import com.stardust.autojs.util.ObjectWatcher;
+import com.stardust.autojs.core.accessibility.SimpleActionAutomator;
+import com.stardust.autojs.runtime.api.UI;
 import com.stardust.concurrent.VolatileDispose;
 import com.stardust.lang.ThreadCompat;
 import com.stardust.pio.UncheckedIOException;
 import com.stardust.util.ClipboardUtil;
+import com.stardust.autojs.core.util.ProcessShell;
 import com.stardust.util.ScreenMetrics;
 import com.stardust.util.SdkVersionUtil;
 import com.stardust.util.Supplier;
 import com.stardust.util.UiHandler;
+import com.stardust.autojs.core.activity.ActivityInfoProvider;
 
 import org.mozilla.javascript.ContextFactory;
 import org.mozilla.javascript.RhinoException;
@@ -73,9 +71,65 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by Stardust on 2017/1/27.
  */
 
-public abstract class ScriptRuntime {
+public class ScriptRuntime {
 
     private static final String TAG = "ScriptRuntime";
+
+
+    public static class Builder {
+        private UiHandler mUiHandler;
+        private Console mConsole;
+        private AccessibilityBridge mAccessibilityBridge;
+        private Supplier<AbstractShell> mShellSupplier;
+        private ScreenCaptureRequester mScreenCaptureRequester;
+        private AppUtils mAppUtils;
+        private ScriptEngineService mEngineService;
+
+        public Builder() {
+
+        }
+
+        public Builder setUiHandler(UiHandler uiHandler) {
+            mUiHandler = uiHandler;
+            return this;
+        }
+
+        public Builder setConsole(Console console) {
+            mConsole = console;
+            return this;
+        }
+
+        public Builder setAccessibilityBridge(AccessibilityBridge accessibilityBridge) {
+            mAccessibilityBridge = accessibilityBridge;
+            return this;
+        }
+
+        public Builder setShellSupplier(Supplier<AbstractShell> shellSupplier) {
+            mShellSupplier = shellSupplier;
+            return this;
+        }
+
+        public Builder setScreenCaptureRequester(ScreenCaptureRequester requester) {
+            mScreenCaptureRequester = requester;
+            return this;
+        }
+
+        public Builder setAppUtils(AppUtils appUtils) {
+            mAppUtils = appUtils;
+            return this;
+        }
+
+        public Builder setEngineService(ScriptEngineService service) {
+            mEngineService = service;
+            return this;
+        }
+
+
+        public ScriptRuntime build() {
+            return new ScriptRuntime(this);
+        }
+
+    }
 
 
     @ScriptVariable
@@ -146,8 +200,6 @@ public abstract class ScriptRuntime {
 
     @ScriptVariable
     public final GoogleMLKit gmlkit;
-//    @ScriptVariable
-//    public final Paddle paddle;
 
     private Images images;
 
@@ -156,22 +208,23 @@ public abstract class ScriptRuntime {
     private AbstractShell mRootShell;
     private Supplier<AbstractShell> mShellSupplier;
     private ScreenMetrics mScreenMetrics = new ScreenMetrics();
-    protected Thread mThread;
-    protected TopLevelScope mTopLevelScope;
+    private Thread mThread;
+    private TopLevelScope mTopLevelScope;
 
-    protected ScriptRuntime(ScriptRuntimeV2.Builder builder) {
-        uiHandler = builder.getUiHandler();
+
+    protected ScriptRuntime(Builder builder) {
+        uiHandler = builder.mUiHandler;
         Context context = uiHandler.getContext();
-        app = builder.getAppUtils();
-        console = builder.getConsole();
-        accessibilityBridge = builder.getAccessibilityBridge();
-        mShellSupplier = builder.getShellSupplier();
+        app = builder.mAppUtils;
+        console = builder.mConsole;
+        accessibilityBridge = builder.mAccessibilityBridge;
+        mShellSupplier = builder.mShellSupplier;
         ui = new UI(context, this);
         this.automator = new SimpleActionAutomator(accessibilityBridge, this);
         automator.setScreenMetrics(mScreenMetrics);
         this.info = accessibilityBridge.getInfoProvider();
-        images = new Images(context, this, builder.getScreenCaptureRequester());
-        engines = new Engines(builder.getEngineService(), this);
+        images = new Images(context, this, builder.mScreenCaptureRequester);
+        engines = new Engines(builder.mEngineService, this);
         dialogs = new Dialogs(this);
         device = new Device(context);
         floaty = new Floaty(uiHandler, ui, this);
@@ -180,14 +233,29 @@ public abstract class ScriptRuntime {
         plugins = new Plugins(context, this);
         zips = new SevenZip();
         gmlkit = new GoogleMLKit();
-//        paddle = new Paddle();
     }
 
-    public abstract void init();
+    public void init() {
+        if (loopers != null)
+            throw new IllegalStateException("already initialized");
+        threads = new Threads(this);
+        timers = new Timers(this);
+        loopers = new Loopers(this);
+        events = new Events(uiHandler.getContext(), accessibilityBridge, this);
+        mThread = Thread.currentThread();
+        sensors = new Sensors(uiHandler.getContext(), this);
+    }
 
-    public abstract TopLevelScope getTopLevelScope();
+    public TopLevelScope getTopLevelScope() {
+        return mTopLevelScope;
+    }
 
-    public abstract void setTopLevelScope(TopLevelScope topLevelScope);
+    public void setTopLevelScope(TopLevelScope topLevelScope) {
+        if (mTopLevelScope != null) {
+            throw new IllegalStateException("top level has already exists");
+        }
+        mTopLevelScope = topLevelScope;
+    }
 
     public static void setApplicationContext(Context context) {
         applicationContext = new WeakReference<>(context);
@@ -343,9 +411,9 @@ public abstract class ScriptRuntime {
         try {
 
             events.emit("exit");
-            if (console.isAutoHide()) {
+            if(console.isAutoHide()){
                 console.log("系统消息：任务结束,3秒后该窗口关闭");
-                uiHandler.postDelayed(console::hide, 4000);
+                uiHandler.postDelayed( console::hide,4000);
             }
         } catch (Throwable e) {
             console.error("exception on exit: ", e);
@@ -363,7 +431,6 @@ public abstract class ScriptRuntime {
         ignoresException(sensors::unregisterAll);
         ignoresException(timers::recycle);
         ignoresException(ui::recycle);
-//        ignoresException(paddle::release);
     }
 
     private void ignoresException(Runnable r) {

@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Tüm dosya erişimi</string>
   <string name="text_fullscreen">Tam ekran modunu değiştir 1</string>
   <string name="text_drawer_right">Sağ menüyü aç</string>
-  <string name="text_required_default_paddle_ocr_model">Varsayılan PaddleOCR eğitim verilerini paketleyin</string>
   <string name="switch_fullscreen">Tam ekran modunu değiştir</string>
   <string name="text_custom_ocr_model_path">Paket özel OCR model dizini</string>
   <string name="desc_more">Daha</string>

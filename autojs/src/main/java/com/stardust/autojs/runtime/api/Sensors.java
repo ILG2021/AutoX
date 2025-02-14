@@ -11,6 +11,7 @@ import com.stardust.autojs.core.eventloop.EventEmitter;
 import com.stardust.autojs.core.looper.Loopers;
 import com.stardust.autojs.runtime.ScriptBridges;
 import com.stardust.autojs.runtime.ScriptRuntime;
+import com.stardust.util.MapBuilder;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;
@@ -21,7 +22,7 @@ import java.util.Set;
  * Created by Stardust on 2018/2/5.
  */
 
-public class Sensors extends EventEmitter {
+public class Sensors extends EventEmitter implements Loopers.LooperQuitHandler {
 
 
     public class SensorEventEmitter extends EventEmitter implements SensorEventListener {
@@ -58,20 +59,21 @@ public class Sensors extends EventEmitter {
     }
 
 
-    private static final Map<String, Integer> SENSORS =   Map.ofEntries(
-            Map.entry("ACCELEROMETER", Sensor.TYPE_ACCELEROMETER),
-            Map.entry("MAGNETIC_FIELD", Sensor.TYPE_MAGNETIC_FIELD),
-            Map.entry("ORIENTATION", Sensor.TYPE_ORIENTATION),
-            Map.entry("GYROSCOPE", Sensor.TYPE_GYROSCOPE),
-            Map.entry("LIGHT", Sensor.TYPE_LIGHT),
-            Map.entry("TEMPERATURE", Sensor.TYPE_TEMPERATURE),
-            Map.entry("PRESSURE", Sensor.TYPE_PRESSURE),
-            Map.entry("AMBIENT_TEMPERATURE", Sensor.TYPE_AMBIENT_TEMPERATURE),
-            Map.entry("PROXIMITY", Sensor.TYPE_PROXIMITY),
-            Map.entry("GRAVITY", Sensor.TYPE_GRAVITY),
-            Map.entry("LINEAR_ACCELERATION", Sensor.TYPE_LINEAR_ACCELERATION),
-            Map.entry("RELATIVE_HUMIDITY", Sensor.TYPE_RELATIVE_HUMIDITY)
-    );
+    private static final Map<String, Integer> SENSORS = new MapBuilder<String, Integer>()
+            .put("ACCELEROMETER", Sensor.TYPE_ACCELEROMETER)
+            .put("MAGNETIC_FIELD", Sensor.TYPE_MAGNETIC_FIELD)
+            .put("ORIENTATION", Sensor.TYPE_ORIENTATION)
+            .put("GYROSCOPE", Sensor.TYPE_GYROSCOPE)
+            .put("LIGHT", Sensor.TYPE_LIGHT)
+            .put("TEMPERATURE", Sensor.TYPE_TEMPERATURE)
+            .put("PRESSURE", Sensor.TYPE_PRESSURE)
+            .put("AMBIENT_TEMPERATURE", Sensor.TYPE_AMBIENT_TEMPERATURE)
+            .put("PROXIMITY", Sensor.TYPE_PROXIMITY)
+            .put("GRAVITY", Sensor.TYPE_GRAVITY)
+            .put("LINEAR_ACCELERATION", Sensor.TYPE_LINEAR_ACCELERATION)
+            .put("RELATIVE_HUMIDITY", Sensor.TYPE_RELATIVE_HUMIDITY)
+            .put("AMBIENT_TEMPERATURE", Sensor.TYPE_AMBIENT_TEMPERATURE)
+            .build();
 
     public boolean ignoresUnsupportedSensor = false;
     public final Delay delay = new Delay();
@@ -81,7 +83,6 @@ public class Sensors extends EventEmitter {
     private final ScriptBridges mScriptBridges;
     private final SensorEventEmitter mNoOpSensorEventEmitter;
     private final ScriptRuntime mScriptRuntime;
-    private final Loopers.AsyncTask mAsyncTask = new Loopers.AsyncTask("Sensors");
 
 
     public Sensors(Context context, ScriptRuntime runtime) {
@@ -90,6 +91,7 @@ public class Sensors extends EventEmitter {
         mScriptBridges = runtime.bridges;
         mNoOpSensorEventEmitter = new SensorEventEmitter(runtime.bridges);
         mScriptRuntime = runtime;
+        runtime.loopers.addLooperQuitHandler(this);
     }
 
     public SensorEventEmitter register(String sensorName) {
@@ -112,13 +114,21 @@ public class Sensors extends EventEmitter {
     }
 
     private SensorEventEmitter register(@NonNull Sensor sensor, int delay) {
-        mScriptRuntime.loopers.addAsyncTask(mAsyncTask);
         SensorEventEmitter emitter = new SensorEventEmitter(mScriptBridges);
         mSensorManager.registerListener(emitter, sensor, delay);
         synchronized (mSensorEventEmitters) {
             mSensorEventEmitters.add(emitter);
         }
         return emitter;
+    }
+
+
+    @Override
+    public boolean shouldQuit() {
+        if (mSensorEventEmitters.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     public Sensor getSensor(String sensorName) {
@@ -145,8 +155,6 @@ public class Sensors extends EventEmitter {
             return;
         synchronized (mSensorEventEmitters) {
             mSensorEventEmitters.remove(emitter);
-            if (mSensorEventEmitters.isEmpty())
-                mScriptRuntime.loopers.removeAsyncTask(mAsyncTask);
         }
         mSensorManager.unregisterListener(emitter);
     }
@@ -158,6 +166,6 @@ public class Sensors extends EventEmitter {
             }
             mSensorEventEmitters.clear();
         }
-        mScriptRuntime.loopers.removeAsyncTask(mAsyncTask);
+        mScriptRuntime.loopers.removeLooperQuitHandler(this);
     }
 }

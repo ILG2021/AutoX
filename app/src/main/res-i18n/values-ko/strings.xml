@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">모든 파일 액세스</string>
   <string name="text_fullscreen">전체 화면 모드 1 전환</string>
   <string name="text_drawer_right">오른쪽 메뉴 열기</string>
-  <string name="text_required_default_paddle_ocr_model">패키지 기본 PaddleOCR 교육 데이터</string>
   <string name="switch_fullscreen">전체 화면 모드 전환</string>
   <string name="text_custom_ocr_model_path">패키지 사용자 정의 OCR 모델 디렉토리</string>
   <string name="desc_more">더</string>

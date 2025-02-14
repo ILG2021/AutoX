@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">ဖိုင်အားလုံးဝင်ရောက်ခွင့်</string>
   <string name="text_fullscreen">မျက်နှာပြင်အပြည့်မုဒ်ကို ပြောင်းရန် ၁</string>
   <string name="text_drawer_right">ညာဘက် menu ကိုဖွင့်ပါ။</string>
-  <string name="text_required_default_paddle_ocr_model">ပုံသေ PaddleOCR လေ့ကျင့်ရေးဒေတာ အထုပ်</string>
   <string name="switch_fullscreen">မျက်နှာပြင်အပြည့်မုဒ်ကို ပြောင်းပါ။</string>
   <string name="text_custom_ocr_model_path">Package စိတ်ကြိုက် OCR မော်ဒယ်လမ်းညွှန်</string>
   <string name="desc_more">နောက်ထပ်</string>

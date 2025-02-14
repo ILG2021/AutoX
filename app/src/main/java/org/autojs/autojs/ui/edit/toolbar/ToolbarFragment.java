@@ -15,11 +15,11 @@ public abstract class ToolbarFragment extends Fragment implements View.OnClickLi
 
 
     public interface OnMenuItemClickListener {
-        void onToolbarMenuItemClick(View view);
+        void onToolbarMenuItemClick(int id);
     }
 
     public interface OnMenuItemLongClickListener {
-        boolean onToolbarMenuItemLongClick(View view);
+        boolean onToolbarMenuItemLongClick(int id);
     }
 
     private OnMenuItemClickListener mOnMenuItemClickListener;
@@ -73,7 +73,7 @@ public abstract class ToolbarFragment extends Fragment implements View.OnClickLi
     @Override
     public void onClick(View view) {
         if (mOnMenuItemClickListener != null) {
-            mOnMenuItemClickListener.onToolbarMenuItemClick(view);
+            mOnMenuItemClickListener.onToolbarMenuItemClick(view.getId());
         }
     }
 
@@ -81,7 +81,7 @@ public abstract class ToolbarFragment extends Fragment implements View.OnClickLi
     @Override
     public boolean onLongClick(View v) {
         return mOnMenuItemLongClickListener != null &&
-                mOnMenuItemLongClickListener.onToolbarMenuItemLongClick(v);
+                mOnMenuItemLongClickListener.onToolbarMenuItemLongClick(v.getId());
     }
 
     public void setMenuItemStatus(int id, boolean enabled) {

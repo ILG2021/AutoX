@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Барлық файлға қол жеткізу</string>
   <string name="text_fullscreen">Толық экран режиміне ауысу 1</string>
   <string name="text_drawer_right">Оң жақ мәзірді ашыңыз</string>
-  <string name="text_required_default_paddle_ocr_model">Пакет әдепкі PaddleOCR жаттығу деректері</string>
   <string name="switch_fullscreen">Толық экран режимін ауыстыру</string>
   <string name="text_custom_ocr_model_path">Пакет теңшелетін OCR үлгі каталогы</string>
   <string name="desc_more">Көбірек</string>

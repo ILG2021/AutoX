@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Aċċess għall-fajl kollu</string>
   <string name="text_fullscreen">Aqleb il-mod ta\' skrin sħiħ 1</string>
   <string name="text_drawer_right">Iftaħ il-menu t-tajjeb</string>
-  <string name="text_required_default_paddle_ocr_model">Pakkett tad-dejta tat-taħriġ PaddleOCR default</string>
   <string name="switch_fullscreen">Aqleb il-mod ta\' skrin sħiħ</string>
   <string name="text_custom_ocr_model_path">Pakkett tad-direttorju tal-mudell OCR tad-dwana</string>
   <string name="desc_more">Aktar</string>

@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Settings
@@ -59,21 +58,19 @@ import org.autojs.autojs.ui.compose.widget.MyAlertDialog1
 import org.autojs.autojs.ui.compose.widget.MyIcon
 import org.autojs.autojs.ui.compose.widget.MySwitch
 import org.autojs.autojs.ui.floating.FloatyWindowManger
-import org.autojs.autojs.ui.settings.SettingsActivity
+import org.autojs.autojs.ui.settings.SettingsActivity_
 import org.autojs.autoxjs.R
 import org.joda.time.DateTimeZone
 import org.joda.time.Instant
-import org.autojs.autojs.core.network.socket.State
 
 private const val TAG = "DrawerPage"
 private const val URL_DEV_PLUGIN = "https://github.com/kkevsekk1/Auto.js-VSCode-Extension"
-private const val PROJECT_ADDRESS = "https://github.com/kkevsekk1/AutoX"
-private const val DOWNLOAD_ADDRESS = "https://github.com/kkevsekk1/AutoX/releases"
-private const val FEEDBACK_ADDRESS = "https://github.com/kkevsekk1/AutoX/issues"
+private const val DOWNLOAD_ADDRESS = "https://github.com/ILG2021/AutoJsX/releases"
 
 @Composable
 fun DrawerPage() {
     val context = LocalContext.current
+    rememberCoroutineScope()
     Column(
         Modifier
             .fillMaxSize()
@@ -112,11 +109,8 @@ fun DrawerPage() {
             USBDebugSwitch()
 
             SwitchTimedTaskScheduler()
-            ProjectAddress()
-            DownloadLink()
-            Feedback()
             CheckForUpdate()
-            AppDetailsSettings()
+            AppDetailsSettings(context)
         }
         Spacer(
             modifier = Modifier
@@ -133,8 +127,7 @@ fun DrawerPage() {
 }
 
 @Composable
-private fun AppDetailsSettings() {
-    val context = LocalContext.current
+private fun AppDetailsSettings(context: Context) {
     TextButton(onClick = {
         context.startActivity(PermissionsSettingsUtil.getAppDetailSettingIntent(context.packageName))
     }) {
@@ -143,33 +136,15 @@ private fun AppDetailsSettings() {
 }
 
 @Composable
-private fun Feedback() {
-    val context = LocalContext.current
-    TextButton(onClick = { IntentUtil.browse(context, FEEDBACK_ADDRESS) }) {
-        Text(text = stringResource(R.string.text_issue_report))
-    }
-}
-
-@Composable
-private fun DownloadLink() {
-    val context = LocalContext.current
-    TextButton(onClick = { IntentUtil.browse(context, DOWNLOAD_ADDRESS) }) {
-        Text(text = stringResource(R.string.text_app_download_link))
-    }
-}
-
-@Composable
-private fun ProjectAddress() {
-    val context = LocalContext.current
-    TextButton(onClick = { IntentUtil.browse(context, PROJECT_ADDRESS) }) {
-        Text(text = stringResource(R.string.text_project_link))
-    }
-}
-
-@Composable
 private fun CheckForUpdate(model: DrawerViewModel = viewModel()) {
-    var showDialog by rememberSaveable { mutableStateOf(false) }
-    var enabled by rememberSaveable { mutableStateOf(true) }
+    val context = LocalContext.current
+    var showDialog by rememberSaveable {
+        mutableStateOf(false)
+    }
+    var enabled by rememberSaveable {
+        mutableStateOf(true)
+    }
+    model.githubReleaseInfo
 
     TextButton(
         enabled = enabled,
@@ -233,9 +208,10 @@ private fun CheckForUpdate(model: DrawerViewModel = viewModel()) {
                 }
             },
             confirmButton = {
+                val url = DOWNLOAD_ADDRESS
                 TextButton(onClick = {
                     showDialog = false
-                    model.downloadApk()
+                    IntentUtil.browse(context, url)
                 }) {
                     Text(text = stringResource(id = R.string.text_download))
                 }
@@ -256,7 +232,7 @@ private fun BottomButtons() {
                 context.startActivity(
                     Intent(
                         context,
-                        SettingsActivity::class.java
+                        SettingsActivity_::class.java
                     )
                 )
             },
@@ -368,7 +344,6 @@ private fun ConnectComputerSwitch() {
                         ).show()
                     }
                 }
-
                 QRResult.QRUserCanceled -> {}
                 QRResult.QRMissingPermission -> {}
                 is QRResult.QRError -> {}
@@ -378,8 +353,8 @@ private fun ConnectComputerSwitch() {
         DevPlugin.connectState.collect {
             withContext(Dispatchers.Main) {
                 when (it.state) {
-                    State.CONNECTED -> enable = true
-                    State.DISCONNECTED -> enable = false
+                    DevPlugin.State.CONNECTED -> enable = true
+                    DevPlugin.State.DISCONNECTED -> enable = false
                 }
             }
         }
@@ -770,21 +745,7 @@ private fun AccessibilityServiceSwitch() {
                 ).show()
             }
         }
-    var editor by remember { mutableStateOf(Pref.getEditor()) }
-    SwitchItem(
-        icon = {
-            MyIcon(
-                Icons.Default.Edit,
-                contentDescription = null,
-            )
-        },
-        text = { Text(text = "启用新编辑器") },
-        checked = editor,
-        onCheckedChange = { isChecked ->
-            editor = isChecked
-            Pref.setEditor(isChecked)
-        }
-    )
+
     SwitchItem(
         icon = {
             MyIcon(

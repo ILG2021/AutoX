@@ -1,13 +1,14 @@
 package com.stardust.autojs.runtime.api;
 
 import android.accessibilityservice.AccessibilityServiceInfo;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
+
+import androidx.annotation.RequiresApi;
 
 import android.view.KeyEvent;
 
@@ -24,6 +25,7 @@ import com.stardust.notification.NotificationListenerService;
 import com.stardust.autojs.runtime.exception.ScriptException;
 import com.stardust.autojs.core.inputevent.InputEventObserver;
 import com.stardust.autojs.core.inputevent.TouchObserver;
+import com.stardust.util.MapBuilder;
 import com.stardust.view.accessibility.AccessibilityNotificationObserver;
 import com.stardust.view.accessibility.AccessibilityService;
 import com.stardust.view.accessibility.KeyInterceptor;
@@ -42,43 +44,42 @@ public class Events extends EventEmitter implements OnKeyListener, TouchObserver
 
     private static final String PREFIX_KEY_DOWN = "__key_down__#";
     private static final String PREFIX_KEY_UP = "__key_up__#";
-    private static final Map<Integer, String> GESTURES = Map.ofEntries(
-            Map.entry(AccessibilityService.GESTURE_SWIPE_UP, "up"),
-            Map.entry(AccessibilityService.GESTURE_SWIPE_DOWN, "down"),
-            Map.entry(AccessibilityService.GESTURE_SWIPE_LEFT, "left"),
-            Map.entry(AccessibilityService.GESTURE_SWIPE_RIGHT, "right"),
-            Map.entry(AccessibilityService.GESTURE_SWIPE_LEFT_AND_RIGHT, "left_right"),
-            Map.entry(AccessibilityService.GESTURE_SWIPE_RIGHT_AND_LEFT, "right_left"),
-            Map.entry(AccessibilityService.GESTURE_SWIPE_UP_AND_DOWN, "up_down"),
-            Map.entry(AccessibilityService.GESTURE_SWIPE_DOWN_AND_UP, "down_up"),
-            Map.entry(AccessibilityService.GESTURE_SWIPE_LEFT_AND_UP, "left_up"),
-            Map.entry(AccessibilityService.GESTURE_SWIPE_LEFT_AND_DOWN, "left_down"),
-            Map.entry(AccessibilityService.GESTURE_SWIPE_RIGHT_AND_UP, "right_up"),
-            Map.entry(AccessibilityService.GESTURE_SWIPE_RIGHT_AND_DOWN, "right_down"),
-            Map.entry(AccessibilityService.GESTURE_SWIPE_UP_AND_LEFT, "up_left"),
-            Map.entry(AccessibilityService.GESTURE_SWIPE_UP_AND_RIGHT, "up_right"),
-            Map.entry(AccessibilityService.GESTURE_SWIPE_DOWN_AND_LEFT, "down_left"),
-            Map.entry(AccessibilityService.GESTURE_SWIPE_DOWN_AND_RIGHT, "down_right")
-    );
+    private static final Map<Integer, String> GESTURES = new MapBuilder<Integer, String>()
+            .put(AccessibilityService.GESTURE_SWIPE_UP, "up")
+            .put(AccessibilityService.GESTURE_SWIPE_DOWN, "down")
+            .put(AccessibilityService.GESTURE_SWIPE_LEFT, "left")
+            .put(AccessibilityService.GESTURE_SWIPE_RIGHT, "right")
+            .put(AccessibilityService.GESTURE_SWIPE_LEFT_AND_RIGHT, "left_right")
+            .put(AccessibilityService.GESTURE_SWIPE_RIGHT_AND_LEFT, "right_left")
+            .put(AccessibilityService.GESTURE_SWIPE_UP_AND_DOWN, "up_down")
+            .put(AccessibilityService.GESTURE_SWIPE_DOWN_AND_UP, "down_up")
+            .put(AccessibilityService.GESTURE_SWIPE_LEFT_AND_UP, "left_up")
+            .put(AccessibilityService.GESTURE_SWIPE_LEFT_AND_DOWN, "left_down")
+            .put(AccessibilityService.GESTURE_SWIPE_RIGHT_AND_UP, "right_up")
+            .put(AccessibilityService.GESTURE_SWIPE_RIGHT_AND_DOWN, "right_down")
+            .put(AccessibilityService.GESTURE_SWIPE_UP_AND_LEFT, "up_left")
+            .put(AccessibilityService.GESTURE_SWIPE_UP_AND_RIGHT, "up_right")
+            .put(AccessibilityService.GESTURE_SWIPE_DOWN_AND_LEFT, "down_left")
+            .put(AccessibilityService.GESTURE_SWIPE_DOWN_AND_RIGHT, "down_right")
+            .build();
 
-    private final AccessibilityBridge mAccessibilityBridge;
-    private final Context mContext;
+    private AccessibilityBridge mAccessibilityBridge;
+    private Context mContext;
     private TouchObserver mTouchObserver;
     private long mLastTouchEventMillis;
     private long mTouchEventTimeout = 10;
     private boolean mListeningKey = false;
-    private final Loopers mLoopers;
+    private Loopers mLoopers;
     private Handler mHandler;
     private boolean mListeningNotification = false;
     private boolean mListeningGesture = false;
     private boolean mListeningToast = false;
-    private final ScriptRuntime mScriptRuntime;
+    private ScriptRuntime mScriptRuntime;
     private volatile boolean mInterceptsAllKey = false;
     private KeyInterceptor mKeyInterceptor;
-    private final Set<String> mInterceptedKeys = new HashSet<>();
+    private Set<String> mInterceptedKeys = new HashSet<>();
 
     public final BroadcastEmitter broadcast;
-    private final Loopers.AsyncTask task = new Loopers.AsyncTask("events");
 
     public Events(Context context, AccessibilityBridge accessibilityBridge, ScriptRuntime runtime) {
         super(runtime.bridges);
@@ -110,7 +111,7 @@ public class Events extends EventEmitter implements OnKeyListener, TouchObserver
             throw new ScriptException(mContext.getString(R.string.text_should_enable_key_observing));
         }
         ensureHandler();
-        mLoopers.addAsyncTaskToCurrentThreadLooper(task);
+        mLoopers.waitWhenIdle(true);
         mListeningKey = true;
         mAccessibilityBridge.ensureServiceEnabled();
         service.getOnKeyObserver().addListener(this);
@@ -126,7 +127,7 @@ public class Events extends EventEmitter implements OnKeyListener, TouchObserver
         if (mTouchObserver != null)
             return;
         ensureHandler();
-        mLoopers.addAsyncTaskToCurrentThreadLooper(task);
+        mLoopers.waitWhenIdle(true);
         mTouchObserver = new TouchObserver(InputEventObserver.getGlobal(mContext));
         mTouchObserver.setOnTouchEventListener(this);
         mTouchObserver.observe();
@@ -217,20 +218,17 @@ public class Events extends EventEmitter implements OnKeyListener, TouchObserver
         mTouchEventTimeout = touchEventTimeout;
     }
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     public void observeNotification() {
         ScriptRuntime.requiresApi(18);
         if (mListeningNotification)
             return;
         mListeningNotification = true;
         ensureHandler();
-        mLoopers.addAsyncTaskToCurrentThreadLooper(task);
+        mLoopers.waitWhenIdle(true);
         if (NotificationListenerService.Companion.getInstance() == null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-                Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
-                if (!(mContext instanceof Activity)) {
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                }
-                mContext.startActivity(intent);
+                mContext.startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
             }
             throw new ScriptException(mContext.getString(R.string.exception_notification_service_disabled));
         }
@@ -243,7 +241,7 @@ public class Events extends EventEmitter implements OnKeyListener, TouchObserver
         mAccessibilityBridge.ensureServiceEnabled();
         mListeningToast = true;
         ensureHandler();
-        mLoopers.addAsyncTaskToCurrentThreadLooper(task);
+        mLoopers.waitWhenIdle(true);
         mAccessibilityBridge.getNotificationObserver().addToastListener(this);
     }
 
@@ -258,7 +256,7 @@ public class Events extends EventEmitter implements OnKeyListener, TouchObserver
         }
         service.getGestureEventDispatcher().addListener(this);
         ensureHandler();
-        mLoopers.addAsyncTaskToCurrentThreadLooper(task);
+        mLoopers.waitWhenIdle(true);
         mListeningGesture = true;
     }
 

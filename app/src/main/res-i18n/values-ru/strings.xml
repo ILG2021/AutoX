@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Полный доступ к файлам</string>
   <string name="text_fullscreen">Переключить полноэкранный режим 1</string>
   <string name="text_drawer_right">Откройте правое меню</string>
-  <string name="text_required_default_paddle_ocr_model">Упаковать обучающие данные PaddleOCR по умолчанию</string>
   <string name="switch_fullscreen">Переключить полноэкранный режим</string>
   <string name="text_custom_ocr_model_path">Упаковать каталог пользовательской модели OCR</string>
   <string name="desc_more">Более</string>

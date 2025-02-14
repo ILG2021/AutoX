@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Tout aksè nan dosye</string>
   <string name="text_fullscreen">Aktive mòd ekran plen 1</string>
   <string name="text_drawer_right">Louvri meni dwat la</string>
-  <string name="text_required_default_paddle_ocr_model">Pake done fòmasyon PaddleOCR default</string>
   <string name="switch_fullscreen">Aktive mòd ekran konplè</string>
   <string name="text_custom_ocr_model_path">Pake koutim OCR modèl anyè</string>
   <string name="desc_more">Plis</string>

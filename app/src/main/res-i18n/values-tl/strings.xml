@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Lahat ng pag-access sa file</string>
   <string name="text_fullscreen">I-toggle ang full screen mode 1</string>
   <string name="text_drawer_right">Buksan ang tamang menu</string>
-  <string name="text_required_default_paddle_ocr_model">Package default na data ng pagsasanay sa PaddleOCR</string>
   <string name="switch_fullscreen">I-toggle ang full screen mode</string>
   <string name="text_custom_ocr_model_path">Package custom na direktoryo ng modelo ng OCR</string>
   <string name="desc_more">Higit pa</string>

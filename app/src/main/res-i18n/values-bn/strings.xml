@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">সমস্ত ফাইল অ্যাক্সেস</string>
   <string name="text_fullscreen">পূর্ণ স্ক্রীন মোড টগল করুন 1</string>
   <string name="text_drawer_right">ডান মেনু খুলুন</string>
-  <string name="text_required_default_paddle_ocr_model">প্যাকেজ ডিফল্ট PaddleOCR প্রশিক্ষণ ডেটা</string>
   <string name="switch_fullscreen">পূর্ণ স্ক্রীন মোড টগল করুন</string>
   <string name="text_custom_ocr_model_path">প্যাকেজ কাস্টম OCR মডেল ডিরেক্টরি</string>
   <string name="desc_more">আরও</string>

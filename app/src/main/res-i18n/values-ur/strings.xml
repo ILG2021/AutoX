@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">تمام فائل تک رسائی</string>
   <string name="text_fullscreen">فل سکرین موڈ کو ٹوگل کریں 1</string>
   <string name="text_drawer_right">دائیں مینو کو کھولیں۔</string>
-  <string name="text_required_default_paddle_ocr_model">پیکیج ڈیفالٹ PaddleOCR ٹریننگ ڈیٹا</string>
   <string name="switch_fullscreen">فل سکرین موڈ کو ٹوگل کریں۔</string>
   <string name="text_custom_ocr_model_path">پیکیج کسٹم OCR ماڈل ڈائرکٹری</string>
   <string name="desc_more">مزید</string>

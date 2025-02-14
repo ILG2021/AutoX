@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">File zawng zawng a lut vek</string>
   <string name="text_fullscreen">Full screen mode kha thlak danglam rawh 1</string>
   <string name="text_drawer_right">Menu dinglam chu hawng rawh</string>
-  <string name="text_required_default_paddle_ocr_model">Package hmasa ber chu PaddleOCR training data a ni</string>
   <string name="switch_fullscreen">Full screen mode ah chuan a inthlak ang</string>
   <string name="text_custom_ocr_model_path">Package custom OCR model directory a awm bawk</string>
   <string name="desc_more">Belh</string>

@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Allur skráaaðgangur</string>
   <string name="text_fullscreen">Skipta um allan skjástillingu 1</string>
   <string name="text_drawer_right">Opnaðu hægri valmyndina</string>
-  <string name="text_required_default_paddle_ocr_model">Pakki sjálfgefin PaddleOCR þjálfunargögn</string>
   <string name="switch_fullscreen">Skiptu um allan skjástillingu</string>
   <string name="text_custom_ocr_model_path">Pakka sérsniðna OCR líkanaskrá</string>
   <string name="desc_more">Meira</string>

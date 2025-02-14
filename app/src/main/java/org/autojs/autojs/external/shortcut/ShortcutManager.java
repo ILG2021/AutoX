@@ -21,8 +21,8 @@ public class ShortcutManager {
 
 
     private static ShortcutManager sInstance;
-    private final Context mContext;
-    private final android.content.pm.ShortcutManager mShortcutManager;
+    private Context mContext;
+    private android.content.pm.ShortcutManager mShortcutManager;
 
 
     public ShortcutManager(Context context) {
@@ -45,14 +45,8 @@ public class ShortcutManager {
         }
         ShortcutInfo shortcut = buildShortcutInfo(label, id, icon, intent);
         int req = getRequestCode(id);
-
-
-        PendingIntent successCallback = PendingIntent.getBroadcast(
-                mContext,
-                req,
-                mShortcutManager.createShortcutResultIntent(shortcut),
-                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
-        );
+        PendingIntent successCallback = PendingIntent.getBroadcast(mContext, req,
+                mShortcutManager.createShortcutResultIntent(shortcut), 0);
         mShortcutManager.requestPinShortcut(shortcut, successCallback.getIntentSender());
     }
 

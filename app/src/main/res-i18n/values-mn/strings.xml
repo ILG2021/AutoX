@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Бүх файлын хандалт</string>
   <string name="text_fullscreen">Бүтэн дэлгэцийн горимыг асаах/унтраах 1</string>
   <string name="text_drawer_right">Баруун цэсийг нээнэ үү</string>
-  <string name="text_required_default_paddle_ocr_model">PaddleOCR сургалтын өгөгдмөл өгөгдлийг багцлах</string>
   <string name="switch_fullscreen">Бүтэн дэлгэцийн горимыг асаах/унтраах</string>
   <string name="text_custom_ocr_model_path">Захиалгат OCR загварын лавлах багц</string>
   <string name="desc_more">Илүү</string>

@@ -1,29 +1,39 @@
 <resources>
-    <string name="text_error_copy">复制信息</string>
-    <string name="text_error_restart">重启软件</string>
-    <string name="text_error_exit">退出软件</string>
-    <string name="text_error_save">已保存到路径:%1$s</string>
-
-    <string name="app_name" translatable="false">Autox.js</string>
+    <string name="app_name" translatable="false">AutoJsX</string>
     <string name="text_broadcast_action_prefix" translatable="false">android.intent.action.</string>
     <string name="text_en_import" translatable="false">import</string>
     <string name="dex_crcs" translatable="false">2184044085\n3566596539\npJTCkHuhypD9i3UBQ55XQw==RtXsgCTVFA7VYhLeF1TSkg==</string>
     <string name="format_default_package_name" formatted="true" translatable="false">com.script.%s</string>
-    <string name="powered_by_autojs" translatable="false">Powered by Autoxjs.com</string>
-    <string name="my_github" translatable="false">https://github.com/kkevsekk1/autox</string>
+    <string name="powered_by_autojs" translatable="false">Powered by AutoJsX</string>
+    <string name="my_github" translatable="false">https://github.com/ILG2021/AutoJsX</string>
     <string name="copyright" translatable="false">Copyright©2020-2022 All right reserves.</string>
-    <string name="developer" translatable="false">aaron</string>
+    <string name="developer" translatable="false">ILG2021</string>
     <string name="qq" translatable="false">895775483</string>
     <string name="text_qq" translatable="false">QQ群：895775483</string>
     <string name="email" translatable="false">chengshulun@live.com</string>
     <string name="default_main_file_name" translatable="false">main.js</string>
+
+    <string name="key_auto_backup" translatable="false">key_auto_back</string>
+    <string name="key_night_mode" translatable="false">key_night_mode</string>
+    <string name="key_foreground_servie" translatable="false">key_foreground_service</string>
+    <string name="key_script_dir_path" translatable="false">key_script_dir_path</string>
+    <string name="key_documentation_source" translatable="false">key_documentation_source</string>
+    <string name="key_enable_observe_key" translatable="false">key_enable_observe_key</string>
+    <string name="key_single_build_clean_mode" translatable="false">key_single_build_clean_mode</string>
+    <string name="key_stable_mode" translatable="false">key_stable_mode</string>
+    <string name="key_record_toast" translatable="false">key_record_toast</string>
+    <string name="key_root_record_out_file_type" translatable="false">key_root_record_out_file_type</string>
+    <string name="key_use_volume_control_running" translatable="false">key_use_volume_control_running</string>
+    <string name="key_enable_accessibility_service_by_root" translatable="false">key_enable_accessibility_service_by_root</string>
+    <string name="key_max_length_for_code_completion" translatable="false">key_max_length_for_code_completion</string>
+    <string name="key_use_volume_control_record" translatable="false">key_use_volume_control_record</string>
+    <string name="key_guard_mode" translatable="false">key_guard_mode</string>
 
     <string name="default_value_script_dir_path" translatable="false">/脚本/</string>
     <string name="text_android_job" translatable="false">AndroidJob</string>
     <string name="text_alarm_manager" translatable="false">AlarmManager</string>
     <string name="text_work_manager" translatable="false">WorkManager</string>
 
-    <string name="text_intent_run_script">允许使用广播运行脚本</string>
     <string name="text_accessibility_service_description">使脚本自动操作(点击、长按、滑动等)所需，若关闭则只能执行不涉及自动操作的脚本。</string>
     <string name="text_new_file">新建文件</string>
     <string name="text_create_fail">创建失败</string>
@@ -59,7 +69,7 @@
     <string name="github">软件源代码</string>
     <string name="text_already_copy_to_clip">已复制到剪贴板</string>
     <string name="text_qq_already_copy_to_clip">QQ群号已复制到剪贴板</string>
-    <string name="share_app">[Autox.js]下载地址：https://github.com/kkevsekk1/AutoX/releases </string>
+    <string name="share_app">[Autox.js]下载地址：https://github.com/ILG2021/AutoJsX/releases</string>
     <string name="text_floating_window">悬浮窗</string>
     <string name="text_error_report">错误报告</string>
     <string name="text_press_again_to_exit">再按一次退出程序</string>
@@ -83,7 +93,7 @@
     <string name="text_report_fail">提交失败</string>
     <string name="text_report_succeed">提交成功</string>
     <string name="edit_and_run_handle_intent_error">无法处理文件</string>
-    <string name="text_issue_report">问题反馈</string>
+    <string name="text_issue_report">代码问题反馈</string>
     <string name="text_script_record">录制脚本</string>
     <string name="text_start_record">开始录制</string>
     <string name="text_recorded">录制结束</string>
@@ -166,6 +176,7 @@
     <string name="text_show_widget_infomation">查看控件信息</string>
     <string name="text_show_layout_hierarchy">在布局层次中查看</string>
     <string name="text_show_layout_bounds">在布局范围中查看</string>
+    <string name="text_show_capture_icon">截取图标</string>
     <string name="text_more">更多</string>
     <string name="text_script_save_successfully">保存成功，请刷新目录</string>
     <string name="text_run_repeatedly">循环运行</string>
@@ -186,7 +197,6 @@
     <string name="text_binary">binary</string>
     <string name="summary_stable_mode">开启后布局分析更稳定，但小部分脚本可能无法正常运行。重启无障碍服务生效</string>
     <string name="text_hideLaucher">隐藏桌面图标(通过adb或其他方法启动应用)</string>
-    <string name="text_display_splash">显示启动界面</string>
     <string name="text_stable_mode">稳定模式</string>
     <string name="text_single_build_clean_mode">单文件打包清爽模式</string>
     <string name="summary_single_build_clean_mode">开启后单文件打包时不保存打包配置文件,及不保存启动图和应用图标等所有配置信息</string>
@@ -249,15 +259,11 @@
     <string name="text_run_config">运行配置</string>
     <string name="text_hideLogs">隐藏日志</string>
     <string name="text_required_accessibility_service">需要无障碍服务</string>
-    <string name="text_hide_accessibility_services">去掉无障碍服务</string>
     <string name="text_required_opencv" translatable="false">OpenCv</string>
     <string name="text_required_google_mlkit_ocr" translatable="false">Google ML kit OCR</string>
-    <string name="text_required_paddle_ocr" translatable="false">PaddleOCR</string>
     <string name="text_required_tesseract_ocr" translatable="false">TesseractOCR</string>
     <string name="text_required_7zip" translatable="false">7zip</string>
     <string name="text_required_terminal_emulator">终端模拟器</string>
-    <string name="text_is_encrypt">简单加密js文件</string>
-    <string name="text_encrypt_options">加密选项</string>
     <string name="text_required_background_start">需要后台弹出界面权限</string>
     <string name="text_required_draw_overlay">需要悬浮窗权限</string>
     <string name="text_volumeUpcontrol">音量上键结束任务</string>
@@ -504,7 +510,6 @@
     <string name="text_file_manager_permission">所有文件访问权限</string>
     <string name="text_fullscreen">切换全屏模式1</string>
     <string name="text_drawer_right">打开右侧菜单</string>
-    <string name="text_required_default_paddle_ocr_model">打包默认的PaddleOCR训练数据</string>
     <string name="switch_fullscreen">切换全屏模式</string>
     <string name="text_custom_ocr_model_path">打包自定义OCR模型目录</string>
     <string name="desc_more">更多</string>

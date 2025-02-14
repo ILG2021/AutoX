@@ -127,7 +127,6 @@ public class AndroidClassLoader extends ClassLoader implements GeneratedClassLoa
         if (!file.exists()) {
             throw new FileNotFoundException(file.getPath());
         }
-        file.setWritable(false);
         DexClassLoader loader = new DexClassLoader(file.getPath(), mCacheDir.getPath(), null, parent);
         mDexClassLoaders.add(loader);
         return loader;

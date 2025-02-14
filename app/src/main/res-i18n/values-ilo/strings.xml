@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Amin a file access</string>
   <string name="text_fullscreen">I-toggle ti naan-anay nga iskrin a kasasaad 1</string>
   <string name="text_drawer_right">Luktan ti kannawan a menu</string>
-  <string name="text_required_default_paddle_ocr_model">Pakete ti default a datos ti panagsanay ti PaddleOCR</string>
   <string name="switch_fullscreen">I-toggle ti naan-anay nga iskrin a kasasaad</string>
   <string name="text_custom_ocr_model_path">Pakete ti kostumbre nga OCR a modelo ti direktorio</string>
   <string name="desc_more">Ad-adu pay</string>

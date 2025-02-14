@@ -4,7 +4,7 @@ import java.io.IOException
 import java.io.OutputStream
 import java.nio.ByteBuffer
 
-class ByteBufferBackedOutputStream(private val buf: ByteBuffer) : OutputStream() {
+class ByteBufferBackedOutputStream(private var buf: ByteBuffer) : OutputStream() {
 
     @Throws(IOException::class)
     override fun write(b: Int) {
@@ -15,4 +15,5 @@ class ByteBufferBackedOutputStream(private val buf: ByteBuffer) : OutputStream()
     override fun write(bytes: ByteArray, off: Int, len: Int) {
         buf.put(bytes, off, len)
     }
+
 }

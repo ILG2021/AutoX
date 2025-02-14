@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Vsi dostopi do datotek</string>
   <string name="text_fullscreen">Preklop celozaslonskega načina 1</string>
   <string name="text_drawer_right">Odprite desni meni</string>
-  <string name="text_required_default_paddle_ocr_model">Paket privzetih podatkov o usposabljanju PaddleOCR</string>
   <string name="switch_fullscreen">Preklop celozaslonskega načina</string>
   <string name="text_custom_ocr_model_path">Paket imenika modelov OCR po meri</string>
   <string name="desc_more">Več</string>

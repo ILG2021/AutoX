@@ -8,20 +8,10 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -35,23 +25,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelStore
-import androidx.lifecycle.ViewModelStoreOwner
-import androidx.lifecycle.setViewTreeLifecycleOwner
-import androidx.lifecycle.setViewTreeViewModelStoreOwner
+import androidx.lifecycle.ViewTreeLifecycleOwner
+import androidx.lifecycle.ViewTreeViewModelStoreOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.Theme
 import com.stardust.app.DialogUtils
 import com.stardust.enhancedfloaty.FloatyService
 import com.stardust.view.accessibility.NodeInfo
+import org.autojs.autoxjs.R
 import org.autojs.autojs.ui.codegeneration.CodeGenerateDialog
 import org.autojs.autojs.ui.compose.theme.AutoXJsTheme
 import org.autojs.autojs.ui.floating.FloatyWindowManger
 import org.autojs.autojs.ui.floating.FullScreenFloatyWindow
 import org.autojs.autojs.ui.floating.MyLifecycleOwner
 import org.autojs.autojs.ui.widget.BubblePopupMenu
-import org.autojs.autoxjs.R
-import java.util.Arrays
+import java.util.*
 
 /**
  * Created by Stardust on 2017/3/12.
@@ -85,14 +74,12 @@ open class LayoutHierarchyFloatyWindow(private val mRootNode: NodeInfo) : FullSc
             }
         }
         // Trick The ComposeView into thinking we are tracking lifecycle
-        val viewModelStore = object : ViewModelStoreOwner {
-            override val viewModelStore = ViewModelStore()
-        }
+        val viewModelStore = ViewModelStore()
         val lifecycleOwner = MyLifecycleOwner()
         lifecycleOwner.performRestore(null)
         lifecycleOwner.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
-        view.setViewTreeLifecycleOwner(lifecycleOwner)
-        view.setViewTreeViewModelStoreOwner(viewModelStore)
+        ViewTreeLifecycleOwner.set(view, lifecycleOwner)
+        ViewTreeViewModelStoreOwner.set(view) { viewModelStore }
         view.setViewTreeSavedStateRegistryOwner(lifecycleOwner)
 
         return view
@@ -128,26 +115,21 @@ open class LayoutHierarchyFloatyWindow(private val mRootNode: NodeInfo) : FullSc
                     }
                 }
             }
-
             Column(modifier = Modifier.fillMaxSize()) {
                 var isShowLayoutHierarchyView by remember {
                     mutableStateOf(true)
                 }
-                Box(
+                AndroidView(
+                    factory = {
+                        mLayoutHierarchyView!!
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .weight(1f)
-                ) {
-                    AndroidView(
-                        factory = {
-                            mLayoutHierarchyView!!
-                        },
-                        modifier = Modifier.fillMaxSize(),
-                        update = {
-                            it.alpha = if (isShowLayoutHierarchyView) 1f else 0f
-                        }
-                    )
-                }
+                        .weight(1f),
+                    update = {
+                        it.alpha = if (isShowLayoutHierarchyView) 1f else 0f
+                    }
+                )
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Spacer(modifier = Modifier.weight(1f))
                     Button(
@@ -202,11 +184,9 @@ open class LayoutHierarchyFloatyWindow(private val mRootNode: NodeInfo) : FullSc
                 0 -> {
                     showNodeInfo()
                 }
-
                 1 -> {
                     showLayoutBounds()
                 }
-
                 else -> {
                     generateCode()
                 }

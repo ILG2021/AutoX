@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">هەموو دەستگەیشتن بە فایلەکان</string>
   <string name="text_fullscreen">دۆخی تەواوی شاشە بگۆڕە 1</string>
   <string name="text_drawer_right">مینیوی ڕاست بکەرەوە</string>
-  <string name="text_required_default_paddle_ocr_model">داتاکانی ڕاهێنانی PaddleOCR بە پێشوەختەی پاکێجەکە</string>
   <string name="switch_fullscreen">دۆخی تەواوی شاشە بگۆڕە</string>
   <string name="text_custom_ocr_model_path">بەڕێوەبەرایەتی مۆدێلی OCRی تایبەت بە پاکێج</string>
   <string name="desc_more">زیاتر</string>

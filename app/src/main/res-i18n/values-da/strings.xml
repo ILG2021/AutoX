@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Al filadgang</string>
   <string name="text_fullscreen">Skift fuldskærmstilstand 1</string>
   <string name="text_drawer_right">Åbn den højre menu</string>
-  <string name="text_required_default_paddle_ocr_model">Pakke standard PaddleOCR træningsdata</string>
   <string name="switch_fullscreen">Skift fuldskærmstilstand</string>
   <string name="text_custom_ocr_model_path">Pakke tilpasset OCR-modelkatalog</string>
   <string name="desc_more">Mere</string>

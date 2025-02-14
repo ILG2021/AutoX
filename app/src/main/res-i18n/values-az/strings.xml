@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Bütün fayl girişi</string>
   <string name="text_fullscreen">Tam ekran rejimini dəyişin 1</string>
   <string name="text_drawer_right">Sağ menyunu açın</string>
-  <string name="text_required_default_paddle_ocr_model">Defolt PaddleOCR təlim məlumatlarını paketləyin</string>
   <string name="switch_fullscreen">Tam ekran rejimini dəyişin</string>
   <string name="text_custom_ocr_model_path">Xüsusi OCR model kataloqunu paketləyin</string>
   <string name="desc_more">Daha çox</string>

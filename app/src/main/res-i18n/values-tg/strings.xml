@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Ҳама дастрасии файл</string>
   <string name="text_fullscreen">Гузаронидани ҳолати пурраи экран 1</string>
   <string name="text_drawer_right">Менюи ростро кушоед</string>
-  <string name="text_required_default_paddle_ocr_model">Бастаи пешфарз маълумоти омӯзиши PaddleOCR</string>
   <string name="switch_fullscreen">Гузаронидани ҳолати пурраи экран</string>
   <string name="text_custom_ocr_model_path">Феҳристи модели OCR-ро баста кунед</string>
   <string name="desc_more">Бештар</string>

@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Tất cả quyền truy cập tệp</string>
   <string name="text_fullscreen">Chuyển đổi chế độ toàn màn hình 1</string>
   <string name="text_drawer_right">Mở menu bên phải</string>
-  <string name="text_required_default_paddle_ocr_model">Gói dữ liệu đào tạo PaddleOCR mặc định</string>
   <string name="switch_fullscreen">Bật chế độ toàn màn hình</string>
   <string name="text_custom_ocr_model_path">Gói thư mục mô hình OCR tùy chỉnh</string>
   <string name="desc_more">Hơn</string>

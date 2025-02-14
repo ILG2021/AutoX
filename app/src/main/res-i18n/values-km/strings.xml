@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">ការចូលប្រើឯកសារទាំងអស់។</string>
   <string name="text_fullscreen">បិទបើករបៀបពេញអេក្រង់ 1</string>
   <string name="text_drawer_right">បើកម៉ឺនុយត្រឹមត្រូវ។</string>
-  <string name="text_required_default_paddle_ocr_model">កញ្ចប់ទិន្នន័យបណ្តុះបណ្តាល PaddleOCR លំនាំដើម</string>
   <string name="switch_fullscreen">បិទបើករបៀបពេញអេក្រង់</string>
   <string name="text_custom_ocr_model_path">កញ្ចប់ថតគំរូ OCR ផ្ទាល់ខ្លួន</string>
   <string name="desc_more">ច្រើនទៀត</string>

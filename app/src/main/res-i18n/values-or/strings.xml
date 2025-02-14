@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">ସମସ୍ତ ଫାଇଲ୍ ଆକ୍ସେସ୍ |</string>
   <string name="text_fullscreen">ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନ୍ ମୋଡ୍ 1 ଟୋଗଲ୍ କରନ୍ତୁ |</string>
   <string name="text_drawer_right">ଡାହାଣ ମେନୁ ଖୋଲ |</string>
-  <string name="text_required_default_paddle_ocr_model">ପ୍ୟାକେଜ୍ ଡିଫଲ୍ଟ PaddleOCR ତାଲିମ ତଥ୍ୟ |</string>
   <string name="switch_fullscreen">ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନ୍ ମୋଡ୍ ଟୋଗଲ୍ କରନ୍ତୁ |</string>
   <string name="text_custom_ocr_model_path">ପ୍ୟାକେଜ୍ କଷ୍ଟମ୍ OCR ମଡେଲ୍ ଡିରେକ୍ଟୋରୀ |</string>
   <string name="desc_more">ଅଧିକ</string>

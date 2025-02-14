@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Sadaya aksés file</string>
   <string name="text_fullscreen">Togél mode layar pinuh 1</string>
   <string name="text_drawer_right">Buka ménu katuhu</string>
-  <string name="text_required_default_paddle_ocr_model">Paket data latihan PaddleOCR standar</string>
   <string name="switch_fullscreen">Togél modeu layar pinuh</string>
   <string name="text_custom_ocr_model_path">Pakét custom diréktori modél OCR</string>
   <string name="desc_more">Tambih deui</string>

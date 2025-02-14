@@ -6,14 +6,6 @@
 
 一个支持无障碍服务的Android平台上的JavaScript 运行环境 和 开发环境，其发展目标是类似JsBox和Workflow。
 
-~~由于[原作者](https://github.com/hyb1996) 不再维护 Auto.js 项目
-我计划在原来基础上继续维护者项目，本项目从[autojs](https://github.com/hyb1996/Auto.js) 并将原项目命名为Autox.js。
-你现在看的是原4.1版基础上的项目，后面我将针对项目本身如何开发、运行的进行介绍，欢迎更多开发者参与这个项目维护升级，
-最新的[Autox.js地址](https://github.com/kkevsekk1/AutoX), 文档中很多原项目路径，
-在原项目没有删除的情况下我并不打算替换掉，以表对于原作者的尊重。这篇文档里有加密相关的内容可能和实际运行情况有冲突，
-如果你希望写的代码加密保护知识产权，请参考项目 https://github.com/kkevsekk1/webpack-autojs
-我会逐步完善更新，程序代码，尽可能保持一致。~~
-
 本项目从[hyb1996](https://github.com/hyb1996/Auto.js) autojs 获得,并命名为Autox.js （autojs 修改版本），
 你现在看的是原4.1版本基础上的项目，
 后面我们将针对项目本身如何开发、运行的进行介绍，欢迎更多开发者参与这个项目维护升级。[hyb1996](https://github.com/hyb1996/Auto.js)采用的
@@ -23,20 +15,15 @@
 
 关于两种协议：
 
-* GPL-V2[https://opensource.org/licenses/GPL-2.0](https://opensource.org/license/gpl-2-0/)
+* GPL-V2（https://opensource.org/licenses/GPL-2.0）
 * MPL-2 (https://www.mozilla.org/MPL/2.0)
 
 ### 现在的Autox.js：
 
-* Autox.js文档： http://doc.autoxjs.com/
+* Autox.js文档： https://ilg2021.github.io/AutoJsX-Docs
 * 开源地址  https://github.com/kkevsekk1/AutoX
 * pc端开发[VS Code 插件](https://marketplace.visualstudio.com/items?itemName=aaroncheng.auto-js-vsce-fixed)
-* 官方论坛： [www.autoxjs.com](http://www.autoxjs.com)
 * autoxjs[更新日志](CHANGELOG.md)
-
-### 欢迎点赞
-
-[![Star History Chart](https://api.star-history.com/svg?repos=kkevsekk1/AutoX&type=Date)](https://star-history.com/#kkevsekk1/AutoX&Date)
 
 ### Autox.js下载地址：
 [https://github.com/kkevsekk1/AutoX/releases](https://github.com/kkevsekk1/AutoX/releases)  
@@ -76,7 +63,7 @@
 
 ### 架构图
 
-待补充，不过是否有人真对此感兴趣？欢迎联系我交流
+待补充，不过是否有人真对此干兴趣？欢迎联系我交流
 
 ## 关于License
 
@@ -125,24 +112,26 @@
 * autojs 能不能商用,取决于你对于附带的 “ **非商业性使用** ” 的理解和其法律效益。
 * 反正本产品不会拿autojs 进行商用。
 
-### 编译相关：
-环境要求:`jdk`版本17以上
+#### 支持
+* 如果您想支持项目贡献者，可以通过以下方式
+* [wilinz](https://github.com/wilinz/Sponsor)
 
+#### 编译相关：
 命令说明：在项目根目录下运行命令，如果使用 Windows powerShell < 7.0，请使用包含 ";" 的命令
 
 ##### 本地安装调试版本到设备：
 ```shell
-./gradlew app:buildDebugTemplateApp && ./gradlew app:assembleV6Debug && ./gradlew app:installV6Debug
+./gradlew inrt:assembleTemplateDebug && ./gradlew inrt:cp2APPDebug && ./gradlew app:assembleV6Debug && ./gradlew app:installV6Debug
 #或
-./gradlew app:buildDebugTemplateApp ; ./gradlew app:assembleV6Debug ; ./gradlew app:installV6Debug
+./gradlew inrt:assembleTemplateDebug ; ./gradlew inrt:cp2APPDebug ; ./gradlew app:assembleV6Debug ; ./gradlew app:installV6Debug
 ```
 生成的调试版本APK文件在 app/build/outputs/apk/v6/debug 下，使用默认签名
 
 ##### 本地编译发布版本：
 ```shell
-./gradlew app:buildTemplateApp && ./gradlew inrt:cp2APP && ./gradlew app:assembleV6
+./gradlew inrt:assembleTemplate && ./gradlew inrt:cp2APP && ./gradlew app:assembleV6
 #或
-./gradlew app:buildTemplateApp ; ./gradlew inrt:cp2APP ; ./gradlew app:assembleV6
+./gradlew inrt:assembleTemplate ; ./gradlew inrt:cp2APP ; ./gradlew app:assembleV6
 ```
 生成的是未签名的APK文件，在 app/build/outputs/apk/v6/release 下，需要签名后才能安装
 
@@ -150,7 +139,9 @@
 先运行以下命令：
 
 ```shell
-./gradlew app:buildDebugTemplateApp
+./gradlew inrt:assembleTemplate && ./gradlew inrt:cp2APP
+#或
+./gradlew inrt:assembleTemplate ; ./gradlew inrt:cp2APP
 ```
 
 再点击 Android Studio 运行按钮
@@ -159,7 +150,9 @@
 先运行以下命令：
 
 ```shell
-./gradlew app:buildTemplateApp
+./gradlew inrt:assembleTemplate && ./gradlew inrt:cp2APP
+#或
+./gradlew inrt:assembleTemplate ; ./gradlew inrt:cp2APP
 ```
 
 再点击 Android Studio 菜单 "Build" -> "Generate Signed Bundle /APK..." -> 勾选"APK" -> "Next" -> 选择或新建证书 -> "Next" -> 选择"v6Release" -> "Finish"

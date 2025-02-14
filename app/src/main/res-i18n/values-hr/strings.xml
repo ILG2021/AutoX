@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Pristup svim datotekama</string>
   <string name="text_fullscreen">Uključi/isključi prikaz preko cijelog zaslona 1</string>
   <string name="text_drawer_right">Otvorite desni izbornik</string>
-  <string name="text_required_default_paddle_ocr_model">Zadani paket PaddleOCR podataka za obuku</string>
   <string name="switch_fullscreen">Uključi/isključi način rada preko cijelog zaslona</string>
   <string name="text_custom_ocr_model_path">Paket prilagođenog direktorija OCR modela</string>
   <string name="desc_more">Više</string>

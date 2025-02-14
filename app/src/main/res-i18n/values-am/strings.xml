@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">ሁሉም የፋይል መዳረሻ</string>
   <string name="text_fullscreen">የሙሉ ማያ ገጽ ሁነታን ቀይር 1</string>
   <string name="text_drawer_right">ትክክለኛውን ምናሌ ይክፈቱ</string>
-  <string name="text_required_default_paddle_ocr_model">የጥቅል ነባሪ PaddleOCR የሥልጠና ውሂብ</string>
   <string name="switch_fullscreen">የሙሉ ማያ ገጽ ሁነታን ቀይር</string>
   <string name="text_custom_ocr_model_path">ጥቅል ብጁ OCR ሞዴል ማውጫ</string>
   <string name="desc_more">ተጨማሪ</string>

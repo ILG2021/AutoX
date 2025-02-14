@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="org.autojs.autoxjs.inrt">
 
     <uses-permission android:name= "android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -304,7 +305,7 @@
             android:name="com.stardust.auojs.inrt.SplashActivity"
             android:clearTaskOnLaunch="true"
             android:finishOnTaskLaunch="true"
-            android:theme="@style/ScriptTheme.Splash"
+            android:theme="@style/AppTheme.Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

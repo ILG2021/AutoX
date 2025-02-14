@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Taqi qillqatanakaru mantañataki</string>
   <string name="text_fullscreen">Pantalla phuqhat uñacht’ayaña 1</string>
   <string name="text_drawer_right">Uka chiqa menú jist’araña</string>
-  <string name="text_required_default_paddle_ocr_model">Paquete ukax PaddleOCR ukan yatichäwip uñt’ayatawa</string>
   <string name="switch_fullscreen">Ukax pantalla phuqhat uñacht’ayañawa</string>
   <string name="text_custom_ocr_model_path">Paquete ukax OCR modelo ukan uñt’ayatawa</string>
   <string name="desc_more">Juk\'ampi</string>

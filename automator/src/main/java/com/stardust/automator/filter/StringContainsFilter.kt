@@ -10,7 +10,7 @@ class StringContainsFilter internal constructor(private val mContains: String, p
 
     override fun filter(node: UiObject): Boolean {
         val key = mKeyGetter.getKey(node)
-        return key != null && key.contains(mContains)
+        return key != null && key.contains(mContains, ignoreCase = true)
     }
 
     override fun toString(): String {

@@ -7,13 +7,10 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.view.View
 import android.view.WindowManager
-import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.Nullable
 import androidx.core.view.ViewCompat
@@ -114,11 +111,9 @@ class SplashActivity : ComponentActivity() {
                         Permissions.ACCESSIBILITY_SERVICES -> {
                             requestAccessibilityService()
                         }
-
                         Permissions.BACKGROUND_START -> {
                             requestBackgroundStart()
                         }
-
                         Permissions.DRAW_OVERLAY -> {
                             requestDrawOverlays()
                         }
@@ -134,16 +129,11 @@ class SplashActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         lifecycleScope.launch {
-            projectConfig = withContext(Dispatchers.IO) {
-                    ProjectConfig.fromAssets(
-                        this@SplashActivity,
-                        ProjectConfig.configFileOfDir("project")
-                    )!!
-                }
-            if (projectConfig.launchConfig.displaySplash) {
-                val frame = findViewById<FrameLayout>(R.id.frame)
-                frame.visibility = View.VISIBLE
-            }
+            projectConfig =
+                ProjectConfig.fromAssetsAsync(
+                    this@SplashActivity,
+                    ProjectConfig.configFileOfDir("project")
+                )!!
             val slug = findViewById<TextView>(R.id.slug)
             slug.typeface = Typeface.createFromAsset(assets, "roboto_medium.ttf")
             Log.d(TAG, "onCreate: ${Gson().toJson(projectConfig)}")
@@ -158,9 +148,7 @@ class SplashActivity : ComponentActivity() {
                 }
 
             }
-            if (projectConfig.launchConfig.displaySplash) {
-                delay(1000)
-            }
+            delay(1000)
             readSpecialPermissionConfiguration()
             requestExternalStoragePermission()
         }
@@ -192,12 +180,10 @@ class SplashActivity : ComponentActivity() {
                     permissionsResult[permission] =
                         AccessibilityServiceTool.isAccessibilityServiceEnabled(this)
                 }
-
                 Permissions.BACKGROUND_START -> {
                     permissionsResult[permission] =
                         BackgroundStartPermission.isBackgroundStartAllowed(this)
                 }
-
                 Permissions.DRAW_OVERLAY -> {
                     permissionsResult[permission] = DrawOverlaysPermission.isCanDrawOverlays(this)
                 }

@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">بارلىق ھۆججەتلەرنى زىيارەت قىلىش</string>
   <string name="text_fullscreen">تولۇق ئېكران ھالىتىنى 1</string>
   <string name="text_drawer_right">ئوڭ تىزىملىكنى ئېچىڭ</string>
-  <string name="text_required_default_paddle_ocr_model">ئورالما سۈكۈتتىكى PaddleOCR مەشىق سانلىق مەلۇماتلىرى</string>
   <string name="switch_fullscreen">تولۇق ئېكران ھالىتىنى ئېچىڭ</string>
   <string name="text_custom_ocr_model_path">ئورالما ئىختىيارى OCR مودېل مۇندەرىجىسى</string>
   <string name="desc_more">تېخىمۇ كۆپ</string>

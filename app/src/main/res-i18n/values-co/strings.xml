@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Tutti l\'accessu à i schedari</string>
   <string name="text_fullscreen">Cambia u modu di schermu pienu 1</string>
   <string name="text_drawer_right">Aprite u menù ghjustu</string>
-  <string name="text_required_default_paddle_ocr_model">Dati di furmazione PaddleOCR di pacchettu predeterminatu</string>
   <string name="switch_fullscreen">Cambia u modu di schermu pienu</string>
   <string name="text_custom_ocr_model_path">Pacchetti di repertoriu di mudelli OCR persunalizati</string>
   <string name="desc_more">Più</string>

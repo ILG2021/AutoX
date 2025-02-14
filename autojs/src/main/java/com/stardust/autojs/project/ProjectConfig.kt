@@ -1,12 +1,15 @@
 package com.stardust.autojs.project
 
 import android.content.Context
+import android.graphics.Bitmap
 import androidx.annotation.Keep
 import com.google.gson.GsonBuilder
 import com.google.gson.annotations.SerializedName
 import com.stardust.app.GlobalAppContext
 import com.stardust.autojs.R
 import com.stardust.pio.PFiles
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.util.zip.CRC32
 
@@ -15,16 +18,23 @@ import java.util.zip.CRC32
  */
 @Keep
 data class ProjectConfig(
+    @SerializedName("name")
     var name: String? = null,
+    @SerializedName("packageName")
     var packageName: String? = null,
+    @SerializedName("versionCode")
     var versionCode: Int = 1,
+    @SerializedName("versionName")
     var versionName: String = "1.0.0",
+    @SerializedName("icon")
     var icon: String? = null,
     @SerializedName("main")
     var mainScript: String? = null,
+    @SerializedName("scripts")
     var scripts: Map<String, ScriptConfig> = HashMap(),
     @SerializedName("build")
     var buildInfo: BuildInfo = BuildInfo(),
+    @SerializedName("launchConfig")
     var launchConfig: LaunchConfig = LaunchConfig(),
     @SerializedName("useFeatures")
     var features: ArrayList<String> = arrayListOf(),
@@ -37,17 +47,11 @@ data class ProjectConfig(
     var abis: MutableList<String> = arrayListOf<String>().apply { addAll(Constant.Abi.abis) },
     var assets: List<Asset> = emptyList(),
     var signingConfig: SigningConfig = SigningConfig(),
-    @SerializedName("encrypt-code")
-    var isEncrypt:Boolean = false
 ) {
 
     fun getAbsolutePath(name: String): String {
         return if (name.startsWith("/")) name
         else File(this.projectDirectory, name).absolutePath
-    }
-
-    fun toJson(): String {
-        return GSON.toJson(this)
     }
 
     companion object {
@@ -60,7 +64,7 @@ data class ProjectConfig(
             return if (!isValid(config)) null else config
         }
 
-        private fun isValid(config: ProjectConfig): Boolean {
+        fun isValid(config: ProjectConfig): Boolean {
             return with(config) {
                 !name.isNullOrBlank()
                         && !packageName.isNullOrEmpty()
@@ -78,24 +82,76 @@ data class ProjectConfig(
             }
         }
 
-        fun fromProject(path: File): ProjectConfig? {
-            val file = with(path) {
-                if (isFile) return@with this
-                if (isDirectory) return@with File(this, CONFIG_FILE_NAME)
-                null
-            }
+        fun fromFile(path: String): ProjectConfig? {
             return try {
-                file?.let { fromJson(it.readText()) }
-            } catch (_: Exception) {
+                fromJson(File(path).readText())
+            } catch (e: Exception) {
                 null
             }
-
         }
 
-        fun configFileOfDir(projectDir: String, configName: String = CONFIG_FILE_NAME): String {
+        fun fromProjectDir(path: String): ProjectConfig? {
+            return fromFile(configFileOfDir(path))
+        }
+
+        fun fromProjectDir(path: String, configName: String): ProjectConfig? {
+            return fromFile(configFileOfDir(path, configName))
+        }
+
+        suspend fun fromAssetsAsync(context: Context, path: String): ProjectConfig? =
+            withContext(Dispatchers.IO) {
+                return@withContext try {
+                    fromJson(context.assets.open(path).reader().use { it.readText() })
+                } catch (e: Exception) {
+                    null
+                }
+            }
+
+        suspend fun fromFileAsync(path: String): ProjectConfig? = withContext(Dispatchers.IO) {
+            return@withContext try {
+                fromJson(File(path).readText())
+            } catch (e: Exception) {
+                null
+            }
+        }
+
+        suspend fun fromProjectDirAsync(path: String): ProjectConfig? = withContext(Dispatchers.IO) {
+            return@withContext fromFile(configFileOfDir(path))
+        }
+
+        suspend fun fromProjectDirAsync(path: String, configName: String): ProjectConfig? =
+            withContext(Dispatchers.IO) {
+                return@withContext fromFile(configFileOfDir(path, configName))
+            }
+
+        fun configFileOfDir(projectDir: String): String {
+            return PFiles.join(projectDir, CONFIG_FILE_NAME)
+        }
+
+        fun configFileOfDir(projectDir: String, configName: String): String {
             return PFiles.join(projectDir, configName)
         }
 
+    }
+
+    fun toJson(): String {
+        return GSON.toJson(this)
+    }
+
+    fun getScriptConfig(path: String): ScriptConfig {
+        val scriptConfig = scripts[path] ?: ScriptConfig()
+        if (features.isEmpty()) {
+            return scriptConfig
+        }
+        //
+        val features = ArrayList(scriptConfig.features)
+        for (feature in features) {
+            if (!this.features.contains(feature)) {
+                this.features.add(feature)
+            }
+        }
+        scriptConfig.features = features
+        return scriptConfig
     }
 }
 
@@ -137,7 +193,7 @@ data class BuildInfo(
 @Keep
 data class LaunchConfig(
     @SerializedName("displaySplash")
-    var displaySplash: Boolean = true,
+    var displaySplash: Boolean = false,
     @SerializedName("hideLogs")
     var isHideLogs: Boolean = false,
     @SerializedName("permissions")
@@ -148,13 +204,11 @@ data class LaunchConfig(
     @SerializedName("splashIcon")
     var splashIcon: String? = null,
     @SerializedName("splashText")
-    var splashText: String = "Powered by Autoxjs.com",
+    var splashText: String = "Powered by AutoJsX",
     @SerializedName("stableMode")
     var isStableMode: Boolean = false,
     @SerializedName("volumeUpcontrol")
     var isVolumeUpControl: Boolean = false,
     @SerializedName("hideLauncher")
     var isHideLauncher: Boolean = false,
-    @SerializedName("hideAccessibilityServices")
-    var isHideAccessibilityServices: Boolean = false,
 )

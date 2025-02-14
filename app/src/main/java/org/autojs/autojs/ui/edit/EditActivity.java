@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,12 +26,15 @@ import com.stardust.autojs.core.permission.RequestPermissionCallbacks;
 import com.stardust.autojs.execution.ScriptExecution;
 import com.stardust.pio.PFiles;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+import org.autojs.autoxjs.R;
 import org.autojs.autojs.storage.file.TmpScriptFiles;
 import org.autojs.autojs.theme.dialog.ThemeColorMaterialDialogBuilder;
 import org.autojs.autojs.tool.Observers;
 import org.autojs.autojs.ui.BaseActivity;
 import org.autojs.autojs.ui.main.MainActivity;
-import org.autojs.autoxjs.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,15 +46,17 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Created by Stardust on 2017/1/29.
  */
+@EActivity(R.layout.activity_edit)
 public class EditActivity extends BaseActivity implements OnActivityResultDelegate.DelegateHost, PermissionRequestProxyActivity {
 
-    private final OnActivityResultDelegate.Mediator mMediator = new OnActivityResultDelegate.Mediator();
+    private OnActivityResultDelegate.Mediator mMediator = new OnActivityResultDelegate.Mediator();
     private static final String LOG_TAG = "EditActivity";
 
+    @ViewById(R.id.editor_view)
     EditorView mEditorView;
 
     private EditorMenu mEditorMenu;
-    private final RequestPermissionCallbacks mRequestPermissionCallbacks = new RequestPermissionCallbacks();
+    private RequestPermissionCallbacks mRequestPermissionCallbacks = new RequestPermissionCallbacks();
     private boolean mNewTask;
 
     public static void editFile(Context context, String path, boolean newTask) {
@@ -78,10 +82,9 @@ public class EditActivity extends BaseActivity implements OnActivityResultDelega
     }
 
     private static Intent newIntent(Context context, boolean newTask) {
-        Intent intent = new Intent(context, EditActivity.class);
+        Intent intent = new Intent(context, EditActivity_.class);
         if (newTask || !(context instanceof Activity)) {
-            // 添加 FLAG_ACTIVITY_CLEAR_TASK 标志
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         return intent;
     }
@@ -92,13 +95,8 @@ public class EditActivity extends BaseActivity implements OnActivityResultDelega
         mNewTask = (getIntent().getFlags() & Intent.FLAG_ACTIVITY_NEW_TASK) != 0;
     }
 
-    @Override
-    protected void initView() {
-        mEditorView = findViewById(R.id.editor_view);
-        setUpViews();
-    }
-
     @SuppressLint("CheckResult")
+    @AfterViews
     void setUpViews() {
         mEditorView.handleIntent(getIntent())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -131,14 +129,12 @@ public class EditActivity extends BaseActivity implements OnActivityResultDelega
     }
 
     private void setUpToolbar() {
-//        BaseActivity.setToolbarAsBack(this, R.id.toolbar, "" );
-        TextView filePath = findViewById(R.id.file_path);
-        filePath.setText(mEditorView.getUri().getPath());
+        BaseActivity.setToolbarAsBack(this, R.id.toolbar, mEditorView.getName());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_editor, menu);
+        getMenuInflater().inflate(R.menu.menu_editor, menu);
         return true;
     }
 
@@ -313,8 +309,4 @@ public class EditActivity extends BaseActivity implements OnActivityResultDelega
         mRequestPermissionCallbacks.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-    @Override
-    public int getLayoutId() {
-        return R.layout.activity_edit;
-    }
 }

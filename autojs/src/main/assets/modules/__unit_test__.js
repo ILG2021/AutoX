@@ -96,8 +96,7 @@ function testScrollAndShow(){
 
 function testApp(){
     before();
-    assert("com.tencent.mm" == app.getPackageName("微信"));
-    assert("com.tencent.mobileqq" == app.getPackageName("QQ"));
+    assert("com.facebook.katana" == app.getPackageName("Facebook"));
 }
 
 module.exports = test;

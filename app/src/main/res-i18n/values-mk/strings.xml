@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Целиот пристап до датотеки</string>
   <string name="text_fullscreen">Вклучете го режимот на цел екран 1</string>
   <string name="text_drawer_right">Отворете го десното мени</string>
-  <string name="text_required_default_paddle_ocr_model">Пакет стандардни податоци за обука на PaddleOCR</string>
   <string name="switch_fullscreen">Вклучете го режимот на цел екран</string>
   <string name="text_custom_ocr_model_path">Пакет прилагоден директориум за модели на OCR</string>
   <string name="desc_more">Повеќе</string>

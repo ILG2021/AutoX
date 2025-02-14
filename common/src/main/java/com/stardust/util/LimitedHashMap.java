@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 
 public class LimitedHashMap<K, V> extends LinkedHashMap<K, V> {
 
-    private final int mMaxSize;
+    private int mMaxSize;
 
     public LimitedHashMap(int maxSize) {
         super(4, 0.75f, true);

@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Ĉiuj aliro al dosieroj</string>
   <string name="text_fullscreen">Ŝaltu plenekranan reĝimon 1</string>
   <string name="text_drawer_right">Malfermu la ĝustan menuon</string>
-  <string name="text_required_default_paddle_ocr_model">Pakaj defaŭltaj trejnaj datumoj de PaddleOCR</string>
   <string name="switch_fullscreen">Ŝaltu plenekranan reĝimon</string>
   <string name="text_custom_ocr_model_path">Pako kutima OCR-modeldosierujo</string>
   <string name="desc_more">Pli</string>

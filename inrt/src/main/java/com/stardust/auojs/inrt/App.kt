@@ -9,15 +9,13 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.os.Build
-import android.os.Build.VERSION
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.core.app.NotificationCompat
 import androidx.preference.PreferenceManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomViewTarget
+import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.fanjun.keeplive.KeepLive
 import com.fanjun.keeplive.config.ForegroundNotification
@@ -60,17 +58,13 @@ class App : Application() {
             override fun loadIntoBackground(view: View, uri: Uri) {
                 Glide.with(this@App)
                     .load(uri)
-                    .into(object : CustomViewTarget<View, Drawable>(view) {
+                    .into(object : SimpleTarget<Drawable>() {
                         override fun onResourceReady(
                             resource: Drawable,
-                            transition: Transition<in Drawable>?
+                            transition: Transition<in Drawable>
                         ) {
                             view.background = resource
                         }
-
-                        override fun onLoadFailed(errorDrawable: Drawable?) = Unit
-
-                        override fun onResourceCleared(placeholder: Drawable?) = Unit
                     })
             }
 
@@ -85,17 +79,13 @@ class App : Application() {
             ) {
                 Glide.with(this@App)
                     .load(uri)
-                    .into(object : CustomViewTarget<View, Drawable>(view) {
+                    .into(object : SimpleTarget<Drawable>() {
                         override fun onResourceReady(
                             resource: Drawable,
-                            transition: Transition<in Drawable>?
+                            transition: Transition<in Drawable>
                         ) {
                             drawableCallback.onLoaded(resource)
                         }
-
-                        override fun onLoadFailed(errorDrawable: Drawable?) = Unit
-
-                        override fun onResourceCleared(placeholder: Drawable?) = Unit
                     })
             }
 
@@ -103,17 +93,13 @@ class App : Application() {
                 Glide.with(this@App)
                     .asBitmap()
                     .load(uri)
-                    .into(object : CustomViewTarget<View, Bitmap>(view) {
+                    .into(object : SimpleTarget<Bitmap>() {
                         override fun onResourceReady(
                             resource: Bitmap,
-                            transition: Transition<in Bitmap>?
+                            transition: Transition<in Bitmap>
                         ) {
                             bitmapCallback.onLoaded(resource)
                         }
-
-                        override fun onLoadFailed(errorDrawable: Drawable?) = Unit
-
-                        override fun onResourceCleared(placeholder: Drawable?) = Unit
                     })
             }
         })
@@ -132,7 +118,7 @@ class App : Application() {
                 "点击打开【" + GlobalAppContext.appName + "】",
                 R.mipmap.ic_launcher
             )  //定义前台服务的通知点击事件
-            { context, _ ->
+            { context, intent ->
                 Log.d(TAG, "foregroundNotificationClick: ");
                 val splashActivityintent = Intent(context, ScriptExecuteActivity::class.java)
                 splashActivityintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -152,27 +138,24 @@ class App : Application() {
     }
 
     private fun showNotification(context: Context) {
-        val intent = Intent(context, SplashActivity::class.java)
-        val pi =
-            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         val manager: NotificationManager =
             context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        val notification = NotificationCompat.Builder(context, TAG)
-            .setWhen(System.currentTimeMillis())
+        val builder: Notification.Builder = Notification.Builder(context)
+        builder.setWhen(System.currentTimeMillis())
             .setOngoing(true)
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(GlobalAppContext.appName + "保持运行中")
             .setContentText("点击打开【" + GlobalAppContext.appName + "】")
             .setDefaults(NotificationCompat.FLAG_ONGOING_EVENT)
-            .setPriority(
-                if (VERSION.SDK_INT >= Build.VERSION_CODES.O) NotificationManager.IMPORTANCE_HIGH
-                else NotificationCompat.PRIORITY_MAX
-            )
-            .setCategory(Notification.FLAG_ONGOING_EVENT.toString())
-            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-            .setContentIntent(pi)
-            .build()
-        manager.notify(null, 0, notification)
+            .setPriority(Notification.PRIORITY_MAX)
+        //SDK版本>=21才能设置悬挂式通知栏
+        builder.setCategory(Notification.FLAG_ONGOING_EVENT.toString())
+            .setVisibility(Notification.VISIBILITY_PUBLIC)
+        val intent = Intent(context, SplashActivity::class.java)
+        val pi =
+            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        builder.setContentIntent(pi)
+        manager.notify(null, 0, builder.build())
     }
 
 }

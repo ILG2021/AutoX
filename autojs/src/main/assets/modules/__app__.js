@@ -255,7 +255,7 @@ module.exports = function (runtime, global) {
 
     
 
-    global.__asGlobal__(app, ['launchPackage', 'launch', 'launchApp', 'getPackageName', 'getAppName', 'openAppSetting']);
+    global.__asGlobal__(app, ['launchPackage', 'launch', 'launchApp', 'getPackageName', 'getAppName', 'openAppSetting', 'getScreenSW']);
 
     function parseIntentFlag(flag) {
         if (typeof (flag) == 'string') {

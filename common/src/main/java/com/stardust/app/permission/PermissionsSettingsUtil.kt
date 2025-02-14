@@ -8,7 +8,6 @@ import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
 import java.io.BufferedReader
 import java.io.IOException
-import java.util.Locale
 
 /**
  * @author wilinz
@@ -41,7 +40,7 @@ object PermissionsSettingsUtil {
     }
 
     fun getAppPermissionsSettingIntent(packageName:String): Intent {
-        return when (Build.MANUFACTURER.lowercase(Locale.ROOT)) {
+        return when (Build.MANUFACTURER.toLowerCase()) {
             MANUFACTURER_HUAWEI -> huawei(packageName)
             MANUFACTURER_MEIZU -> meizu(packageName)
             MANUFACTURER_XIAOMI -> xiaomi(packageName)

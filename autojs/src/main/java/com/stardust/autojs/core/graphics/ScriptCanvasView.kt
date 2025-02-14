@@ -39,7 +39,7 @@ class ScriptCanvasView(context: Context, private val mScriptRuntime: ScriptRunti
         mTimePerDraw = if (maxFps <= 0) {
             0
         } else {
-            (1000 / maxFps).toLong()
+            (100 / maxFps).toLong()
         }
     }
 

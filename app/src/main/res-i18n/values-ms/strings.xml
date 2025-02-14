@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Semua akses fail</string>
   <string name="text_fullscreen">Togol mod skrin penuh 1</string>
   <string name="text_drawer_right">Buka menu yang betul</string>
-  <string name="text_required_default_paddle_ocr_model">Pakej data latihan PaddleOCR lalai</string>
   <string name="switch_fullscreen">Togol mod skrin penuh</string>
   <string name="text_custom_ocr_model_path">Pakej direktori model OCR tersuai</string>
   <string name="desc_more">Lagi</string>

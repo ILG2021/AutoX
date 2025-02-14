@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">అన్ని ఫైల్ యాక్సెస్</string>
   <string name="text_fullscreen">పూర్తి స్క్రీన్ మోడ్‌ను టోగుల్ చేయండి 1</string>
   <string name="text_drawer_right">కుడి మెనుని తెరవండి</string>
-  <string name="text_required_default_paddle_ocr_model">ప్యాకేజీ డిఫాల్ట్ PaddleOCR శిక్షణ డేటా</string>
   <string name="switch_fullscreen">పూర్తి స్క్రీన్ మోడ్‌ని టోగుల్ చేయండి</string>
   <string name="text_custom_ocr_model_path">ప్యాకేజీ అనుకూల OCR మోడల్ డైరెక్టరీ</string>
   <string name="desc_more">మరింత</string>

@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Yese mafaera kuwana</string>
   <string name="text_fullscreen">Shandura yakazara skrini modhi 1</string>
   <string name="text_drawer_right">Vhura menyu yekurudyi</string>
-  <string name="text_required_default_paddle_ocr_model">Package default PaddleOCR yekudzidzisa data</string>
   <string name="switch_fullscreen">Toggle full screen mode</string>
   <string name="text_custom_ocr_model_path">Pakeji tsika OCR modhi dhairekitori</string>
   <string name="desc_more">Zvimwe</string>

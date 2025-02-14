@@ -2,11 +2,8 @@ package org.autojs.autojs.ui.edit.editor;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.text.Editable;
 import android.text.Layout;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -14,14 +11,11 @@ import com.google.android.material.snackbar.Snackbar;
 import com.stardust.autojs.script.JsBeautifier;
 import com.stardust.util.ClipboardUtil;
 import com.stardust.util.TextUtils;
-import com.stardust.util.ViewUtils;
 
-import org.autojs.autojs.Pref;
-import org.autojs.autojs.ui.edit.theme.Theme;
 import org.autojs.autoxjs.R;
+import org.autojs.autojs.ui.edit.theme.Theme;
 
 import java.util.LinkedHashMap;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -66,7 +60,7 @@ public class CodeEditor extends HVScrollView {
     private Theme mTheme;
     private JsBeautifier mJsBeautifier;
     private MaterialDialog mProcessDialog;
-    private ScaleGestureDetector detector;
+
     private CharSequence mReplacement = "";
     private String mKeywords;
     private Matcher mMatcher;
@@ -82,6 +76,7 @@ public class CodeEditor extends HVScrollView {
         init();
     }
 
+
     private void init() {
         //setFillViewport(true);
         inflate(getContext(), R.layout.code_editor, this);
@@ -90,46 +85,6 @@ public class CodeEditor extends HVScrollView {
         mTextViewRedoUndo = new TextViewUndoRedo(mCodeEditText);
         mJavaScriptHighlighter = new JavaScriptHighlighter(mTheme, mCodeEditText);
         mJsBeautifier = new JsBeautifier(this, "js/js-beautify");
-        detector = new ScaleGestureDetector(getContext(),getScaleGestureListener());
-    }
-
-    public ScaleGestureDetector.OnScaleGestureListener getScaleGestureListener() {
-        return new ScaleGestureDetector.OnScaleGestureListener() {
-            private double mLastScaleFactor = 1.0;
-            private int mLastTextSize;
-            private final int mMinTextSize = Integer.parseInt(getContext().getString(R.string.text_size_min_value));
-            private final int mMaxTextSize = Integer.parseInt(getContext().getString(R.string.text_size_max_value));;
-            @Override
-            public boolean onScale(ScaleGestureDetector detector) {
-                double currentFactor = Math.floor(detector.getScaleFactor() * 10) / 10;
-                if (currentFactor > 0 && mLastScaleFactor != currentFactor) {
-                    int currentTextSize = mLastTextSize + (currentFactor > mLastScaleFactor ? 1 : -1);
-                    mLastTextSize = Math.max(mMinTextSize, Math.min(mMaxTextSize, currentTextSize));
-                    mCodeEditText.setTextSize(mLastTextSize);
-                    mLastScaleFactor = currentFactor;
-                }
-                mCodeEditText.invalidate();
-                return false;
-            }
-            @Override
-            public boolean onScaleBegin(ScaleGestureDetector detector) {
-                mLastTextSize =Pref.getEditorTextSize((int) ViewUtils.pxToSp(getContext(), (int) mCodeEditText.getTextSize()));;
-                return true;
-            }
-            @Override
-            public void onScaleEnd(ScaleGestureDetector detector) {
-                mLastScaleFactor = 1.0;
-                Pref.setEditorTextSize(mLastTextSize);
-            }
-        };
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        //缩放手势检测
-        detector.onTouchEvent(event);
-        //只拦截手势传递
-        return detector.isInProgress() || super.onTouchEvent(event);
     }
 
     public Observable<Integer> getLineCount() {
@@ -157,15 +112,10 @@ public class CodeEditor extends HVScrollView {
 
     public void jumpToStart() {
         mCodeEditText.setSelection(0);
-        smoothScrollTo(0, 0);
     }
 
     public void jumpToEnd() {
         mCodeEditText.setSelection(mCodeEditText.getText().length());
-
-        int lastLine = mCodeEditText.getLayout().getLineCount() - 1;
-        int lineTop = mCodeEditText.getLayout().getLineTop(lastLine);
-        smoothScrollTo(0, lineTop);
     }
 
     public void jumpToLineStart() {
@@ -225,9 +175,6 @@ public class CodeEditor extends HVScrollView {
             return;
         }
         mCodeEditText.setSelection(mCodeEditText.getLayout().getLineStart(line) + col);
-
-        int lineTop = mCodeEditText.getLayout().getLineTop(line);
-        smoothScrollTo(0, lineTop);
     }
 
     public void setReadOnly(boolean readOnly) {
@@ -464,34 +411,9 @@ public class CodeEditor extends HVScrollView {
         }
     }
 
-    public void toggleComment() {
-        final String COMMENT_PREFIX = "//";
-        Editable editText = Objects.requireNonNull(mCodeEditText.getText());
-        int selectionStart = mCodeEditText.getSelectionStart();
-        int selectionEnd = mCodeEditText.getSelectionEnd();
-
-        int startLine = LayoutHelper.getLineOfChar(mCodeEditText.getLayout(), selectionStart);
-        int endLine = LayoutHelper.getLineOfChar(mCodeEditText.getLayout(), selectionEnd);
-
-        for (int currentLine = startLine; currentLine <= endLine; currentLine++) {
-            int lineStart = mCodeEditText.getLayout().getLineStart(currentLine);
-            int lineEnd = mCodeEditText.getLayout().getLineEnd(currentLine);
-
-            String currentLineText = editText.toString().substring(lineStart, lineEnd);
-            String modifiedLineText = currentLineText.replaceAll("^\\s*(/{2,})", "");
-
-            if (!currentLineText.trim().startsWith(COMMENT_PREFIX)) {
-                modifiedLineText = COMMENT_PREFIX + modifiedLineText;
-            }
-
-            editText.replace(lineStart, lineEnd, modifiedLineText);
-        }
-    }
-
     public interface BreakpointChangeListener {
         void onBreakpointChange(int line, boolean enabled);
 
         void onAllBreakpointRemoved(int count);
     }
-
 }

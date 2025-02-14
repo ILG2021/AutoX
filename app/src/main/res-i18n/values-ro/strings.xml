@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Acces la toate fișierele</string>
   <string name="text_fullscreen">Comutați modul ecran complet 1</string>
   <string name="text_drawer_right">Deschide meniul din dreapta</string>
-  <string name="text_required_default_paddle_ocr_model">Pachetul implicit de date de antrenament PaddleOCR</string>
   <string name="switch_fullscreen">Comutați modul ecran complet</string>
   <string name="text_custom_ocr_model_path">Director de modele OCR personalizat pachet</string>
   <string name="desc_more">Mai mult</string>

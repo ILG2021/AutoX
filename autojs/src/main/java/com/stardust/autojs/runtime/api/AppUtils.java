@@ -88,6 +88,11 @@ public class AppUtils {
     }
 
     @ScriptInterface
+    public int getScreenSW() {
+        return mContext.getResources().getConfiguration().smallestScreenWidthDp;
+    }
+
+    @ScriptInterface
     public boolean openAppSetting(String packageName) {
         return IntentUtil.goToAppDetailSettings(mContext, packageName);
     }

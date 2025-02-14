@@ -1,8 +1,22 @@
+//import org.jetbrains.kotlin.config.KotlinCompilerVersion
+
 plugins {
-    alias(libs.plugins.autojs.android.library)
+    id("com.android.library")
+    id("kotlin-android")
+    id("kotlin-android-extensions")
 }
 
 android {
+
+    buildToolsVersion = versions.buildTool
+    compileSdk = versions.compile
+
+    defaultConfig {
+        minSdk = versions.mini
+        targetSdk = versions.target
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
     buildTypes {
         named("release") {
             isMinifyEnabled = false
@@ -14,33 +28,23 @@ android {
             )
         }
     }
-    lint {
-        abortOnError = false
-    }
+    lint.abortOnError = false
+
     sourceSets {
         getByName("main") {
-            res.srcDirs("src/main/res", "src/main/res-i18n")
+            res.srcDirs("src/main/res","src/main/res-i18n")
         }
     }
-    namespace = "com.stardust"
 }
 
 dependencies {
-    androidTestImplementation(libs.espresso.core) {
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.1.1-alpha01") {
         exclude(group = "com.android.support", module = "support-annotations")
     }
-    testImplementation(libs.junit)
-    api(libs.androidx.annotation)
-    api(libs.settingscompat)
-    implementation(libs.androidx.activity.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
-    api(kotlin("reflect"))
-
-    // MQTT
-    implementation(libs.org.eclipse.paho.client.mqttv3)
-    implementation(libs.org.eclipse.paho.android.service)
-
-    api(libs.androidx.collection)
-    api(libs.core.ktx)
+    testImplementation("junit:junit:4.13.2")
+//    api(kotlin("stdlib", KotlinCompilerVersion.VERSION))
+    api("androidx.annotation:annotation:1.4.0")
+    api("com.github.hyb1996:settingscompat:1.1.5")
+    implementation("androidx.activity:activity-ktx:1.5.1")
+    api(kotlin("reflect", version = "1.7.10"))
 }

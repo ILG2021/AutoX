@@ -4,18 +4,6 @@
 A JavaScript runtime and development environment on the Android platform that supports accessibility services, 
 and its development goals are similar to JsBox and Workflow.
 
- ~~Since the [original author](https://github.com/hyb1996) no longer maintains the Auto.js project,
- I plan to continue the maintainer project on the original basis. This project will be transferred 
- from [autojs](https://github.com/hyb1996/Auto.js) The project is named Autox.js. What you are looking 
- at is the project based on the original version 4.1. Later, I will introduce how to develop and 
- run the project itself. More developers are welcome to participate in the maintenance and upgrade 
- of this project. The latest [Autox.js Address](https://github.com/kkevsekk1/AutoX), many original project
- paths in the document, I do not intend to replace them if the original project is not deleted,
- to show respect for the original author. The encryption-related content in this document may 
- conflict with the actual operation. If you want to write code encrypted to protect intellectual 
- property rights, please refer to the project https:github.comkkevsekk1webpack-autojs I will gradually
- improve and update the program code, keep it as much as possible Consistent.~~
-
 This project is obtained from [hyb1996](https://github.com/hyb1996/Auto.js) autojs and named as 
 Autox.js (autojs modified version). What you are looking at now is the project based on the original
 4.1 version. Later we will discuss how the project itself The development and operation are introduced,
@@ -28,14 +16,13 @@ non-commercial use and GPL-V2.
 
 
 About the two protocols:
-* GPL-V2 (https://opensource.org/licenses/GPL-2.0)
+* GPL-V2（https://opensource.org/licenses/GPL-2.0）
 * MPL-2 (https://www.mozilla.org/MPL/2.0)
 
 ### Autoxjs Now：
-* Autox.js Docs： http://doc.autoxjs.com/
+* Autox.js Docs： https://ilg2021.github.io/AutoJsX-Docs
 * Open Source Address:  https://github.com/kkevsekk1/AutoX
 * PC Develop: [VS Code Extension](https://marketplace.visualstudio.com/items?itemName=aaroncheng.auto-js-vsce-fixed)
-* Official Forums：[www.autoxjs.com](http://www.autoxjs.com)
 * autoxjs[Changelog](CHANGELOG.md)
 
 ### Autox.js download address: 
@@ -104,22 +91,26 @@ No one in the original text states that the license is MPL2.0, and the newly add
 * Whether autojs can be commercialized depends on your understanding of the accompanying "non-commercial use" and its legal benefits.
 * Anyway, this product will not use autojs for commercial use.
 
+#### Support
+* If you want to support project contributors, you can do this by
+* [wilinz](https://github.com/wilinz/Sponsor)
+
 #### Compilation related：
 Command description: Run the command in the project root directory, if using Windows powerShell < 7.0, use the command containing ";"
 
 ##### Install the debug build locally to the device：
 ```shell
-./gradlew app:buildDebugTemplateApp && ./gradlew app:assembleV6Debug && ./gradlew app:installV6Debug
+./gradlew inrt:assembleTemplateDebug && ./gradlew inrt:cp2APPDebug && ./gradlew app:assembleV6Debug && ./gradlew app:installV6Debug
 #or
-./gradlew app:buildDebugTemplateApp ; ./gradlew app:assembleV6Debug ; ./gradlew app:installV6Debug
+./gradlew inrt:assembleTemplateDebug ; ./gradlew inrt:cp2APPDebug ; ./gradlew app:assembleV6Debug ; ./gradlew app:installV6Debug
 ```
 The generated debug version APK file is under app/build/outputs/apk/v6/debug with the default signature
 
 ##### Compile the release version locally：
 ```shell
-./gradlew app:buildTemplateApp && ./gradlew inrt:cp2APP && ./gradlew app:assembleV6
+./gradlew inrt:assembleTemplate && ./gradlew inrt:cp2APP && ./gradlew app:assembleV6
 #or
-./gradlew app:buildTemplateApp ; ./gradlew inrt:cp2APP ; ./gradlew app:assembleV6
+./gradlew inrt:assembleTemplate ; ./gradlew inrt:cp2APP ; ./gradlew app:assembleV6
 ```
 The generated APK file is an unsigned APK file. Under app/build/outputs/apk/v6/release, it needs to be signed before it can be installed.
 
@@ -127,7 +118,9 @@ The generated APK file is an unsigned APK file. Under app/build/outputs/apk/v6/r
 First run the following command:
 
 ```shell
-./gradlew app:buildDebugTemplateApp
+./gradlew inrt:assembleTemplate && ./gradlew inrt:cp2APP
+#or
+./gradlew inrt:assembleTemplate ; ./gradlew inrt:cp2APP
 ```
 
 Then click the Android Studio Run button
@@ -136,7 +129,9 @@ Then click the Android Studio Run button
 First run the following command:
 
 ```shell
-./gradlew app:buildTemplateApp
+./gradlew inrt:assembleTemplate && ./gradlew inrt:cp2APP
+#or
+./gradlew inrt:assembleTemplate ; ./gradlew inrt:cp2APP
 ```
 
 Then click Android Studio menu "Build" -> "Generate Signed Bundle APK..." -> check "APK" 

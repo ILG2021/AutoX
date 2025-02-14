@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">A h-uile cothrom air faidhlichean</string>
   <string name="text_fullscreen">Tog modh làn-sgrìn 1</string>
   <string name="text_drawer_right">Fosgail an clàr-taice ceart</string>
-  <string name="text_required_default_paddle_ocr_model">Pasgan dàta trèanaidh PaddleOCR bunaiteach</string>
   <string name="switch_fullscreen">Tog modh làn-sgrìn</string>
   <string name="text_custom_ocr_model_path">Luchdaich a-nuas an leabhar modal OCR</string>
   <string name="desc_more">Tuilleadh</string>

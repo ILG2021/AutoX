@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.Intent
 
 object IntentUtilKt {
-    fun launchQQ(context: Context): Boolean {
+    fun launchFb(context: Context): Boolean {
         return try {
-            val intent = context.packageManager.getLaunchIntentForPackage("com.tencent.mobileqq")
+            val intent = context.packageManager.getLaunchIntentForPackage("com.facebook.katana")
             context.startActivity(intent)
             true
         } catch (e: Exception) {

@@ -13,6 +13,7 @@ import android.os.Build
 import android.os.SystemClock
 import android.util.Log
 import org.autojs.autojs.App
+import org.autojs.autoxjs.BuildConfig
 import org.autojs.autojs.external.ScriptIntents
 import org.autojs.autojs.timing.TimedTask
 import org.autojs.autojs.timing.TimedTaskManager
@@ -144,7 +145,7 @@ object AlarmManagerProvider : TimedTaskScheduler() {
                 Intent(ACTION_CHECK_TASK)
                     .setComponent(
                         ComponentName(
-                            context.packageName,
+                            BuildConfig.APPLICATION_ID,
                             "org.autojs.autojs.timing.work.AlarmManagerProvider"
                         )
                     ),

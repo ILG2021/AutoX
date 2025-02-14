@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Բոլոր ֆայլերի հասանելիությունը</string>
   <string name="text_fullscreen">Միացնել ամբողջ էկրանի ռեժիմը 1</string>
   <string name="text_drawer_right">Բացեք ճիշտ ընտրացանկը</string>
-  <string name="text_required_default_paddle_ocr_model">Փաթեթի լռելյայն PaddleOCR ուսուցման տվյալները</string>
   <string name="switch_fullscreen">Միացնել ամբողջ էկրանի ռեժիմը</string>
   <string name="text_custom_ocr_model_path">Փաթեթի հատուկ OCR մոդելի գրացուցակ</string>
   <string name="desc_more">Ավելին</string>

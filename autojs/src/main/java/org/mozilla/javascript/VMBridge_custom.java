@@ -4,7 +4,6 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.stardust.autojs.engine.RhinoJavaScriptEngine;
-import com.stardust.autojs.rhino.AutoJsContext;
 
 import org.mozilla.javascript.jdk18.VMBridge_jdk18;
 
@@ -24,6 +23,7 @@ public class VMBridge_custom extends VMBridge_jdk18 {
     protected Object newInterfaceProxy(Object proxyHelper, ContextFactory cf, InterfaceAdapter adapter, Object target, Scriptable topScope) {
         Context context = Context.getCurrentContext();
         InterfaceAdapterWrapper adapterWrapper = new InterfaceAdapterWrapper(adapter, context);
+        RhinoJavaScriptEngine engine = RhinoJavaScriptEngine.Companion.getEngineOfContext(context);
         // --- The following code is copied from super class --
         Constructor<?> c = (Constructor) proxyHelper;
         InvocationHandler handler = (proxy, method, args) -> {
@@ -54,12 +54,10 @@ public class VMBridge_custom extends VMBridge_jdk18 {
                     return defaultValue(method.getReturnType());
                 } catch (Throwable e) {
                     e.printStackTrace();
-                    if (context instanceof AutoJsContext) {
-                        // notify the script thread to exit
-                        com.stardust.autojs.runtime.ScriptRuntime runtime = ((AutoJsContext) context).getRhinoJavaScriptEngine().getRuntime();
-                        Log.d(LOG_TAG, "runtime = " + runtime);
-                        runtime.exit(e);
-                    }
+                    // notify the script thread to exit
+                    com.stardust.autojs.runtime.ScriptRuntime runtime = engine.getRuntime();
+                    Log.d(LOG_TAG, "runtime = " + runtime);
+                    runtime.exit(e);
                     // even if we caught the exception, we must return a value to for the method call.
                     return defaultValue(method.getReturnType());
                 }

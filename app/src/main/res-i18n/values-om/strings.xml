@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Faayila hunda argachuu</string>
   <string name="text_fullscreen">Haala iskiriinii guutuu jijjiiruu 1</string>
   <string name="text_drawer_right">Menu mirgaa banaa</string>
-  <string name="text_required_default_paddle_ocr_model">Deetaa leenjii PaddleOCR durtii paakeejii</string>
   <string name="switch_fullscreen">Haalata iskiriinii guutuu jijjiiri</string>
   <string name="text_custom_ocr_model_path">Galmee moodeela OCR amala paakeejii</string>
   <string name="desc_more">Caalaa</string>

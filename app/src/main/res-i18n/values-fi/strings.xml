@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Kaikki tiedostot</string>
   <string name="text_fullscreen">Vaihda koko näytön tilaan 1</string>
   <string name="text_drawer_right">Avaa oikea valikko</string>
-  <string name="text_required_default_paddle_ocr_model">Paketin oletusarvoinen PaddleOCR-harjoitustiedot</string>
   <string name="switch_fullscreen">Vaihda koko näytön tilaan</string>
   <string name="text_custom_ocr_model_path">Pakkaa mukautettu OCR-mallihakemisto</string>
   <string name="desc_more">Lisää</string>

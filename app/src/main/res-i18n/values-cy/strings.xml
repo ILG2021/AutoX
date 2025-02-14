@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Pob mynediad ffeil</string>
   <string name="text_fullscreen">Toglo modd sgrin lawn 1</string>
   <string name="text_drawer_right">Agorwch y ddewislen iawn</string>
-  <string name="text_required_default_paddle_ocr_model">Pecyn data hyfforddiant PaddleOCR rhagosodedig</string>
   <string name="switch_fullscreen">Toggle modd sgrin lawn</string>
   <string name="text_custom_ocr_model_path">Pecyn cyfeiriadur model OCR arferol</string>
   <string name="desc_more">Mwy</string>

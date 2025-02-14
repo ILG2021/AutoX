@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Omnes lima accessum</string>
   <string name="text_fullscreen">Toggle plenus screen modus I \"</string>
   <string name="text_drawer_right">Aperi ius menu</string>
-  <string name="text_required_default_paddle_ocr_model">Sarcina default PaddleOCR disciplina notitia</string>
   <string name="switch_fullscreen">Toggle plenus screen modus</string>
   <string name="text_custom_ocr_model_path">Sarcina consuetudo OCR exemplar Directory</string>
   <string name="desc_more">More</string>

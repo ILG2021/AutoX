@@ -468,7 +468,6 @@
   <string name="text_file_manager_permission">Okuyingira kwa fayiro kwonna</string>
   <string name="text_fullscreen">Toggle mode ya screen enzijuvu 1</string>
   <string name="text_drawer_right">Ggulawo menu entuufu</string>
-  <string name="text_required_default_paddle_ocr_model">Package default PaddleOCR okutendekebwa data</string>
   <string name="switch_fullscreen">Toggle mode ya screen enzijuvu</string>
   <string name="text_custom_ocr_model_path">Package custom OCR model dayirekita</string>
   <string name="desc_more">Okwongera</string>

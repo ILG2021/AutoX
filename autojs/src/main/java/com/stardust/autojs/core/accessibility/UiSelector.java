@@ -185,7 +185,12 @@ public class UiSelector extends UiGlobalSelector {
     }
 
     @ScriptInterface
-    public UiObject findOne(long timeout) {
+    public UiObject untilFindOne() {
+        return untilFindOne(-1);
+    }
+
+    @ScriptInterface
+    public UiObject untilFindOne(long timeout) {
         UiObjectCollection uiObjectCollection = find(1);
         long start = SystemClock.uptimeMillis();
         while (uiObjectCollection.empty()) {
@@ -205,11 +210,11 @@ public class UiSelector extends UiGlobalSelector {
         return uiObjectCollection.get(0);
     }
 
-    public UiObject findOnce() {
-        return findOnce(0);
+    public UiObject findOne() {
+        return findOne(0);
     }
 
-    public UiObject findOnce(int index) {
+    public UiObject findOne(int index) {
         UiObjectCollection uiObjectCollection = find(index + 1);
         if (index >= uiObjectCollection.size()) {
             return null;
@@ -218,19 +223,9 @@ public class UiSelector extends UiGlobalSelector {
     }
 
     @ScriptInterface
-    public UiObject findOne() {
-        return untilFindOne();
-    }
-
-    @ScriptInterface
     public boolean exists() {
         UiObjectCollection collection = find();
         return collection.nonEmpty();
-    }
-
-    @NonNull
-    public UiObject untilFindOne() {
-        return findOne(-1);
     }
 
     @ScriptInterface
@@ -284,7 +279,6 @@ public class UiSelector extends UiGlobalSelector {
     private boolean performAction(int action, ActionArgument... arguments) {
         return untilFind().performAction(action, arguments);
     }
-
 
     @ScriptInterface
     public boolean click() {

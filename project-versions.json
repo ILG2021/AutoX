@@ -1,3 +1,12 @@
 {
-  不再用该文件
+  "appVersionCode": 637,
+  "appVersionName": "6.3.7",
+  "devVersionCode": 637,
+  "devVersionName": "6.3.7",
+  "target": 26,
+  "mini": 21,
+  "compile": 32,
+  "buildTool": "32.0.0",
+  "IDE": "Android Studio Bumblebee | 2021.1.1",
+  "JDK": "15"
 }
