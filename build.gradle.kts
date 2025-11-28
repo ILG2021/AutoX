@@ -14,10 +14,9 @@ buildscript {
         //首选国外镜像加快github CI
         google()
         mavenCentral()
+        jcenter()
         maven("https://www.jitpack.io")
-        maven("https://maven.aliyun.com/repository/central")
-        google { url = uri("https://maven.aliyun.com/repository/google") }
-        mavenCentral { url = uri("https://maven.aliyun.com/repository/public") }
+
     }
     dependencies {
         classpath("com.android.tools.build:gradle:8.5.0")
@@ -32,10 +31,9 @@ allprojects {
         //首选国外镜像加快github CI
         google()
         mavenCentral()
+        jcenter()
         maven { url = uri("https://jitpack.io") }
-        maven("https://maven.aliyun.com/repository/central")
-        google { url = uri("https://maven.aliyun.com/repository/google") }
-        mavenCentral { url = uri("https://maven.aliyun.com/repository/public") }
+
     }
 
 }

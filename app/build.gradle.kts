@@ -164,6 +164,7 @@ android {
 dependencies {
 
     implementation(platform(libs.compose.bom))
+    implementation("net.jcip:jcip-annotations:1.0")
     // Deprecated!!
     implementation("androidx.localbroadcastmanager:localbroadcastmanager:1.1.0")
     implementation(libs.androidx.swiperefreshlayout)
@@ -187,6 +188,7 @@ dependencies {
     implementation(libs.preference.ktx)
     implementation(libs.appcompat) //
 
+    implementation(libs.material)
     implementation(libs.compose.material3)
     implementation(libs.compose.material3.window.size)
     implementation(libs.compose.material3.adaptive.navigation.suite)
@@ -197,7 +199,7 @@ dependencies {
     // Common Markdown
     implementation("com.github.atlassian:commonmark-java:commonmark-parent-0.9.0")
     // Android issue reporter (a github issue reporter)
-    implementation("com.heinrichreimersoftware:android-issue-reporter:1.3.1")
+   // implementation("com.github.janheinrichmerker:android-issue-reporter:1.4.2")
     //MultiLevelListView
     implementation("com.github.hyb1996:android-multi-level-listview:1.1")
     //Licenses Dialog  Deprecated!!
@@ -205,8 +207,7 @@ dependencies {
     //Expandable RecyclerView
     implementation("com.bignerdranch.android:expandablerecyclerview:3.0.0-RC1")
     //FlexibleDivider
-    implementation("com.yqritc:recyclerview-flexibledivider:1.4.0")
-
+    implementation("com.github.mazenrashed:RecyclerView-FlexibleDivider:1.5.0")
     // RxJava  Deprecated!!
     implementation(libs.rxjava2)
     implementation(libs.rxjava2.rxandroid)
@@ -220,7 +221,7 @@ dependencies {
     //joda time
     implementation("net.danlew:android.joda:2.10.14")
     // Tasker Plugin
-    implementation("com.twofortyfouram:android-plugin-client-sdk-for-locale:4.0.3")
+    implementation("com.github.twofortyfouram:android-plugin-client-sdk-for-locale:4.0.2")
     // MaterialDialogCommon
     implementation("com.afollestad.material-dialogs:commons:0.9.2.3")
     // WorkManager

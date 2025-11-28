@@ -75,7 +75,7 @@ dependencies {
     api(libs.google.gson)
     api(project(path = ":common"))
     api(project(path = ":automator"))
-    implementation("com.hzy:libp7zip:1.7.0")
+    implementation("com.github.hzy3774:AndroidP7zip:v1.7.2")
     api(project(":paddleocr"))
     api(libs.mozilla.rhino)
     api(libs.mozilla.rhino.xml)

@@ -469,6 +469,34 @@ images.findImage = function (img: Image, template: Image, options?: {
     }
 }
 
+images.findImageInScales = function (img: Image, template: Image, options?: {
+    threshold?: number,
+    region?: [number, number, number?, number?],
+    level?: number,
+    weakThreshold?: number,
+    minScale?: number,
+    maxScale?: number,
+    step?: number
+}) {
+    initIfNeeded();
+    options = options || {};
+    var threshold = options.threshold || 0.9;
+    var maxLevel = -1;
+    if (typeof (options.level) == 'number') {
+        maxLevel = options.level;
+    }
+    var weakThreshold = options.weakThreshold || 0.6;
+    var minScale = options.minScale || 0.9;
+    var maxScale = options.maxScale || 1.1;
+    var step = options.step || 0.1;
+
+    if (options.region) {
+        return javaImages.findImageInScales(img, template, weakThreshold, threshold, buildRegion(options.region, img), minScale, maxScale, step, maxLevel);
+    } else {
+        return javaImages.findImageInScales(img, template, weakThreshold, threshold, null, minScale, maxScale, step, maxLevel);
+    }
+}
+
 images.matchTemplate = function (img: Image, template: Image, options?: {
     threshold?: number,
     region?: [number, number, number?, number?],
@@ -492,6 +520,18 @@ images.matchTemplate = function (img: Image, template: Image, options?: {
         result = javaImages.matchTemplate(img, template, weakThreshold, threshold, null, maxLevel, max);
     }
     return new MatchingResult(result);
+}
+
+images.findImageByFeature = function (img: Image, template: Image, options?: {
+    region?: [number, number, number?, number?]
+}) {
+    initIfNeeded();
+    options = options || {};
+    if (options.region) {
+        return javaImages.findImageByFeature(img, template, buildRegion(options.region, img));
+    } else {
+        return javaImages.findImageByFeature(img, template, null);
+    }
 }
 
 
@@ -609,7 +649,7 @@ function initIfNeeded() {
     javaImages.initOpenCvIfNeeded();
 }
 
-asGlobal(images, ['requestScreenCapture', 'captureScreen', 'findImage', 'findImageInRegion',
+asGlobal(images, ['requestScreenCapture', 'captureScreen', 'findImage', 'findImageInRegion', 'findImageInScales', 'findImageByFeature',
     'findColor', 'findColorInRegion', 'findColorEquals', 'findMultiColors']);
 
 declare global {
@@ -617,6 +657,8 @@ declare global {
     var requestScreenCapture: typeof images['requestScreenCapture']
     var captureScreen: () => Image
     var findImage: typeof images['findImage']
+    var findImageInScales: typeof images['findImageInScales']
+    var findImageByFeature: typeof images['findImageByFeature']
     var findImageInRegion: typeof images['findImageInRegion']
     var findColor: typeof images['findColor']
     var findColorInRegion: typeof images['findColorInRegion']

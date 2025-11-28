@@ -28,10 +28,7 @@
 -dontwarn jackpal.androidterm.**
 -keep class org.mozilla.javascript.** { *; }
 
-# tencent
 
--dontwarn com.tencent.bugly.**
--keep public class com.tencent.bugly.**{*;}
 
 -dontwarn dalvik.**
 
