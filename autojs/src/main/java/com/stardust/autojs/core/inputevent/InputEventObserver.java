@@ -93,7 +93,7 @@ public class InputEventObserver {
     public void observe() {
         if (mShell != null)
             throw new IllegalStateException("observe() should be called only once");
-        mShell = new Shell2("su");
+        /*mShell = new Shell2("su");
         mShell.setCallback(new Shell2.Callback() {
             @Override
             public void onOutput(@Nullable String str) {
@@ -109,7 +109,7 @@ public class InputEventObserver {
                 mShell.exec("getevent -t");
             }
 
-        });
+        });*/
     }
 
     public void onInputEvent(String eventStr) {
